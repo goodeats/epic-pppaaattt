@@ -1,11 +1,11 @@
 import { prisma } from '#app/utils/db.server'
 import { type IDesign } from '../design/definitions'
 import {
-	IDesignUpdateAttributesParams,
-	IDesignUpdateParams,
+	type IDesignUpdateAttributesParams,
+	type IDesignUpdateParams,
 } from './definitions.update'
 import {
-	queryDesignWhereArgsType,
+	type queryDesignWhereArgsType,
 	validateQueryWhereArgsPresent,
 } from './design.get.server'
 import { stringifyDesignAttributes } from './utils'

@@ -1,8 +1,8 @@
-import { DesignTypeEnum, type IDesignParsed } from '../definitions'
+import { type DesignTypeEnum, type IDesignParsed } from '../definitions'
 import {
-	EditDesignFillBasisSchema,
-	EditDesignFillStyleSchema,
-	EditDesignFillValueSchema,
+	type EditDesignFillBasisSchema,
+	type EditDesignFillStyleSchema,
+	type EditDesignFillValueSchema,
 } from './schema.update'
 
 // model

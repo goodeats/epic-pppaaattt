@@ -7,13 +7,13 @@ import { useFetcher } from '@remix-run/react'
 import { useHydrated } from 'remix-utils/use-hydrated'
 import { FetcherText } from '#app/components/templates/form/fetcher-text'
 import { type IAssetType } from '#app/models/asset/asset.server'
-import { requireUserId } from '#app/utils/auth.server'
-import { Routes } from '#app/utils/routes.const'
 import { EditAssetImageFitSchema } from '#app/schema/asset/image'
 import {
 	handleFormData,
 	handleRedirectIfNeeded,
 } from '#app/utils/action-handling'
+import { requireUserId } from '#app/utils/auth.server'
+import { Routes } from '#app/utils/routes.const'
 
 // https://www.epicweb.dev/full-stack-components
 

@@ -1,7 +1,7 @@
-import { IDesign, designTypeEnum } from '#app/models/design/definitions'
+import { type IDesign, type designTypeEnum } from '#app/models/design/definitions'
 import { getDesigns } from '#app/models/design/design.get.server'
 import { orderLinkedItems } from '../__shared/linked-list.utils'
-import { ILayer } from './definitions'
+import { type ILayer } from './definitions'
 
 export const getLayerDesigns = ({
 	layerId,

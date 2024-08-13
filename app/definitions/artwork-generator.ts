@@ -1,4 +1,5 @@
 import { type IArtwork } from '#app/models/artwork/artwork.server'
+import { type IArtworkBranch } from '#app/models/artwork-branch/_._definitions.js'
 import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
 import { type IAssetGenerationByType } from '#app/models/asset/asset.generation.server'
 import { type IAssetByType } from '#app/models/asset/asset.server'
@@ -13,7 +14,6 @@ import { type IDesignTemplate } from '#app/models/design/template/template.serve
 import { type ILayer } from '#app/models/layer/definitions'
 import { type IProject } from '#app/models/project/project.server'
 import { type IUser } from '#app/models/user/user.server'
-import { IArtworkBranch } from '#app/models/artwork-branch/_._definitions.js'
 
 // object sent to the client
 // generator has final building blocks for the generation(s)

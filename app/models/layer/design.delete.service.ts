@@ -1,13 +1,13 @@
+import { type designTypeEnum } from '#app/models/design/definitions'
+import { type IDesignDeletedResponse } from '#app/models/design/definitions.delete'
 import { verifyDesign } from '#app/models/design/design.get.server'
-import { designTypeEnum } from '#app/models/design/definitions'
-import { getOptionalZodErrorMessage } from '#app/utils/misc'
 import { updateSelectedDesignService } from '#app/models/design/design.update.selected.service'
-import { IDesignDeletedResponse } from '#app/models/design/definitions.delete'
-import { verifyLayer } from './layer.get.server'
-import { ILayerDesignDeleteSubmission } from './design.definitions.delete'
-import { UpdateLayerSelectedDesignStrategy } from './design.update.selected.strategy'
-import { deleteLinkedListNodeService } from '../__shared/linked-list.node.delete.service'
+import { getOptionalZodErrorMessage } from '#app/utils/misc'
 import { LinkedListNodeTypeEnum } from '../__shared/linked-list.definitions'
+import { deleteLinkedListNodeService } from '../__shared/linked-list.node.delete.service'
+import { type ILayerDesignDeleteSubmission } from './design.definitions.delete'
+import { UpdateLayerSelectedDesignStrategy } from './design.update.selected.strategy'
+import { verifyLayer } from './layer.get.server'
 
 export const deleteLayerDesignService = async ({
 	userId,

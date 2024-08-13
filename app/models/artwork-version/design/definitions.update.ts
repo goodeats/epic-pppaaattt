@@ -1,9 +1,9 @@
-import { ILinkedListNodeUpdateOrderData } from '#app/models/__shared/linked-list.definitions.update'
+import { type ILinkedListNodeUpdateOrderData } from '#app/models/__shared/linked-list.definitions.update'
 import {
-	IDesignUpdateFieldData,
-	IDesignUpdateSubmission,
+	type IDesignUpdateFieldData,
+	type IDesignUpdateSubmission,
 } from '#app/models/design/definitions.update'
-import { IArtworkVersionParentData } from '../definitions'
+import { type IArtworkVersionParentData } from '../definitions'
 
 export interface IArtworkVersionDesignUpdateFieldData
 	extends IDesignUpdateFieldData,

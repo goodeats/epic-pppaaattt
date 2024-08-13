@@ -1,6 +1,6 @@
-import { IDesignParsed } from '#app/models/design/definitions'
-import { IUser } from '#app/models/user/user.server'
-import { IArtworkVersion } from '../definitions'
+import { type IDesignParsed } from '#app/models/design/definitions'
+import { type IUser } from '#app/models/user/user.server'
+import { type IArtworkVersion } from '../definitions'
 
 export interface IArtworkVersionDesignCloneSubmission {
 	userId: IUser['id']

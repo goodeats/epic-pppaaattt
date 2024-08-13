@@ -1,12 +1,12 @@
 import { parse } from '@conform-to/zod'
 import { json, redirect, type ActionFunctionArgs } from '@remix-run/node'
 import { z } from 'zod'
+import { createDefaultArtworkBranchWithVersion } from '#app/models/artwork-branch/_.create.db.server.js'
 import { requireUserId } from '#app/utils/auth.server.ts'
 import { validateCSRF } from '#app/utils/csrf.server.ts'
 import { prisma } from '#app/utils/db.server.ts'
 import { stringToSlug } from '#app/utils/misc.tsx'
 import { ArtworkEditorSchema } from './new-artwork-form'
-import { createDefaultArtworkBranchWithVersion } from '#app/models/artwork-branch/_.create.db.server.js'
 
 export async function action({ request }: ActionFunctionArgs) {
 	const userId = await requireUserId(request)

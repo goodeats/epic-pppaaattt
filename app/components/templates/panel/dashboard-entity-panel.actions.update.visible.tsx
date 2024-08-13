@@ -1,5 +1,7 @@
 import { memo, useCallback } from 'react'
 import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
+import { ToggleArtworkVersionDesignVisibleForm } from '#app/models/artwork-version/design/__components.panel.visible'
+import { ToggleArtworkVersionLayerVisibleForm } from '#app/models/artwork-version/layer/__components.panel.visible'
 import { type IAssetImage } from '#app/models/asset/image/image.server'
 import { type IDesign } from '#app/models/design/definitions'
 import { type ILayer } from '#app/models/layer/definitions'
@@ -15,8 +17,6 @@ import {
 	EntityParentType,
 } from '#app/schema/entity'
 import { type IDashboardPanelUpdateEntityVisibleStrategy } from '#app/strategies/component/dashboard-panel/update-entity-visible.strategy'
-import { ToggleArtworkVersionDesignVisibleForm } from '#app/models/artwork-version/design/__components.panel.visible'
-import { ToggleArtworkVersionLayerVisibleForm } from '#app/models/artwork-version/layer/__components.panel.visible'
 
 export interface ToggleVisibleChildEntityFormProps {
 	entityType: entityTypeEnum

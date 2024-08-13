@@ -1,12 +1,12 @@
 import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
 import { type ILayer } from '#app/models/layer/definitions'
+import { verifyLayer } from '#app/models/layer/layer.get.server'
 import {
 	deselectArtworkVersionLayers,
 	updateLayerSelected,
 } from '#app/models/layer-artwork-version/layer-artwork-version.update.server'
 import { type IUser } from '#app/models/user/user.server'
 import { prisma } from '#app/utils/db.server'
-import { verifyLayer } from '#app/models/layer/layer.get.server'
 import { getOptionalZodErrorMessage } from '#app/utils/misc'
 
 export const artworkVersionLayerSelectService = async ({

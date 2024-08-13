@@ -1,11 +1,11 @@
-import { generateParentFormId } from '#app/utils/form-id'
 import { memo } from 'react'
+import { type CreateChildEntityFormProps } from '#app/components/templates/panel/dashboard-entity-panel.header'
 import { HiddenInputArtworkVersion } from '#app/components/ui/input-hidden'
-import { CreateChildEntityFormProps } from '#app/components/templates/panel/dashboard-entity-panel.header'
 import {
 	EntityCreateIconForm,
 	EntityCreateIconIntent,
 } from '#app/routes/resources+/api.v1+/entity.create.icon'
+import { generateParentFormId } from '#app/utils/form-id'
 import { NewArtworkVersionLayerSchema } from './schema.create'
 
 export const CreateArtworkVersionLayerForm = memo(

@@ -1,6 +1,6 @@
-import { IUpdatedResponse } from '#app/definitions/intent-action-args'
-import { IUser } from '../user/user.server'
-import { IArtworkVersion, IArtworkVersionData } from './definitions'
+import { type IUpdatedResponse } from '#app/definitions/intent-action-args'
+import { type IUser } from '../user/user.server'
+import { type IArtworkVersion, type IArtworkVersionData } from './definitions'
 
 export interface IArtworkVersionUpdateSubmission {
 	userId: IUser['id']

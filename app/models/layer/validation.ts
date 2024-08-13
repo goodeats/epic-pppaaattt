@@ -1,7 +1,7 @@
 import { type IntentActionArgs } from '#app/definitions/intent-action-args'
 import {
-	DeleteLayerDesignSchema,
-	NewLayerDesignSchema,
+	type DeleteLayerDesignSchema,
+	type NewLayerDesignSchema,
 } from '#app/schema/design-layer'
 import { ValidateLayerParentSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntitySubmission } from '#app/utils/conform-utils'

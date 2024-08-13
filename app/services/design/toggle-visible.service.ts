@@ -1,15 +1,14 @@
 import { type User } from '@prisma/client'
-import { getDesign } from '#app/models/design/design.get.server'
 import {
 	type IDesign,
 	type IDesignEntityId,
-} from '#app/models/design/definitions'
-import { designTypeEnum } from '#app/models/design/definitions'
+ type designTypeEnum } from '#app/models/design/definitions'
+import { type IDesignUpdatedResponse } from '#app/models/design/definitions.update'
+import { getDesign } from '#app/models/design/design.get.server'
+import { updateSelectedDesignService } from '#app/models/design/design.update.selected.service'
+import { updateDesignVisible } from '#app/models/design/design.update.server'
 import { type IUpdateSelectedDesignStrategy } from '#app/strategies/design/update-selected.strategy'
 import { prisma } from '#app/utils/db.server'
-import { updateDesignVisible } from '#app/models/design/design.update.server'
-import { updateSelectedDesignService } from '#app/models/design/design.update.selected.service'
-import { IDesignUpdatedResponse } from '#app/models/design/definitions.update'
 
 export const designToggleVisibleService = async ({
 	userId,

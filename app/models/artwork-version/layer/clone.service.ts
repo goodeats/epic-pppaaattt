@@ -11,10 +11,10 @@ import { createLayer } from '#app/models/layer/layer.create.server'
 import { type IUser } from '#app/models/user/user.server'
 import { prisma } from '#app/utils/db.server'
 import { getOptionalZodErrorMessage } from '#app/utils/misc'
+import { type IArtworkVersion } from '../definitions'
 import { type IArtworkVersionLayerCloneSubmission } from './definitions.clone'
 import { type IArtworkVersionLayerCreateData } from './definitions.create'
 import { ArtworkVersionLayerSchema } from './schema'
-import { IArtworkVersion } from '../definitions'
 
 export const cloneLayersToArtworkVersionService = async ({
 	userId,

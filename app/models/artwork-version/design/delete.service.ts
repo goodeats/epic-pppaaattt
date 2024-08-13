@@ -1,13 +1,13 @@
-import { verifyDesign } from '#app/models/design/design.get.server'
-import { designTypeEnum } from '#app/models/design/definitions'
-import { getOptionalZodErrorMessage } from '#app/utils/misc'
-import { verifyArtworkVersion } from '../artwork-version.get.server'
-import { UpdateArtworkVersionSelectedDesignStrategy } from './update.selected.strategy'
-import { updateSelectedDesignService } from '#app/models/design/design.update.selected.service'
-import { IArtworkVersionDesignDeleteSubmission } from './definitions.delete'
-import { IDesignDeletedResponse } from '#app/models/design/definitions.delete'
 import { LinkedListNodeTypeEnum } from '#app/models/__shared/linked-list.definitions'
 import { deleteLinkedListNodeService } from '#app/models/__shared/linked-list.node.delete.service'
+import { type designTypeEnum } from '#app/models/design/definitions'
+import { type IDesignDeletedResponse } from '#app/models/design/definitions.delete'
+import { verifyDesign } from '#app/models/design/design.get.server'
+import { updateSelectedDesignService } from '#app/models/design/design.update.selected.service'
+import { getOptionalZodErrorMessage } from '#app/utils/misc'
+import { verifyArtworkVersion } from '../artwork-version.get.server'
+import { type IArtworkVersionDesignDeleteSubmission } from './definitions.delete'
+import { UpdateArtworkVersionSelectedDesignStrategy } from './update.selected.strategy'
 
 export const deleteArtworkVersionDesignService = async ({
 	userId,

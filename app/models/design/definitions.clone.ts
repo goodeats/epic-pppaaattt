@@ -1,5 +1,5 @@
-import { IClonedResponse } from '#app/definitions/intent-action-args'
-import { IDesignAttributes } from './definitions'
+import { type IClonedResponse } from '#app/definitions/intent-action-args'
+import { type IDesignAttributes } from './definitions'
 
 export interface IDesignCloneData {
 	visible?: boolean

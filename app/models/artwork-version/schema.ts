@@ -1,9 +1,9 @@
 import { type ZodType, z } from 'zod'
+import { HexcodeSchema } from '#app/schema/colors'
 import {
-	IArtworkVersionData,
+	type IArtworkVersionData,
 	type IArtworkVersionParentData,
 } from './definitions'
-import { HexcodeSchema } from '#app/schema/colors'
 
 const widthMinLength = 1
 const widthMaxLength = 50000

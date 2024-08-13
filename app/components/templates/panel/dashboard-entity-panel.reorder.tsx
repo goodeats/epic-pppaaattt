@@ -1,4 +1,7 @@
 import { memo, useCallback } from 'react'
+import { UpdateArtworkVersionReorderDesignForm } from '#app/models/artwork-version/design/__components.panel.reorder'
+import { UpdateArtworkVersionReorderLayerForm } from '#app/models/artwork-version/layer/__components.panel.reorder'
+import { UpdateLayerReorderDesignForm } from '#app/models/layer/design.__components.panel.reorder'
 import {
 	EntityParentType,
 	type entityParentTypeEnum,
@@ -9,9 +12,6 @@ import {
 } from '#app/schema/entity'
 import { type IDashboardPanelUpdateEntityOrderStrategy } from '#app/strategies/component/dashboard-panel/update-entity-order.strategy'
 import { SidebarPanelRowReorderContainer } from '..'
-import { UpdateArtworkVersionReorderDesignForm } from '#app/models/artwork-version/design/__components.panel.reorder'
-import { UpdateLayerReorderDesignForm } from '#app/models/layer/design.__components.panel.reorder'
-import { UpdateArtworkVersionReorderLayerForm } from '#app/models/artwork-version/layer/__components.panel.reorder'
 
 export interface ReorderChildEntityFormProps {
 	entityType: entityTypeEnum

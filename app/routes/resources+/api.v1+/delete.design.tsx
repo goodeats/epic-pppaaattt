@@ -8,15 +8,15 @@ import { useHydrated } from 'remix-utils/use-hydrated'
 import { serverOnly$ } from 'vite-env-only/macros'
 import { FetcherIconButton } from '#app/components/templates/form/fetcher-icon-button'
 import { type IDesign } from '#app/models/design/definitions'
+import { handleDeleteDesignSubmission } from '#app/models/design/design.delete.submission'
+import { type DeleteArtworkVersionDesignSchema } from '#app/schema/design-artwork-version'
+import { type DeleteLayerDesignSchema } from '#app/schema/design-layer'
 import {
 	handleFormData,
 	handleRedirectIfNeeded,
 } from '#app/utils/action-handling'
 import { requireUserId } from '#app/utils/auth.server'
 import { Routes } from '#app/utils/routes.const'
-import { DeleteArtworkVersionDesignSchema } from '#app/schema/design-artwork-version'
-import { handleDeleteDesignSubmission } from '#app/models/design/design.delete.submission'
-import { DeleteLayerDesignSchema } from '#app/schema/design-layer'
 
 // https://www.epicweb.dev/full-stack-components
 

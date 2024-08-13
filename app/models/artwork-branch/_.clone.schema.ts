@@ -1,5 +1,5 @@
 import { type ZodType, z } from 'zod'
-import { IArtworkBranchCloneData } from './_.clone.definitions'
+import { type IArtworkBranchCloneData } from './_.clone.definitions'
 
 export const CloneArtworkBranchSchema = z.object({
 	id: z.string(),

@@ -6,21 +6,21 @@ import {
 import { useFetcher } from '@remix-run/react'
 import { useHydrated } from 'remix-utils/use-hydrated'
 import { serverOnly$ } from 'vite-env-only/macros'
+import { FetcherSelect } from '#app/components/templates/form/fetcher-select'
+import { handleUpdateDesignTypeAttributeSelectSubmission } from '#app/models/design/design.update.type.attribute.select.submission'
+import { type FillStyleTypeEnum } from '#app/models/design/fill/schema'
+import {
+	type EditDesignFillBasisSchema,
+	type EditDesignFillStyleSchema,
+} from '#app/models/design/fill/schema.update'
+import { type FillBasisTypeEnum } from '#app/schema/fill'
 import {
 	handleFormData,
 	handleRedirectIfNeeded,
 } from '#app/utils/action-handling'
 import { requireUserId } from '#app/utils/auth.server'
-import { Routes } from '#app/utils/routes.const'
-import { FillStyleTypeEnum } from '#app/models/design/fill/schema'
-import { FetcherSelect } from '#app/components/templates/form/fetcher-select'
 import { schemaEnumToSelectOptions } from '#app/utils/forms'
-import { FillBasisTypeEnum } from '#app/schema/fill'
-import { handleUpdateDesignTypeAttributeSelectSubmission } from '#app/models/design/design.update.type.attribute.select.submission'
-import {
-	EditDesignFillBasisSchema,
-	EditDesignFillStyleSchema,
-} from '#app/models/design/fill/schema.update'
+import { Routes } from '#app/utils/routes.const'
 
 // https://www.epicweb.dev/full-stack-components
 

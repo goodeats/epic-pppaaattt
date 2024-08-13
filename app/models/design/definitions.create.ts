@@ -1,20 +1,20 @@
-import { ICreatedResponse } from '#app/definitions/intent-action-args'
-import { IArtworkVersionDesignCreateData } from '../artwork-version/design/definitions.create'
-import { IFillCreateOverrides } from '../design-type/fill/fill.create.server'
-import { ILayoutCreateOverrides } from '../design-type/layout/layout.create.server'
-import { ILineCreateOverrides } from '../design-type/line/line.create.server'
-import { IPaletteCreateOverrides } from '../design-type/palette/palette.create.server'
-import { IRotateCreateOverrides } from '../design-type/rotate/rotate.create.server'
-import { ISizeCreateOverrides } from '../design-type/size/size.create.server'
-import { IStrokeCreateOverrides } from '../design-type/stroke/stroke.create.server'
-import { ITemplateCreateOverrides } from '../design-type/template/template.create.server'
-import { ILayerDesignCreateData } from '../layer/design.definitions.create'
-import { IUser } from '../user/user.server'
+import { type ICreatedResponse } from '#app/definitions/intent-action-args'
+import { type IArtworkVersionDesignCreateData } from '../artwork-version/design/definitions.create'
+import { type IFillCreateOverrides } from '../design-type/fill/fill.create.server'
+import { type ILayoutCreateOverrides } from '../design-type/layout/layout.create.server'
+import { type ILineCreateOverrides } from '../design-type/line/line.create.server'
+import { type IPaletteCreateOverrides } from '../design-type/palette/palette.create.server'
+import { type IRotateCreateOverrides } from '../design-type/rotate/rotate.create.server'
+import { type ISizeCreateOverrides } from '../design-type/size/size.create.server'
+import { type IStrokeCreateOverrides } from '../design-type/stroke/stroke.create.server'
+import { type ITemplateCreateOverrides } from '../design-type/template/template.create.server'
+import { type ILayerDesignCreateData } from '../layer/design.definitions.create'
+import { type IUser } from '../user/user.server'
 import {
-	IDesign,
-	IDesignAttributes,
-	IDesignData,
-	designTypeEnum,
+	type IDesign,
+	type IDesignAttributes,
+	type IDesignData,
+	type designTypeEnum,
 } from './definitions'
 
 export interface IDesignNewData {

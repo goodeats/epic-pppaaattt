@@ -1,8 +1,8 @@
 // const intent = INTENT[entityType].CREATE[parentType];
 
-import { EntityCreateIconIntentValues } from '#app/routes/resources+/api.v1+/entity.create.icon'
-import { EntityCreateDialogIntentValues } from '#app/routes/resources+/api.v1+/entity.create.dialog'
-import { EntityToggleAttributeIntentValues } from '#app/routes/resources+/api.v1+/entity.toggle.attribute'
+import { type EntityCreateDialogIntentValues } from '#app/routes/resources+/api.v1+/entity.create.dialog'
+import { type EntityCreateIconIntentValues } from '#app/routes/resources+/api.v1+/entity.create.icon'
+import { type EntityToggleAttributeIntentValues } from '#app/routes/resources+/api.v1+/entity.toggle.attribute'
 import { type ExtractStringValues } from '#app/utils/typescript-helpers'
 
 export const INTENT = {

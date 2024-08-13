@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { FillBasisSchema, FillStyleSchema } from './schema'
 import { HexcodeSchema } from '#app/schema/colors'
+import { FillBasisSchema, FillStyleSchema } from './schema'
 
 export const EditDesignFillBasisSchema = z.object({
 	id: z.string(),

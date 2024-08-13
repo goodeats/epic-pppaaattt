@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { IDesignUpdateFieldData } from './definitions.update'
-import { ILinkedListNodeUpdateOrderData } from '../__shared/linked-list.definitions.update'
+import { type ILinkedListNodeUpdateOrderData } from '../__shared/linked-list.definitions.update'
+import { type IDesignUpdateFieldData } from './definitions.update'
 
 export const UpdateDesignFieldSchema = z.object({
 	id: z.string(),

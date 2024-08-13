@@ -2,6 +2,7 @@ import {
 	type IGeneratorDesigns,
 	type ILayerGenerator,
 } from '#app/definitions/artwork-generator'
+import { orderLinkedItems } from '#app/models/__shared/linked-list.utils'
 import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/definitions'
 import { filterAssetsVisible, groupAssetsByType } from '#app/models/asset/utils'
 import { findManyDesignsWithType } from '#app/models/design/design.get.server'
@@ -15,7 +16,6 @@ import { type ILayerWithChildren } from '#app/models/layer/definitions'
 import { filterLayersVisible } from '#app/utils/layer.utils'
 import { getArtworkVersionContainer } from './build.container.service'
 import { getRotates } from './build.rotates.service'
-import { orderLinkedItems } from '#app/models/__shared/linked-list.utils'
 
 // default/global design settings for each layer
 // layer can override any of these values

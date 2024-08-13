@@ -12,6 +12,7 @@ import { type IconName } from '#app/components/ui/icon'
 import { IntentInput } from '#app/components/ui/input-hidden'
 import { invalidIntentResponse } from '#app/constants/intent'
 import { type IntentActionArgs } from '#app/definitions/intent-action-args'
+import { handleCloneArtworkArtworkBranchSubmission } from '#app/models/artwork/artwork-branch.clone.submission.js'
 import { type CloneArtworkBranchArtworkVersionSchema } from '#app/models/artwork-branch/artwork-version.clone.schema.js'
 import { handleCloneArtworkBranchArtworkVersionSubmission } from '#app/models/artwork-branch/artwork-version.clone.submission'
 import {
@@ -21,8 +22,7 @@ import {
 import { requireUserId } from '#app/utils/auth.server'
 import { resourceRouteApiV1 } from '#app/utils/routes.const'
 import { type ExtractStringValues } from '#app/utils/typescript-helpers'
-import { CloneExampleEntityExampleChildSchema } from '#dev/model-file-structure/entity.child.clone.schema.js'
-import { handleCloneArtworkArtworkBranchSubmission } from '#app/models/artwork/artwork-branch.clone.submission.js'
+import { type CloneExampleEntityExampleChildSchema } from '#dev/model-file-structure/entity.child.clone.schema.js'
 
 // https://www.epicweb.dev/full-stack-components
 

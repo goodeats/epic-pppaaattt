@@ -1,5 +1,7 @@
 import { z } from 'zod'
 import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/definitions'
+import { type NewArtworkVersionDesignSchema } from '#app/models/artwork-version/design/schema.create'
+import { DesignTypeEnum, type designTypeEnum } from '#app/models/design/definitions'
 import { type ILayerWithDesigns } from '#app/models/layer/definitions'
 import { type ObjectValues } from '#app/utils/typescript-helpers'
 import {
@@ -13,8 +15,6 @@ import {
 	type NewLayerDesignSchema,
 	type ReorderLayerDesignSchema,
 } from './design-layer'
-import { NewArtworkVersionDesignSchema } from '#app/models/artwork-version/design/schema.create'
-import { DesignTypeEnum, designTypeEnum } from '#app/models/design/definitions'
 
 export const DesignParentTypeEnum = {
 	ARTWORK_VERSION: 'artworkVersion',

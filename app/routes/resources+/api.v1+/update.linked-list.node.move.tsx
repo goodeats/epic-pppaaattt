@@ -6,19 +6,19 @@ import {
 import { useFetcher } from '@remix-run/react'
 import { useHydrated } from 'remix-utils/use-hydrated'
 import { serverOnly$ } from 'vite-env-only/macros'
+import { FetcherIconButtonReorder } from '#app/components/templates/form/fetcher-icon-button-reorder'
+import { type IconName } from '#app/components/ui/icon'
+import { type ILinkedListNodeUpdateOrderData } from '#app/models/__shared/linked-list.definitions.update'
+import { handleUpdateLinkedListNodeReorderSubmission } from '#app/models/__shared/linked-list.node.update.reorder.submission'
+import { type UpdateArtworkVersionDesignReorderSchema } from '#app/models/artwork-version/design/schema.update'
+import { type UpdateArtworkVersionLayerReorderSchema } from '#app/models/artwork-version/layer/schema.update'
+import { type UpdateLayerDesignReorderSchema } from '#app/models/layer/design.schema.update'
 import {
 	handleFormData,
 	handleRedirectIfNeeded,
 } from '#app/utils/action-handling'
 import { requireUserId } from '#app/utils/auth.server'
 import { Routes } from '#app/utils/routes.const'
-import { IconName } from '#app/components/ui/icon'
-import { FetcherIconButtonReorder } from '#app/components/templates/form/fetcher-icon-button-reorder'
-import { UpdateArtworkVersionDesignReorderSchema } from '#app/models/artwork-version/design/schema.update'
-import { ILinkedListNodeUpdateOrderData } from '#app/models/__shared/linked-list.definitions.update'
-import { UpdateLayerDesignReorderSchema } from '#app/models/layer/design.schema.update'
-import { UpdateArtworkVersionLayerReorderSchema } from '#app/models/artwork-version/layer/schema.update'
-import { handleUpdateLinkedListNodeReorderSubmission } from '#app/models/__shared/linked-list.node.update.reorder.submission'
 
 // https://www.epicweb.dev/full-stack-components
 

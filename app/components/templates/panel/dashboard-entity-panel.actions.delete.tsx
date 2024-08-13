@@ -1,6 +1,8 @@
 import { memo, useCallback } from 'react'
 import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
+import { DeleteArtworkVersionDesignForm } from '#app/models/artwork-version/design/__components.panel.delete'
 import { type IAssetImage } from '#app/models/asset/image/image.server'
+import { DeleteLayerDesignForm } from '#app/models/layer/__components.panel.delete.design'
 import { type ILayer } from '#app/models/layer/definitions'
 import { AssetImageArtworkVersionDelete } from '#app/routes/resources+/api.v1+/asset.image.artwork-version.delete'
 import { AssetImageLayerDelete } from '#app/routes/resources+/api.v1+/asset.image.layer.delete'
@@ -13,8 +15,6 @@ import {
 	EntityParentType,
 } from '#app/schema/entity'
 import { type IDashboardPanelDeleteEntityStrategy } from '#app/strategies/component/dashboard-panel/delete-entity.strategy'
-import { DeleteArtworkVersionDesignForm } from '#app/models/artwork-version/design/__components.panel.delete'
-import { DeleteLayerDesignForm } from '#app/models/layer/__components.panel.delete.design'
 
 export interface DeleteChildEntityFormProps {
 	entityType: entityTypeEnum

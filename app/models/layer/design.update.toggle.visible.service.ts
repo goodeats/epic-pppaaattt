@@ -1,13 +1,13 @@
+import { type designTypeEnum } from '#app/models/design/definitions'
+import { type IDesignUpdatedResponse } from '#app/models/design/definitions.update'
 import { verifyDesign } from '#app/models/design/design.get.server'
-import { designTypeEnum } from '#app/models/design/definitions'
-import { getOptionalZodErrorMessage } from '#app/utils/misc'
 import { updateSelectedDesignService } from '#app/models/design/design.update.selected.service'
 import { updateDesignVisible } from '#app/models/design/design.update.server'
 import { prisma } from '#app/utils/db.server'
-import { IDesignUpdatedResponse } from '#app/models/design/definitions.update'
-import { ILayerDesignUpdateFieldSubmission } from './design.definitions.update'
-import { verifyLayer } from './layer.get.server'
+import { getOptionalZodErrorMessage } from '#app/utils/misc'
+import { type ILayerDesignUpdateFieldSubmission } from './design.definitions.update'
 import { UpdateLayerSelectedDesignStrategy } from './design.update.selected.strategy'
+import { verifyLayer } from './layer.get.server'
 
 export const updateLayerDesignVisibleService = async ({
 	userId,

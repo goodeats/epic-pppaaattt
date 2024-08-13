@@ -1,10 +1,10 @@
-import { AllIntentValues } from '#app/constants/intent'
+import { type AllIntentValues } from '#app/constants/intent'
 import { type IArtwork } from '#app/models/artwork/artwork.server'
+import { type IArtworkBranch } from '#app/models/artwork-branch/_._definitions.js'
 import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
-import { designTypeEnum, type IDesign } from '#app/models/design/definitions'
-import { ILayer } from '#app/models/layer/definitions'
-import { IArtworkBranch } from '#app/models/artwork-branch/_._definitions.js'
-import { IExampleEntity } from '#dev/model-file-structure/entity._._definitions.js'
+import { type designTypeEnum, type IDesign } from '#app/models/design/definitions'
+import { type ILayer } from '#app/models/layer/definitions'
+import { type IExampleEntity } from '#dev/model-file-structure/entity._._definitions.js'
 
 export const HiddenInput = ({
 	name,

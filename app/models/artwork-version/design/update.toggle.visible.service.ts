@@ -1,13 +1,13 @@
+import { type designTypeEnum } from '#app/models/design/definitions'
+import { type IDesignUpdatedResponse } from '#app/models/design/definitions.update'
 import { verifyDesign } from '#app/models/design/design.get.server'
-import { designTypeEnum } from '#app/models/design/definitions'
-import { getOptionalZodErrorMessage } from '#app/utils/misc'
-import { verifyArtworkVersion } from '../artwork-version.get.server'
-import { UpdateArtworkVersionSelectedDesignStrategy } from './update.selected.strategy'
 import { updateSelectedDesignService } from '#app/models/design/design.update.selected.service'
 import { updateDesignVisible } from '#app/models/design/design.update.server'
 import { prisma } from '#app/utils/db.server'
-import { IArtworkVersionDesignUpdateFieldSubmission } from './definitions.update'
-import { IDesignUpdatedResponse } from '#app/models/design/definitions.update'
+import { getOptionalZodErrorMessage } from '#app/utils/misc'
+import { verifyArtworkVersion } from '../artwork-version.get.server'
+import { type IArtworkVersionDesignUpdateFieldSubmission } from './definitions.update'
+import { UpdateArtworkVersionSelectedDesignStrategy } from './update.selected.strategy'
 
 export const updateArtworkVersionDesignVisibleService = async ({
 	userId,

@@ -1,5 +1,5 @@
 import { prisma } from '#app/utils/db.server'
-import { IDesignParentCreateData } from './definitions.create'
+import { type IDesignParentCreateData } from './definitions.create'
 import { stringifyDesignAttributes } from './utils'
 
 export const createDesign = ({ data }: { data: IDesignParentCreateData }) => {

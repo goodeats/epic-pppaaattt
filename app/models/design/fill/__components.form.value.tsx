@@ -1,9 +1,9 @@
 import { memo } from 'react'
-import { IDesignFill } from './definitions'
-import { generateEntityFormId } from '#app/utils/form-id'
+import { HiddenInputId, IntentInput } from '#app/components/ui/input-hidden'
 import { INTENT } from '#app/constants/intent'
 import { UpdateDesignTypeAttributeHexForm } from '#app/routes/resources+/api.v1+/update.design.type.attribute.hex'
-import { HiddenInputId, IntentInput } from '#app/components/ui/input-hidden'
+import { generateEntityFormId } from '#app/utils/form-id'
+import { type IDesignFill } from './definitions'
 import { EditDesignFillValueSchema } from './schema.update'
 
 interface DesignFillFormProps {

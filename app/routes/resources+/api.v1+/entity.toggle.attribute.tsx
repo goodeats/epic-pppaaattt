@@ -7,22 +7,22 @@ import { useFetcher } from '@remix-run/react'
 import { useHydrated } from 'remix-utils/use-hydrated'
 import { serverOnly$ } from 'vite-env-only/macros'
 import { FetcherIconButton } from '#app/components/templates/form/fetcher-icon-button'
+import { type IconName } from '#app/components/ui/icon'
+import { IntentInput } from '#app/components/ui/input-hidden'
+import { invalidIntentResponse } from '#app/constants/intent'
+import { type IntentActionArgs } from '#app/definitions/intent-action-args'
+import { type UpdateArtworkVersionDesignFieldSchema } from '#app/models/artwork-version/design/schema.update'
+import { handleUpdateArtworkVersionDesignToggleSubmission } from '#app/models/artwork-version/design/update.toggle.submission'
+import { handleUpdateArtworkVersionLayerToggleSubmission } from '#app/models/artwork-version/layer/update.toggle.submission'
+import { type UpdateLayerDesignFieldSchema } from '#app/models/layer/design.schema.update'
+import { handleUpdateLayerDesignToggleSubmission } from '#app/models/layer/design.update.toggle.submission'
 import {
 	handleFormData,
 	handleRedirectIfNeeded,
 } from '#app/utils/action-handling'
 import { requireUserId } from '#app/utils/auth.server'
 import { resourceRouteApiV1 } from '#app/utils/routes.const'
-import { IconName } from '#app/components/ui/icon'
-import { UpdateArtworkVersionDesignFieldSchema } from '#app/models/artwork-version/design/schema.update'
-import { handleUpdateArtworkVersionDesignToggleSubmission } from '#app/models/artwork-version/design/update.toggle.submission'
-import { IntentActionArgs } from '#app/definitions/intent-action-args'
-import { ExtractStringValues } from '#app/utils/typescript-helpers'
-import { IntentInput } from '#app/components/ui/input-hidden'
-import { handleUpdateArtworkVersionLayerToggleSubmission } from '#app/models/artwork-version/layer/update.toggle.submission'
-import { invalidIntentResponse } from '#app/constants/intent'
-import { UpdateLayerDesignFieldSchema } from '#app/models/layer/design.schema.update'
-import { handleUpdateLayerDesignToggleSubmission } from '#app/models/layer/design.update.toggle.submission'
+import { type ExtractStringValues } from '#app/utils/typescript-helpers'
 
 // https://www.epicweb.dev/full-stack-components
 

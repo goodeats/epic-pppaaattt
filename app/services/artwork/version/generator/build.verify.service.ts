@@ -1,7 +1,7 @@
 import { type IGeneratorDesigns } from '#app/definitions/artwork-generator'
 import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/definitions'
-import { findManyDesignsWithType } from '#app/models/design/design.get.server'
 import { type IDesignParsed } from '#app/models/design/definitions'
+import { findManyDesignsWithType } from '#app/models/design/design.get.server'
 import {
 	findFirstDesignsByTypeInArray,
 	verifySelectedDesignTypesAllPresent,

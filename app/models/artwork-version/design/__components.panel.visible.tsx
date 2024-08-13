@@ -1,16 +1,16 @@
-import { generateEntityFormId } from '#app/utils/form-id'
 import { memo } from 'react'
+import { type ToggleVisibleChildEntityFormProps } from '#app/components/templates/panel/dashboard-entity-panel.actions.update.visible'
 import {
 	HiddenInputArtworkVersion,
 	HiddenInputId,
 } from '#app/components/ui/input-hidden'
-import { UpdateArtworkVersionDesignFieldSchema } from './schema.update'
+import { type IDesign } from '#app/models/design/definitions'
 import {
 	EntityToggleAttributeForm,
 	EntityToggleAttributeIntent,
 } from '#app/routes/resources+/api.v1+/entity.toggle.attribute'
-import { IDesign } from '#app/models/design/definitions'
-import { ToggleVisibleChildEntityFormProps } from '#app/components/templates/panel/dashboard-entity-panel.actions.update.visible'
+import { generateEntityFormId } from '#app/utils/form-id'
+import { UpdateArtworkVersionDesignFieldSchema } from './schema.update'
 
 export const ToggleArtworkVersionDesignVisibleForm = memo(
 	({ entityType, entity, parent }: ToggleVisibleChildEntityFormProps) => {

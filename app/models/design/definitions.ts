@@ -1,5 +1,6 @@
 import { type Design } from '@prisma/client'
 import { type DateOrString } from '#app/definitions/prisma-helper'
+import { type ObjectValues } from '#app/utils/typescript-helpers'
 import {
 	type IArtworkVersion,
 	type IArtworkVersionWithChildren,
@@ -46,7 +47,6 @@ import {
 	type IDesignAttributesTemplate,
 	type IDesignTemplate,
 } from './template/template.server'
-import { ObjectValues } from '#app/utils/typescript-helpers'
 
 // Omitting 'createdAt' and 'updatedAt' from the Design interface
 // prisma query returns a string for these fields

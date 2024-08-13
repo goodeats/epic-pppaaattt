@@ -17,10 +17,10 @@ import { type IUser } from '#app/models/user/user.server'
 import { prisma } from '#app/utils/db.server'
 import { getOptionalZodErrorMessage } from '#app/utils/misc'
 import { initializeEnumItemsMap } from '#app/utils/typescript-helpers'
+import { type IArtworkVersion } from '../definitions'
 import { type IArtworkVersionDesignCloneSubmission } from './definitions.clone'
 import { type IArtworkVersionDesignCreateData } from './definitions.create'
 import { findArtworkVersionDesignSchemaByType } from './utils'
-import { IArtworkVersion } from '../definitions'
 
 // Note: please read the comments carefully when making changes
 // It seems prisma will not allow creating a design attribute with json string, just '{}' for some reason

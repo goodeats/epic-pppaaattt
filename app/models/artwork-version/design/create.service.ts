@@ -1,3 +1,8 @@
+import { LinkedListNodeTypeEnum } from '#app/models/__shared/linked-list.definitions'
+import { connectNodes } from '#app/models/__shared/linked-list.node.update.server'
+import { type designTypeEnum } from '#app/models/design/definitions'
+import { type IDesignCloneData } from '#app/models/design/definitions.clone'
+import { type IDesignCreatedResponse } from '#app/models/design/definitions.create'
 import { createDesign } from '#app/models/design/design.create.server'
 import {
 	getDesign,
@@ -9,13 +14,8 @@ import { prisma } from '#app/utils/db.server'
 import { getOptionalZodErrorMessage } from '#app/utils/misc'
 import { verifyArtworkVersion } from '../artwork-version.get.server'
 import { type IArtworkVersion } from '../definitions'
+import { type IArtworkVersionDesignCreateSubmission } from './definitions.create'
 import { findArtworkVersionDesignSchemaByType } from './utils'
-import { IArtworkVersionDesignCreateSubmission } from './definitions.create'
-import { IDesignCreatedResponse } from '#app/models/design/definitions.create'
-import { IDesignCloneData } from '#app/models/design/definitions.clone'
-import { LinkedListNodeTypeEnum } from '#app/models/__shared/linked-list.definitions'
-import { connectNodes } from '#app/models/__shared/linked-list.node.update.server'
-import { designTypeEnum } from '#app/models/design/definitions'
 
 export const createArtworkVersionDesignService = async ({
 	userId,

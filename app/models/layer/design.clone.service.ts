@@ -1,26 +1,26 @@
+import { type PrismaPromise } from '@prisma/client'
+import { type IDesignsClonedResponse } from '#app/models/design/definitions.clone'
 import { createDesign } from '#app/models/design/design.create.server'
 import { groupDesignTypes } from '#app/models/design/utils'
 import { prisma } from '#app/utils/db.server'
 import { getOptionalZodErrorMessage } from '#app/utils/misc'
-import { IDesignsClonedResponse } from '#app/models/design/definitions.clone'
-import { ILayerDesignCloneSubmission } from './design.definitions.clone'
+import { initializeEnumItemsMap } from '#app/utils/typescript-helpers'
+import { LinkedListNodeTypeEnum } from '../__shared/linked-list.definitions'
+import { connectNodes } from '../__shared/linked-list.node.update.server'
 import {
 	DesignTypeEnum,
-	IDesign,
-	IDesignAttributes,
-	IDesignType,
-	designTypeEnum,
+	type IDesign,
+	type IDesignAttributes,
+	type IDesignType,
+	type designTypeEnum,
 	designTypes,
 } from '../design/definitions'
-import { findLayerDesignSchemaByType } from './design.utils'
-import { IUser } from '../user/user.server'
-import { ILayer } from './definitions'
 import { updateDesignAttributes } from '../design/design.update.server'
-import { ILayerDesignCreateData } from './design.definitions.create'
-import { connectNodes } from '../__shared/linked-list.node.update.server'
-import { LinkedListNodeTypeEnum } from '../__shared/linked-list.definitions'
-import { PrismaPromise } from '@prisma/client'
-import { initializeEnumItemsMap } from '#app/utils/typescript-helpers'
+import { type IUser } from '../user/user.server'
+import { type ILayer } from './definitions'
+import { type ILayerDesignCloneSubmission } from './design.definitions.clone'
+import { type ILayerDesignCreateData } from './design.definitions.create'
+import { findLayerDesignSchemaByType } from './design.utils'
 
 // Note: please read the comments carefully when making changes
 // It seems prisma will not allow creating a design attribute with json string, just '{}' for some reason

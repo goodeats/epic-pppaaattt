@@ -10,7 +10,7 @@ import {
 	type IDesignWithSize,
 	type IDesignWithTemplate,
 	DesignTypeEnum,
-	designTypeEnum,
+	type designTypeEnum,
 } from '#app/models/design/definitions'
 import { getDesignsWithType } from '#app/models/design/design.get.server'
 import { type IDesignAttributesFill } from '#app/models/design/fill/definitions'

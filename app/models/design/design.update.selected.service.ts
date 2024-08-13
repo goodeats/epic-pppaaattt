@@ -1,8 +1,7 @@
 import {
 	type IDesignEntityId,
 	type IDesignIdOrNull,
-} from '#app/models/design/definitions'
-import { designTypeEnum } from '#app/models/design/definitions'
+ type designTypeEnum } from '#app/models/design/definitions'
 import { type IUpdateSelectedDesignStrategy } from '#app/strategies/design/update-selected.strategy'
 import { getOptionalZodErrorMessage } from '#app/utils/misc'
 

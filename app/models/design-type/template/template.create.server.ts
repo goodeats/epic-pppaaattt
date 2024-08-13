@@ -1,5 +1,5 @@
 import { type IDesign } from '#app/models/design/definitions'
-import { IDesignTypeCreateOverrides } from '#app/models/design/definitions.create'
+import { type IDesignTypeCreateOverrides } from '#app/models/design/definitions.create'
 import { TemplateDataSchema } from '#app/schema/template'
 import { prisma } from '#app/utils/db.server'
 

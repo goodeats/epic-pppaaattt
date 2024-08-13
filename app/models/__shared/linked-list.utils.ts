@@ -1,4 +1,4 @@
-import { LinkedListNode } from './linked-list.definitions'
+import { type LinkedListNode } from './linked-list.definitions'
 
 // TODO: add mechanism to fix broken linked lists
 // i.e., two heads, two tails, missing items, etc.

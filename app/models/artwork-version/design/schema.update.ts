@@ -1,12 +1,12 @@
+import { type ZodType } from 'zod'
 import {
 	UpdateDesignFieldSchema,
 	UpdateDesignOrderSchema,
 } from '#app/models/design/schema.update'
-import { ZodType } from 'zod'
 import { ArtworkVersionParentSchema } from '../schema'
 import {
-	IArtworkVersionDesignUpdateFieldData,
-	IArtworkVersionDesignUpdateOrderData,
+	type IArtworkVersionDesignUpdateFieldData,
+	type IArtworkVersionDesignUpdateOrderData,
 } from './definitions.update'
 
 export const UpdateArtworkVersionDesignFieldSchema =

@@ -1,7 +1,7 @@
+import { invariant } from '@epic-web/invariant'
 import { z } from 'zod'
 import { prisma } from '#app/utils/db.server'
-import { invariant } from '@epic-web/invariant'
-import { IArtworkBranch, IArtworkBranchWithVersions } from './_._definitions'
+import { type IArtworkBranch, type IArtworkBranchWithVersions } from './_._definitions'
 
 export type queryArtworkBranchWhereArgsType = z.infer<typeof whereArgs>
 const whereArgs = z.object({

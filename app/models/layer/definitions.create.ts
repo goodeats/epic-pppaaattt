@@ -1,7 +1,7 @@
-import { ICreatedResponse } from '#app/definitions/intent-action-args'
-import { IArtworkVersionLayerCreateData } from '../artwork-version/layer/definitions.create'
-import { IUser } from '../user/user.server'
-import { ILayer, ILayerData } from './definitions'
+import { type ICreatedResponse } from '#app/definitions/intent-action-args'
+import { type IArtworkVersionLayerCreateData } from '../artwork-version/layer/definitions.create'
+import { type IUser } from '../user/user.server'
+import { type ILayer, type ILayerData } from './definitions'
 
 export interface ILayerNewData {}
 

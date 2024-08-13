@@ -1,10 +1,10 @@
+import { LinkedListNodeTypeEnum } from '#app/models/__shared/linked-list.definitions'
+import { moveLinkedListEntityUpService } from '#app/models/__shared/linked-list.node.move-up.service'
+import { type ILayerUpdatedResponse } from '#app/models/layer/definitions.update'
+import { verifyLayer } from '#app/models/layer/layer.get.server'
 import { getOptionalZodErrorMessage } from '#app/utils/misc'
 import { verifyArtworkVersion } from '../artwork-version.get.server'
-import { IArtworkVersionLayerUpdateOrderSubmission } from './definitions.update'
-import { verifyLayer } from '#app/models/layer/layer.get.server'
-import { moveLinkedListEntityUpService } from '#app/models/__shared/linked-list.node.move-up.service'
-import { LinkedListNodeTypeEnum } from '#app/models/__shared/linked-list.definitions'
-import { ILayerUpdatedResponse } from '#app/models/layer/definitions.update'
+import { type IArtworkVersionLayerUpdateOrderSubmission } from './definitions.update'
 
 export const updateArtworkVersionLayerReorderMoveUpService = async ({
 	userId,

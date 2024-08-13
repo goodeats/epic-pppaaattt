@@ -1,4 +1,4 @@
-import { IntentActionArgs } from '#app/definitions/intent-action-args'
+import { type IntentActionArgs } from '#app/definitions/intent-action-args'
 import { EditAssetImageFitSchema } from '#app/schema/asset/image'
 import { ValidateAssetSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntitySubmission } from '#app/utils/conform-utils'

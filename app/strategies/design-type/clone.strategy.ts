@@ -9,10 +9,10 @@ import {
 	type IDesignWithLayout,
 	type IDesignWithTemplate,
 	type IDesignsByType,
-	designTypeEnum,
+	type designTypeEnum,
 	DesignTypeEnum,
 } from '#app/models/design/definitions'
-import { IDesignTypeCreateOverrides } from '#app/models/design/definitions.create'
+import { type IDesignTypeCreateOverrides } from '#app/models/design/definitions.create'
 
 export interface ICloneDesignTypeStrategy {
 	type: designTypeEnum

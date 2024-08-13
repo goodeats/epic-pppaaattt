@@ -1,4 +1,4 @@
-import { DesignTypeEnum, designTypeEnum } from '#app/models/design/definitions'
+import { DesignTypeEnum, type designTypeEnum } from '#app/models/design/definitions'
 import { ArtworkVersionDesignFillSchema } from './schema'
 
 export const findArtworkVersionDesignSchemaByType = ({

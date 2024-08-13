@@ -1,10 +1,10 @@
 import { type Layer } from '@prisma/client'
 import { type DateOrString } from '#app/definitions/prisma-helper'
+import { type ISubmission } from '#app/definitions/submission.js'
+import { type IArtworkVersion } from '../artwork-version/definitions'
 import { type IAssetParsed } from '../asset/asset.server'
 import { type IDesignParsed, type IDesignWithType } from '../design/definitions'
 import { type IUser } from '../user/user.server'
-import { ISubmission } from '#app/definitions/submission.js'
-import { IArtworkVersion } from '../artwork-version/definitions'
 
 // Omitting 'createdAt' and 'updatedAt' from the Layer interface
 // prisma query returns a string for these fields

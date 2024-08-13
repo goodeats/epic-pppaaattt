@@ -1,7 +1,7 @@
-import { IDesign, designTypeEnum } from '#app/models/design/definitions'
-import { IUpdateSelectedDesignStrategy } from '#app/strategies/design/update-selected.strategy'
+import { type IDesign, type designTypeEnum } from '#app/models/design/definitions'
+import { type IUpdateSelectedDesignStrategy } from '#app/strategies/design/update-selected.strategy'
 import { prisma } from '#app/utils/db.server'
-import { ILayer } from './definitions'
+import { type ILayer } from './definitions'
 import { getFirstLayerOrderedDesignsVisible } from './design.get.server'
 import {
 	updateLayerDesignsDeselected,

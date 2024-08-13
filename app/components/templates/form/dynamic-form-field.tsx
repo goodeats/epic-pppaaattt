@@ -1,4 +1,4 @@
-import { conform, Fieldset, type FieldConfig } from '@conform-to/react'
+import { conform, type Fieldset, type FieldConfig } from '@conform-to/react'
 import { Field, TextareaField } from '#app/components/forms'
 import { DialogFormsContainer } from '#app/components/layout/dialog'
 

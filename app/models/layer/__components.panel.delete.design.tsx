@@ -1,15 +1,15 @@
-import { INTENT } from '#app/constants/intent'
-import { IDesign } from '#app/models/design/definitions'
-import { generateEntityFormId } from '#app/utils/form-id'
 import { memo } from 'react'
+import { type DeleteChildEntityFormProps } from '#app/components/templates/panel/dashboard-entity-panel.actions.delete'
 import {
 	HiddenInputId,
 	HiddenInputLayer,
 	IntentInput,
 } from '#app/components/ui/input-hidden'
+import { INTENT } from '#app/constants/intent'
+import { type IDesign } from '#app/models/design/definitions'
 import { DeleteDesignForm } from '#app/routes/resources+/api.v1+/delete.design'
-import { DeleteChildEntityFormProps } from '#app/components/templates/panel/dashboard-entity-panel.actions.delete'
 import { DeleteLayerDesignSchema } from '#app/schema/design-layer'
+import { generateEntityFormId } from '#app/utils/form-id'
 
 export const DeleteLayerDesignForm = memo(
 	({ entityType, entity, parent }: DeleteChildEntityFormProps) => {

@@ -1,5 +1,5 @@
 import { type IDesignSubmission } from '#app/models/design/definitions'
-import { IDesignDeleteData } from '#app/models/design/definitions.delete'
+import { type IDesignDeleteData } from '#app/models/design/definitions.delete'
 import { type IArtworkVersionParentData } from '../definitions'
 
 export interface IArtworkVersionDesignDeleteData

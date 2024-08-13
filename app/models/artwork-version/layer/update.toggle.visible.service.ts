@@ -1,10 +1,10 @@
-import { getOptionalZodErrorMessage } from '#app/utils/misc'
-import { verifyArtworkVersion } from '../artwork-version.get.server'
-import { prisma } from '#app/utils/db.server'
-import { IArtworkVersionLayerUpdateFieldSubmission } from './definitions.update'
-import { ILayerUpdatedResponse } from '#app/models/layer/definitions.update'
+import { type ILayerUpdatedResponse } from '#app/models/layer/definitions.update'
 import { verifyLayer } from '#app/models/layer/layer.get.server'
 import { updateLayerVisible } from '#app/models/layer/layer.update.server'
+import { prisma } from '#app/utils/db.server'
+import { getOptionalZodErrorMessage } from '#app/utils/misc'
+import { verifyArtworkVersion } from '../artwork-version.get.server'
+import { type IArtworkVersionLayerUpdateFieldSubmission } from './definitions.update'
 
 export const updateArtworkVersionLayerVisibleService = async ({
 	userId,

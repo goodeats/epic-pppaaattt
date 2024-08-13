@@ -1,6 +1,6 @@
-import { IUpdatedResponse } from '#app/definitions/intent-action-args'
-import { IUser } from '../user/user.server'
-import { ILayer, ILayerData } from './definitions'
+import { type IUpdatedResponse } from '#app/definitions/intent-action-args'
+import { type IUser } from '../user/user.server'
+import { type ILayer, type ILayerData } from './definitions'
 
 export interface ILayerUpdateSubmission {
 	userId: IUser['id']

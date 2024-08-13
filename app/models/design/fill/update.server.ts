@@ -1,6 +1,6 @@
 import { DesignTypeEnum } from '#app/models/design/definitions'
 import { prisma } from '#app/utils/db.server'
-import { IDesignFillUpdateParams } from './definitions.update'
+import { type IDesignFillUpdateParams } from './definitions.update'
 import { stringifyDesignFillAttributes } from './utils'
 
 export const updateDesignFillAttributes = ({

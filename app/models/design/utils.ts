@@ -3,6 +3,7 @@ import {
 	initializeEnumItemsMap,
 	safelyAssignValue,
 } from '#app/utils/typescript-helpers'
+import { orderLinkedItems } from '../__shared/linked-list.utils'
 import {
 	type IDesignByType,
 	type IDesign,
@@ -11,10 +12,10 @@ import {
 	type IDesignTypeSelected,
 	type IDesignTypeSelectedFiltered,
 	type IDesignAttributes,
-	designTypeEnum,
+	type designTypeEnum,
 	DesignTypeEnum,
-	IDesignToGroup,
-	IDesignType,
+	type IDesignToGroup,
+	type IDesignType,
 } from './definitions'
 import {
 	type IDesignAttributesFill,
@@ -81,7 +82,6 @@ import {
 	parseDesignTemplateAttributes,
 	stringifyDesignTemplateAttributes,
 } from './template/utils'
-import { orderLinkedItems } from '../__shared/linked-list.utils'
 
 export const deserializeDesigns = ({
 	designs,

@@ -1,11 +1,11 @@
 import { verifyDesign } from '#app/models/design/design.get.server'
-import { getOptionalZodErrorMessage } from '#app/utils/misc'
 import { prisma } from '#app/utils/db.server'
+import { getOptionalZodErrorMessage } from '#app/utils/misc'
+import { type IDesignUpdatedResponse } from '../definitions.update'
+import { type IDesignFillUpdateBasisSubmission } from './definitions.update'
 import { DesignAttributesFillSchema } from './schema'
-import { parseDesignFillAttributes } from './utils'
 import { updateDesignFillAttributes } from './update.server'
-import { IDesignFillUpdateBasisSubmission } from './definitions.update'
-import { IDesignUpdatedResponse } from '../definitions.update'
+import { parseDesignFillAttributes } from './utils'
 
 export const updateDesignFillBasisService = async ({
 	userId,

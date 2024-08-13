@@ -1,10 +1,10 @@
 import { memo } from 'react'
-import { IDesignFill } from './definitions'
-import { generateEntityFormId } from '#app/utils/form-id'
-import { INTENT } from '#app/constants/intent'
-import { FillBasisTypeEnum } from './schema'
 import { HiddenInputId, IntentInput } from '#app/components/ui/input-hidden'
+import { INTENT } from '#app/constants/intent'
 import { UpdateDesignTypeAttributeSelectForm } from '#app/routes/resources+/api.v1+/update.design.type.attribute.select'
+import { generateEntityFormId } from '#app/utils/form-id'
+import { type IDesignFill } from './definitions'
+import { FillBasisTypeEnum } from './schema'
 import { EditDesignFillBasisSchema } from './schema.update'
 
 interface DesignFillFormProps {

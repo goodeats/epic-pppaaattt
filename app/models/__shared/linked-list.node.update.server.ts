@@ -2,10 +2,10 @@ import { updateArtworkVersionFields } from '../artwork-version/artwork-version.u
 import { updateDesignFields } from '../design/design.update.server'
 import { updateLayerFields } from '../layer/layer.update.server'
 import {
-	LinkedListNode,
-	LinkedListNodeId,
+	type LinkedListNode,
+	type LinkedListNodeId,
 	LinkedListNodeTypeEnum,
-	linkedListNodeTypeEnum,
+	type linkedListNodeTypeEnum,
 } from './linked-list.definitions'
 
 // it was possible to use different strategies such as:

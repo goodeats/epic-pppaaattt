@@ -10,9 +10,9 @@ import {
 	EntityCreateDialogIntent,
 } from '#app/routes/resources+/api.v1+/entity.create.dialog'
 import { generateParentFormId } from '#app/utils/form-id'
-import { IArtworkBranch } from './_._definitions'
+import { type IArtworkVersion } from '../artwork-version/definitions'
+import { type IArtworkBranch } from './_._definitions'
 import { CloneArtworkBranchArtworkVersionSchema } from './artwork-version.clone.schema'
-import { IArtworkVersion } from '../artwork-version/definitions'
 
 const CloneVersionContent = () => {
 	return (

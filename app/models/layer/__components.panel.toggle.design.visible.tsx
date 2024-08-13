@@ -1,15 +1,15 @@
-import { IDesign } from '#app/models/design/definitions'
-import { generateEntityFormId } from '#app/utils/form-id'
 import { memo } from 'react'
+import { type ToggleVisibleChildEntityFormProps } from '#app/components/templates/panel/dashboard-entity-panel.actions.update.visible'
 import {
 	HiddenInputId,
 	HiddenInputLayer,
 } from '#app/components/ui/input-hidden'
-import { ToggleVisibleChildEntityFormProps } from '#app/components/templates/panel/dashboard-entity-panel.actions.update.visible'
+import { type IDesign } from '#app/models/design/definitions'
 import {
 	EntityToggleAttributeForm,
 	EntityToggleAttributeIntent,
 } from '#app/routes/resources+/api.v1+/entity.toggle.attribute'
+import { generateEntityFormId } from '#app/utils/form-id'
 import { UpdateLayerDesignFieldSchema } from './design.schema.update'
 
 export const ToggleLayerDesignVisibleForm = memo(

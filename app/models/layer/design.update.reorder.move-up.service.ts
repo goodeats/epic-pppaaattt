@@ -1,13 +1,13 @@
+import { type designTypeEnum } from '#app/models/design/definitions'
+import { type IDesignUpdatedResponse } from '#app/models/design/definitions.update'
 import { verifyDesign } from '#app/models/design/design.get.server'
-import { designTypeEnum } from '#app/models/design/definitions'
-import { getOptionalZodErrorMessage } from '#app/utils/misc'
 import { updateSelectedDesignService } from '#app/models/design/design.update.selected.service'
-import { IDesignUpdatedResponse } from '#app/models/design/definitions.update'
-import { verifyLayer } from './layer.get.server'
-import { UpdateLayerSelectedDesignStrategy } from './design.update.selected.strategy'
-import { ILayerDesignUpdateOrderSubmission } from './design.definitions.update'
-import { moveLinkedListEntityUpService } from '../__shared/linked-list.node.move-up.service'
+import { getOptionalZodErrorMessage } from '#app/utils/misc'
 import { LinkedListNodeTypeEnum } from '../__shared/linked-list.definitions'
+import { moveLinkedListEntityUpService } from '../__shared/linked-list.node.move-up.service'
+import { type ILayerDesignUpdateOrderSubmission } from './design.definitions.update'
+import { UpdateLayerSelectedDesignStrategy } from './design.update.selected.strategy'
+import { verifyLayer } from './layer.get.server'
 
 export const updateLayerDesignReorderMoveUpService = async ({
 	userId,

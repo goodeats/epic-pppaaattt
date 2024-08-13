@@ -1,6 +1,6 @@
-import { IDeletedResponse } from '#app/definitions/intent-action-args'
-import { IUser } from '../user/user.server'
-import { IDesign } from './definitions'
+import { type IDeletedResponse } from '#app/definitions/intent-action-args'
+import { type IUser } from '../user/user.server'
+import { type IDesign } from './definitions'
 
 export interface IDesignDeleteData {
 	id: IDesign['id']

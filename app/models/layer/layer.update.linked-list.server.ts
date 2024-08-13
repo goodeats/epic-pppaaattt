@@ -1,5 +1,5 @@
 import { prisma } from '#app/utils/db.server'
-import { ILayer } from './definitions'
+import { type ILayer } from './definitions'
 import { updateLayerFields } from './layer.update.server'
 
 export const connectPrevAndNextLayers = ({

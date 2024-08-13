@@ -1,5 +1,5 @@
 import { type ZodType, z } from 'zod'
-import { IArtworkBranchParentData } from './_._definitions'
+import { type IArtworkBranchParentData } from './_._definitions'
 
 export const ArtworkBranchParentSchema = z.object({
 	branchId: z.string(),

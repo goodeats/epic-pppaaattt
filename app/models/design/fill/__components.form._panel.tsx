@@ -1,13 +1,13 @@
 import { memo, useCallback } from 'react'
 import { SidebarPanelPopoverFormContainer } from '#app/components/layout/popover'
+import { SidebarPanelRowValuesContainer } from '#app/components/templates'
+import { PanelEntityPopover } from '#app/components/templates/panel/dashboard-entity-panel.popover'
+import { UpdateDesignFillBasisForm } from '#app/models/design/fill/__components.form.basis'
+import { UpdateDesignFillStyleForm } from '#app/models/design/fill/__components.form.style'
+import { UpdateDesignFillValueForm } from '#app/models/design/fill/__components.form.value'
 import { type IDesignFill } from '#app/models/design/fill/definitions'
 import { type IEntity } from '#app/schema/entity'
 import { FillBasisTypeEnum, FillStyleTypeEnum } from '#app/schema/fill'
-import { UpdateDesignFillValueForm } from '#app/models/design/fill/__components.form.value'
-import { UpdateDesignFillBasisForm } from '#app/models/design/fill/__components.form.basis'
-import { UpdateDesignFillStyleForm } from '#app/models/design/fill/__components.form.style'
-import { PanelEntityPopover } from '#app/components/templates/panel/dashboard-entity-panel.popover'
-import { SidebarPanelRowValuesContainer } from '#app/components/templates'
 
 export interface IDesignFillFormProps {
 	fill: IDesignFill

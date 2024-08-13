@@ -1,7 +1,7 @@
 import { orderLinkedItems } from '#app/models/__shared/linked-list.utils'
-import { IDesign, designTypeEnum } from '#app/models/design/definitions'
+import { type IDesign, type designTypeEnum } from '#app/models/design/definitions'
 import { getDesigns } from '#app/models/design/design.get.server'
-import { IArtworkVersion } from '../definitions'
+import { type IArtworkVersion } from '../definitions'
 
 export const getArtworkVersionDesigns = ({
 	artworkVersionId,

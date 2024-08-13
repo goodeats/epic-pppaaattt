@@ -1,13 +1,13 @@
-import { ZodType } from 'zod'
-import { ArtworkVersionParentSchema } from '../schema'
-import {
-	IArtworkVersionLayerUpdateFieldData,
-	IArtworkVersionLayerUpdateOrderData,
-} from './definitions.update'
+import { type ZodType } from 'zod'
 import {
 	UpdateLayerFieldSchema,
 	UpdateLayerOrderSchema,
 } from '#app/models/layer/schema.update'
+import { ArtworkVersionParentSchema } from '../schema'
+import {
+	type IArtworkVersionLayerUpdateFieldData,
+	type IArtworkVersionLayerUpdateOrderData,
+} from './definitions.update'
 
 export const UpdateArtworkVersionLayerFieldSchema =
 	UpdateLayerFieldSchema.merge(

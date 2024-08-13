@@ -1,8 +1,8 @@
-import { CreateChildEntityFormProps } from '#app/components/templates/panel/dashboard-entity-panel.header'
+import { memo } from 'react'
+import { type CreateChildEntityFormProps } from '#app/components/templates/panel/dashboard-entity-panel.header'
 import { AssetImageLayerCreate } from '#app/routes/resources+/api.v1+/asset.image.layer.create'
 import { EntityType } from '#app/schema/entity'
-import { memo } from 'react'
-import { ILayer } from './definitions'
+import { type ILayer } from './definitions'
 import { CreateLayerDesignForm } from './design.__components.panel.create'
 
 export const LayerCreateChildEntityForm = memo(

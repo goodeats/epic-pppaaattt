@@ -1,4 +1,5 @@
 import { type IArtwork } from '#app/models/artwork/artwork.server'
+import { type IArtworkBranch } from '#app/models/artwork-branch/_._definitions.js'
 import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
 import {
 	type IAssetParent,
@@ -10,7 +11,7 @@ import {
 	type IDesignType,
 	type IDesignParent,
 	type IDesignParsed,
-	designTypeEnum,
+	type designTypeEnum,
 } from '#app/models/design/definitions'
 import { type IDesignFill } from '#app/models/design/fill/definitions'
 import { type IDesignLayout } from '#app/models/design/layout/layout.server'
@@ -42,7 +43,6 @@ import {
 	type DeleteLayerSchemaType,
 	type SelectLayerSchemaType,
 } from './layer'
-import { IArtworkBranch } from '#app/models/artwork-branch/_._definitions.js'
 
 export type IEntity =
 	| ILayer

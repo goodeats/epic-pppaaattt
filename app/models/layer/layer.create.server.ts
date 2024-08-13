@@ -7,7 +7,7 @@ import { type IArtwork } from '../artwork/artwork.server'
 import { type IArtworkVersion } from '../artwork-version/definitions'
 import { type ILayer } from '../layer/definitions'
 import { type IUser } from '../user/user.server'
-import { ILayerParentCreateData } from './definitions.create'
+import { type ILayerParentCreateData } from './definitions.create'
 
 export interface ILayerCreatedResponse {
 	success: boolean

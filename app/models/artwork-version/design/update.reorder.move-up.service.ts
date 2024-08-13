@@ -1,13 +1,13 @@
-import { verifyDesign } from '#app/models/design/design.get.server'
-import { designTypeEnum } from '#app/models/design/definitions'
-import { getOptionalZodErrorMessage } from '#app/utils/misc'
-import { verifyArtworkVersion } from '../artwork-version.get.server'
-import { UpdateArtworkVersionSelectedDesignStrategy } from './update.selected.strategy'
-import { updateSelectedDesignService } from '#app/models/design/design.update.selected.service'
-import { IArtworkVersionDesignUpdateOrderSubmission } from './definitions.update'
-import { IDesignUpdatedResponse } from '#app/models/design/definitions.update'
 import { LinkedListNodeTypeEnum } from '#app/models/__shared/linked-list.definitions'
 import { moveLinkedListEntityUpService } from '#app/models/__shared/linked-list.node.move-up.service'
+import { type designTypeEnum } from '#app/models/design/definitions'
+import { type IDesignUpdatedResponse } from '#app/models/design/definitions.update'
+import { verifyDesign } from '#app/models/design/design.get.server'
+import { updateSelectedDesignService } from '#app/models/design/design.update.selected.service'
+import { getOptionalZodErrorMessage } from '#app/utils/misc'
+import { verifyArtworkVersion } from '../artwork-version.get.server'
+import { type IArtworkVersionDesignUpdateOrderSubmission } from './definitions.update'
+import { UpdateArtworkVersionSelectedDesignStrategy } from './update.selected.strategy'
 
 export const updateArtworkVersionDesignReorderMoveUpService = async ({
 	userId,

@@ -1,6 +1,6 @@
-import { IArtworkVersionCloneData } from '../artwork-version/_.clone.definitions'
-import { IArtworkVersionSubmission } from '../artwork-version/definitions'
-import { IArtworkBranchParentData } from './_._definitions'
+import { type IArtworkVersionCloneData } from '../artwork-version/_.clone.definitions'
+import { type IArtworkVersionSubmission } from '../artwork-version/definitions'
+import { type IArtworkBranchParentData } from './_._definitions'
 
 export interface IArtworkBranchArtworkVersionCloneData
 	extends IArtworkVersionCloneData,

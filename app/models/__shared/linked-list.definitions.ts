@@ -1,8 +1,8 @@
-import { ObjectValues } from '#app/utils/typescript-helpers'
-import { IArtworkBranch } from '../artwork-branch/_._definitions'
-import { IArtworkVersion } from '../artwork-version/definitions'
-import { IDesign, IDesignParsed } from '../design/definitions'
-import { ILayer } from '../layer/definitions'
+import { type ObjectValues } from '#app/utils/typescript-helpers'
+import { type IArtworkBranch } from '../artwork-branch/_._definitions'
+import { type IArtworkVersion } from '../artwork-version/definitions'
+import { type IDesign, type IDesignParsed } from '../design/definitions'
+import { type ILayer } from '../layer/definitions'
 
 export type LinkedListNode = IArtworkVersion | IDesign | IDesignParsed | ILayer
 export type LinkedListNodeId = IDesign['id'] | ILayer['id']

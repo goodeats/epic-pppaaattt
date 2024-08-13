@@ -8,9 +8,9 @@ import { validateEntitySubmission } from '#app/utils/conform-utils'
 import { prisma } from '#app/utils/db.server'
 import { findFirstLayerInstance } from '#app/utils/prisma-extensions-layer'
 import { type ILayer } from '../layer/definitions'
-import { ILayerUpdateParams, ILayerUpdatedResponse } from './definitions.update'
+import { type ILayerUpdateParams, type ILayerUpdatedResponse } from './definitions.update'
 import {
-	queryLayerWhereArgsType,
+	type queryLayerWhereArgsType,
 	validateQueryWhereArgsPresent,
 } from './layer.get.server'
 

@@ -3,8 +3,8 @@ import { NewArtworkVersionSchema } from '#app/schema/artwork-version'
 import { ValidateArtworkBranchParentSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntitySubmission } from '#app/utils/conform-utils'
 import { prisma } from '#app/utils/db.server'
-import { IArtworkVersion, IArtworkVersionParentData } from './definitions'
-import { IArtworkVersionParentCreateData } from './definitions.create'
+import { type IArtworkVersion, IArtworkVersionParentData } from './definitions'
+import { type IArtworkVersionParentCreateData } from './definitions.create'
 
 export interface IArtworkVersionCreatedResponse {
 	success: boolean

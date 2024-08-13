@@ -1,5 +1,5 @@
 import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
-import { ILayer } from '#app/models/layer/definitions'
+import { type ILayer } from '#app/models/layer/definitions'
 import {
 	deleteLayer,
 	type ILayerDeletedResponse,

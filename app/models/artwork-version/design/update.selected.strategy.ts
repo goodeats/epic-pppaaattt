@@ -1,7 +1,7 @@
-import { IDesign, designTypeEnum } from '#app/models/design/definitions'
-import { IUpdateSelectedDesignStrategy } from '#app/strategies/design/update-selected.strategy'
+import { type IDesign, type designTypeEnum } from '#app/models/design/definitions'
+import { type IUpdateSelectedDesignStrategy } from '#app/strategies/design/update-selected.strategy'
 import { prisma } from '#app/utils/db.server'
-import { IArtworkVersion } from '../definitions'
+import { type IArtworkVersion } from '../definitions'
 import { getFirstArtworkVersionOrderedDesignsVisible } from './get.server'
 import {
 	updateArtworkVersionDesignsDeselected,

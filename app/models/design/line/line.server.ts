@@ -1,7 +1,7 @@
 import {
 	type IDesignSubmission,
 	type IDesignParsed,
-	DesignTypeEnum,
+	type DesignTypeEnum,
 } from '../definitions'
 
 export interface IDesignLine extends IDesignParsed {

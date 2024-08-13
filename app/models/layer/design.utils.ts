@@ -1,4 +1,4 @@
-import { DesignTypeEnum, designTypeEnum } from '../design/definitions'
+import { DesignTypeEnum, type designTypeEnum } from '../design/definitions'
 import { LayerDesignFillSchema } from './design.schema'
 
 export const findLayerDesignSchemaByType = ({

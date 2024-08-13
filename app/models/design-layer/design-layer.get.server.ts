@@ -1,4 +1,4 @@
-import { designTypeEnum } from '#app/models/design/definitions'
+import { type designTypeEnum } from '#app/models/design/definitions'
 import { prisma } from '#app/utils/db.server'
 import { orderLinkedItems } from '../__shared/linked-list.utils'
 import { type IDesign } from '../design/definitions'

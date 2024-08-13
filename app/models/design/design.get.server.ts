@@ -1,3 +1,4 @@
+import { invariant } from '@epic-web/invariant'
 import { z } from 'zod'
 import { DesignTypeEnum } from '#app/models/design/definitions'
 import { arrayOfIds, zodStringOrNull } from '#app/schema/zod-helpers'
@@ -8,7 +9,6 @@ import {
 	type IDesignWithType,
 } from '../design/definitions'
 import { deserializeDesigns } from './utils'
-import { invariant } from '@epic-web/invariant'
 
 export type queryDesignWhereArgsType = z.infer<typeof whereArgs>
 const whereArgs = z.object({

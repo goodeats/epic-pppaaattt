@@ -1,10 +1,10 @@
-import { getOptionalZodErrorMessage } from '#app/utils/misc'
-import { verifyArtworkVersion } from '../artwork-version.get.server'
-import { IArtworkVersionLayerUpdateOrderSubmission } from './definitions.update'
-import { verifyLayer } from '#app/models/layer/layer.get.server'
 import { LinkedListNodeTypeEnum } from '#app/models/__shared/linked-list.definitions'
 import { moveLinkedListEntityDownService } from '#app/models/__shared/linked-list.node.move-down.service'
-import { ILayerUpdatedResponse } from '#app/models/layer/definitions.update'
+import { type ILayerUpdatedResponse } from '#app/models/layer/definitions.update'
+import { verifyLayer } from '#app/models/layer/layer.get.server'
+import { getOptionalZodErrorMessage } from '#app/utils/misc'
+import { verifyArtworkVersion } from '../artwork-version.get.server'
+import { type IArtworkVersionLayerUpdateOrderSubmission } from './definitions.update'
 
 export const updateArtworkVersionLayerReorderMoveDownService = async ({
 	userId,

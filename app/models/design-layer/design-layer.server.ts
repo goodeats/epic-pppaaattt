@@ -1,9 +1,10 @@
 import { type Design } from '@prisma/client'
 import { prisma } from '#app/utils/db.server'
+import { orderLinkedItems } from '../__shared/linked-list.utils'
 import {
 	type IDesignParsed,
 	type IDesign,
-	designTypeEnum,
+	type designTypeEnum,
 	DesignTypeEnum,
 } from '../design/definitions'
 import { findManyDesignsWithType } from '../design/design.get.server'
@@ -11,7 +12,6 @@ import { type IDesignPalette } from '../design/palette/palette.server'
 import { type IDesignRotate } from '../design/rotate/rotate.server'
 import { filterDesignsVisible } from '../design/utils'
 import { type ILayer } from '../layer/definitions'
-import { orderLinkedItems } from '../__shared/linked-list.utils'
 
 export interface IDesignWithLayer extends IDesign {
 	layer: ILayer

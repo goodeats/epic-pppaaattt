@@ -14,11 +14,11 @@ import { validateEntitySubmission } from '#app/utils/conform-utils'
 import { prisma } from '#app/utils/db.server'
 import { findFirstArtworkVersionInstance } from '#app/utils/prisma-extensions-artwork-version'
 import {
-	queryArtworkVersionWhereArgsType,
+	type queryArtworkVersionWhereArgsType,
 	validateQueryWhereArgsPresent,
 } from './artwork-version.get.server'
-import { IArtworkVersion } from './definitions'
-import { IArtworkVersionUpdateParams } from './definitions.update'
+import { type IArtworkVersion } from './definitions'
+import { type IArtworkVersionUpdateParams } from './definitions.update'
 
 type IArtworkVersionUpdateFields =
 	| 'starred'

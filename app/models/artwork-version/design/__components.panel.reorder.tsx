@@ -1,15 +1,15 @@
-import { ReorderChildEntityFormProps } from '#app/components/templates/panel/dashboard-entity-panel.reorder'
-import { INTENT } from '#app/constants/intent'
-import { generateParentReorderFormId } from '#app/utils/form-id'
 import { memo } from 'react'
+import { type ReorderChildEntityFormProps } from '#app/components/templates/panel/dashboard-entity-panel.reorder'
 import {
 	HiddenInput,
 	HiddenInputArtworkVersion,
 	HiddenInputId,
 	IntentInput,
 } from '#app/components/ui/input-hidden'
-import { UpdateArtworkVersionDesignReorderSchema } from './schema.update'
+import { INTENT } from '#app/constants/intent'
 import { UpdateLinkedListNodeMoveForm } from '#app/routes/resources+/api.v1+/update.linked-list.node.move'
+import { generateParentReorderFormId } from '#app/utils/form-id'
+import { UpdateArtworkVersionDesignReorderSchema } from './schema.update'
 
 export const UpdateArtworkVersionReorderDesignForm = memo(
 	({

@@ -1,10 +1,10 @@
-import { IUpdatedResponse } from '#app/definitions/intent-action-args'
-import { IUser } from '../user/user.server'
+import { type IUpdatedResponse } from '#app/definitions/intent-action-args'
+import { type IUser } from '../user/user.server'
 import {
-	IDesign,
-	IDesignAttributes,
-	IDesignData,
-	designTypeEnum,
+	type IDesign,
+	type IDesignAttributes,
+	type IDesignData,
+	type designTypeEnum,
 } from './definitions'
 
 export interface IDesignUpdateSubmission {

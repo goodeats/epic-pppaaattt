@@ -1,6 +1,6 @@
 import { type ZodType, z } from 'zod'
-import { HexcodeSchema } from '#app/schema/colors'
 import { DesignTypeEnum } from '#app/models/design/definitions'
+import { HexcodeSchema } from '#app/schema/colors'
 import { type ObjectValues } from '#app/utils/typescript-helpers'
 import { DesignDataSchema } from '../schema'
 import {
@@ -8,7 +8,7 @@ import {
 	type IDesignFillBasis,
 	type IDesignAttributesFill,
 } from './definitions'
-import { IDesignFillCreateData } from './definitions.create'
+import { type IDesignFillCreateData } from './definitions.create'
 
 export const FillBasisTypeEnum = {
 	DEFINED: 'defined', // exact hex value

@@ -1,7 +1,7 @@
 import { type IntentActionArgs } from '#app/definitions/intent-action-args'
 import { ValidateDesignSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntitySubmission } from '#app/utils/conform-utils'
-import { IDesignFillValidationSchema } from './fill/definitions'
+import { type IDesignFillValidationSchema } from './fill/definitions'
 
 type DesignSchema = IDesignFillValidationSchema
 

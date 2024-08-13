@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { ILinkedListNodeUpdateOrderData } from '../__shared/linked-list.definitions.update'
-import { ILayerUpdateFieldData } from './definitions.update'
+import { type ILinkedListNodeUpdateOrderData } from '../__shared/linked-list.definitions.update'
+import { type ILayerUpdateFieldData } from './definitions.update'
 
 export const UpdateLayerFieldSchema = z.object({
 	id: z.string(),

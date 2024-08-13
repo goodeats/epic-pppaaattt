@@ -1,4 +1,3 @@
-import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
 import {
 	updateArtworkVersionBackground,
 	updateArtworkVersionHeight,
@@ -8,6 +7,7 @@ import {
 	updateArtworkVersionWatermarkColor,
 	updateArtworkVersionWidth,
 } from '#app/models/artwork-version/artwork-version.update.server'
+import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
 
 export async function updateArtworkVersionWidthService({
 	id,

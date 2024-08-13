@@ -1,11 +1,11 @@
 import {
-	IDesignUpdateParams,
-	IDesignUpdateSubmission,
+	type IDesignUpdateParams,
+	type IDesignUpdateSubmission,
 } from '../definitions.update'
 import {
-	IDesignAttributesFill,
-	IDesignFillBasis,
-	IDesignFillStyle,
+	type IDesignAttributesFill,
+	type IDesignFillBasis,
+	type IDesignFillStyle,
 } from './definitions'
 
 export interface IDesignFillUpdateBasisSubmission

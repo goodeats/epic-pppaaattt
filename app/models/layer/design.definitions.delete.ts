@@ -1,6 +1,6 @@
 import { type IDesignSubmission } from '#app/models/design/definitions'
-import { IDesignDeleteData } from '#app/models/design/definitions.delete'
-import { ILayerParentData } from './definitions'
+import { type IDesignDeleteData } from '#app/models/design/definitions.delete'
+import { type ILayerParentData } from './definitions'
 
 export interface ILayerDesignDeleteData
 	extends IDesignDeleteData,

@@ -1,4 +1,6 @@
 import { memo, useCallback } from 'react'
+import { ArtworkVersionCreateChildEntityForm } from '#app/models/artwork-version/__components/create.child-entity.form'
+import { LayerCreateChildEntityForm } from '#app/models/layer/__components.create.child-entity.form'
 import {
 	EntityParentType,
 	type entityParentTypeEnum,
@@ -9,8 +11,6 @@ import {
 import { type IDashboardPanelCreateEntityStrategy } from '#app/strategies/component/dashboard-panel/create-entity.strategy'
 import { capitalize } from '#app/utils/string-formatting'
 import { SidebarPanelHeader, SidebarPanelRowActionsContainer } from '..'
-import { ArtworkVersionCreateChildEntityForm } from '#app/models/artwork-version/__components/create.child-entity.form'
-import { LayerCreateChildEntityForm } from '#app/models/layer/__components.create.child-entity.form'
 
 // the create forms ultimately lead to resource routes with fetchers and actions
 // this causes unnecessary rerenders

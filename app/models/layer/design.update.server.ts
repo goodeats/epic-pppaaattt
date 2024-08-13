@@ -1,9 +1,9 @@
-import { IDesign, designTypeEnum } from '#app/models/design/definitions'
+import { type IDesign, type designTypeEnum } from '#app/models/design/definitions'
 import {
 	updateDesignFields,
 	updateDesignSelected,
 } from '#app/models/design/design.update.server'
-import { ILayer } from './definitions'
+import { type ILayer } from './definitions'
 
 export const updateLayerDesignsDeselected = ({
 	layerId,

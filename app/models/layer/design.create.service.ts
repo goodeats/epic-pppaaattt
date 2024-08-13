@@ -1,3 +1,6 @@
+import { LinkedListNodeTypeEnum } from '#app/models/__shared/linked-list.definitions'
+import { connectNodes } from '#app/models/__shared/linked-list.node.update.server'
+import { type IDesignCreatedResponse } from '#app/models/design/definitions.create'
 import { createDesign } from '#app/models/design/design.create.server'
 import {
 	getDesign,
@@ -7,14 +10,11 @@ import { updateDesignAttributes } from '#app/models/design/design.update.server'
 import { findDesignAttributesDefaultSchemaByType } from '#app/models/design/utils'
 import { prisma } from '#app/utils/db.server'
 import { getOptionalZodErrorMessage } from '#app/utils/misc'
-import { IDesignCreatedResponse } from '#app/models/design/definitions.create'
-import { LinkedListNodeTypeEnum } from '#app/models/__shared/linked-list.definitions'
-import { connectNodes } from '#app/models/__shared/linked-list.node.update.server'
-import { ILayerDesignCreateSubmission } from './design.definitions.create'
-import { verifyLayer } from './layer.get.server'
-import { ILayer } from './definitions'
-import { designTypeEnum } from '../design/definitions'
+import { type designTypeEnum } from '../design/definitions'
+import { type ILayer } from './definitions'
+import { type ILayerDesignCreateSubmission } from './design.definitions.create'
 import { findLayerDesignSchemaByType } from './design.utils'
+import { verifyLayer } from './layer.get.server'
 
 export const createLayerDesignService = async ({
 	userId,

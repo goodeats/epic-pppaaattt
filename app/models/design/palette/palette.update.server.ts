@@ -1,5 +1,5 @@
 import { type IDesign } from '../definitions'
-import { IDesignUpdateData } from '../definitions.update'
+import { type IDesignUpdateData } from '../definitions.update'
 import {
 	type IDesignPaletteSubmission,
 	type IDesignAttributesPalette,

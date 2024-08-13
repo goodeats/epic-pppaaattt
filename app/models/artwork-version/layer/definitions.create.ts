@@ -1,9 +1,9 @@
-import { ILayerSubmission } from '#app/models/layer/definitions'
+import { type ILayerSubmission } from '#app/models/layer/definitions'
 import {
-	ILayerCreateData,
-	ILayerNewData,
+	type ILayerCreateData,
+	type ILayerNewData,
 } from '#app/models/layer/definitions.create'
-import { IArtworkVersionParentData } from '../definitions'
+import { type IArtworkVersionParentData } from '../definitions'
 
 export interface IArtworkVersionLayerNewData
 	extends ILayerNewData,
