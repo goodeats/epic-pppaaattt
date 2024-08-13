@@ -11,7 +11,7 @@ import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
 import { redirectBack } from 'remix-utils/redirect-back'
 import { useHydrated } from 'remix-utils/use-hydrated'
 import { Input } from '#app/components/ui/input'
-import { type ILayer } from '#app/models/layer/layer.server'
+import { type ILayer } from '#app/models/layer/definitions'
 import {
 	updateLayerName,
 	validateLayerNameSubmission,

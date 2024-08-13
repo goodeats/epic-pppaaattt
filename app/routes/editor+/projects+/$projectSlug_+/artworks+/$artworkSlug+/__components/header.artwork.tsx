@@ -41,10 +41,9 @@ export const ArtworkHeader = () => {
 				artwork={artwork}
 				branch={branch}
 				version={version}
-				onLatestVersion={onLatestVersion}
 			/>
 		),
-		[artwork, branch, version, onLatestVersion],
+		[artwork, branch, version],
 	)
 
 	return (

@@ -1,4 +1,4 @@
-import { type IDesign } from '#app/models/design/design.server'
+import { type IDesign } from '#app/models/design/definitions'
 import { type IRotate } from '#app/models/design-type/rotate/rotate.server'
 import {
 	type IDesignTypeRotateUpdatedResponse,

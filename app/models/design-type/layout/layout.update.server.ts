@@ -9,7 +9,7 @@ import {
 import { ValidateDesignParentSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntitySubmission } from '#app/utils/conform-utils'
 import { findFirstLayoutInstance } from '#app/utils/prisma-extensions-layout'
-import { type IDesign } from '../../design/design.server'
+import { type IDesign } from '../../design/definitions'
 import { type ILayout } from './layout.server'
 
 export interface IDesignTypeLayoutUpdatedResponse {

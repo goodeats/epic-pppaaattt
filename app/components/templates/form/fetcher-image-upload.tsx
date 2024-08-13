@@ -29,6 +29,7 @@ import {
 	DialogTrigger,
 } from '#app/components/ui/dialog'
 import { Icon, type IconName } from '#app/components/ui/icon'
+import { NoJsInput } from '#app/components/ui/input-hidden'
 import { Label } from '#app/components/ui/label'
 import { PanelIconButton } from '#app/components/ui/panel-icon-button'
 import { StatusButton } from '#app/components/ui/status-button'
@@ -114,7 +115,7 @@ export const FetcherImageUpload = ({
 						{...form.props}
 					>
 						<AuthenticityTokenInput />
-						<input type="hidden" name="no-js" value={String(!isHydrated)} />
+						<NoJsInput value={String(!isHydrated)} />
 						{children}
 
 						<DialogFormsContainer>

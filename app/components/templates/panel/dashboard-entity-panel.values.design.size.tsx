@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react'
 import { SidebarPanelPopoverFormContainer } from '#app/components/layout/popover'
 import { type IconName } from '#app/components/ui/icon'
-import { type IDesignWithSize } from '#app/models/design/design.server'
+import { type IDesignWithSize } from '#app/models/design/definitions'
 import { DesignTypeSizeBasis } from '#app/routes/resources+/api.v1+/design.type.size.update.basis'
 import { DesignTypeSizeFormat } from '#app/routes/resources+/api.v1+/design.type.size.update.format'
 import { DesignTypeSizeValue } from '#app/routes/resources+/api.v1+/design.type.size.update.value'

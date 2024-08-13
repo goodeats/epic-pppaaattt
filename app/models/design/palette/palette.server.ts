@@ -1,5 +1,8 @@
-import { type DesignTypeEnum } from '#app/schema/design'
-import { type IDesignSubmission, type IDesignParsed } from '../design.server'
+import {
+	type IDesignSubmission,
+	type IDesignParsed,
+	DesignTypeEnum,
+} from '../definitions'
 
 export interface IDesignPalette extends IDesignParsed {
 	type: typeof DesignTypeEnum.PALETTE

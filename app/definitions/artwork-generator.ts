@@ -1,9 +1,8 @@
 import { type IArtwork } from '#app/models/artwork/artwork.server'
-import { type IArtworkBranch } from '#app/models/artwork-branch/artwork-branch.server'
-import { type IArtworkVersion } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
 import { type IAssetGenerationByType } from '#app/models/asset/asset.generation.server'
 import { type IAssetByType } from '#app/models/asset/asset.server'
-import { type IDesignFill } from '#app/models/design/fill/fill.server'
+import { type IDesignFill } from '#app/models/design/fill/definitions'
 import { type IDesignLayout } from '#app/models/design/layout/layout.server'
 import { type IDesignLine } from '#app/models/design/line/line.server'
 import { type IDesignPalette } from '#app/models/design/palette/palette.server'
@@ -11,9 +10,10 @@ import { type IDesignRotate } from '#app/models/design/rotate/rotate.server'
 import { type IDesignSize } from '#app/models/design/size/size.server'
 import { type IDesignStroke } from '#app/models/design/stroke/stroke.server'
 import { type IDesignTemplate } from '#app/models/design/template/template.server'
-import { type ILayer } from '#app/models/layer/layer.server'
+import { type ILayer } from '#app/models/layer/definitions'
 import { type IProject } from '#app/models/project/project.server'
 import { type IUser } from '#app/models/user/user.server'
+import { IArtworkBranch } from '#app/models/artwork-branch/_._definitions.js'
 
 // object sent to the client
 // generator has final building blocks for the generation(s)

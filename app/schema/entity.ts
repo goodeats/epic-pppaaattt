@@ -1,6 +1,5 @@
 import { type IArtwork } from '#app/models/artwork/artwork.server'
-import { type IArtworkBranch } from '#app/models/artwork-branch/artwork-branch.server'
-import { type IArtworkVersion } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
 import {
 	type IAssetParent,
 	type IAssetType,
@@ -9,7 +8,18 @@ import {
 	type IDesignWithType,
 	type IDesign,
 	type IDesignType,
-} from '#app/models/design/design.server'
+	type IDesignParent,
+	type IDesignParsed,
+	designTypeEnum,
+} from '#app/models/design/definitions'
+import { type IDesignFill } from '#app/models/design/fill/definitions'
+import { type IDesignLayout } from '#app/models/design/layout/layout.server'
+import { type IDesignLine } from '#app/models/design/line/line.server'
+import { type IDesignPalette } from '#app/models/design/palette/palette.server'
+import { type IDesignRotate } from '#app/models/design/rotate/rotate.server'
+import { type IDesignSize } from '#app/models/design/size/size.server'
+import { type IDesignStroke } from '#app/models/design/stroke/stroke.server'
+import { type IDesignTemplate } from '#app/models/design/template/template.server'
 import { type IFill } from '#app/models/design-type/fill/fill.server'
 import { type ILayout } from '#app/models/design-type/layout/layout.server'
 import { type ILine } from '#app/models/design-type/line/line.server'
@@ -18,12 +28,11 @@ import { type IRotate } from '#app/models/design-type/rotate/rotate.server'
 import { type ISize } from '#app/models/design-type/size/size.server'
 import { type IStroke } from '#app/models/design-type/stroke/stroke.server'
 import { type ITemplate } from '#app/models/design-type/template/template.server'
-import { type ILayer } from '#app/models/layer/layer.server'
+import { type ILayer } from '#app/models/layer/definitions'
 import { type IProject } from '#app/models/project/project.server'
 import { type ObjectValues } from '#app/utils/typescript-helpers'
 import { type assetTypeEnum } from './asset'
 import {
-	type designTypeEnum,
 	type ToggleVisibleDesignSchemaType,
 	type DeleteDesignSchemaType,
 	type DesignParentType,
@@ -33,6 +42,7 @@ import {
 	type DeleteLayerSchemaType,
 	type SelectLayerSchemaType,
 } from './layer'
+import { IArtworkBranch } from '#app/models/artwork-branch/_._definitions.js'
 
 export type IEntity =
 	| ILayer
@@ -48,10 +58,20 @@ export type IEntity =
 	| ILayout
 	| ITemplate
 	| IAssetType
+	| IDesignParsed
 	| IDesignType
+	| IDesignFill
+	| IDesignLayout
+	| IDesignLine
+	| IDesignPalette
+	| IDesignRotate
+	| IDesignSize
+	| IDesignStroke
+	| IDesignTemplate
 
 export type IEntityVisible =
 	| IDesign
+	| IDesignParsed
 	| IDesignWithType
 	| ILayer
 	| IAssetType
@@ -81,6 +101,7 @@ export type IEntityType = designTypeEnum | assetTypeEnum | 'layer'
 
 export type IEntityParentType =
 	| IAssetParent
+	| IDesignParent
 	| IDesignWithType
 	| IArtworkVersion
 	| DesignParentType

@@ -1,4 +1,4 @@
-import { type IDesign } from '#app/models/design/design.server'
+import { type IDesign } from '#app/models/design/definitions'
 import { type ILine } from '#app/models/design-type/line/line.server'
 import {
 	type IDesignTypeLineUpdatedResponse,

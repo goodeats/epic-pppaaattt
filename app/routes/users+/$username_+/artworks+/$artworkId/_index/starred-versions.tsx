@@ -25,7 +25,7 @@ import {
 	TableHeader,
 	TableRow,
 } from '#app/components/ui/table'
-import { type IArtworkVersionWithGenerator } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersionWithGenerator } from '#app/models/artwork-version/definitions'
 import { ArtworkVersionTogglePublished } from '#app/routes/resources+/api.v1+/artwork-version.update.published'
 import { ArtworkVersionToggleStarred } from '#app/routes/resources+/api.v1+/artwork-version.update.starred'
 

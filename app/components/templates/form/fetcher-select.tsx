@@ -4,6 +4,7 @@ import { type FetcherWithComponents } from '@remix-run/react'
 import { useRef } from 'react'
 import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
 import { type z } from 'zod'
+import { NoJsInput } from '#app/components/ui/input-hidden'
 import {
 	Select,
 	SelectContent,
@@ -83,7 +84,7 @@ export const FetcherSelect = ({
 			className="flex-1"
 		>
 			<AuthenticityTokenInput />
-			<input type="hidden" name="no-js" value={String(!isHydrated)} />
+			<NoJsInput value={String(!isHydrated)} />
 			{/* hidden field values */}
 			{children}
 

@@ -3,6 +3,7 @@ import { clsx, type ClassValue } from 'clsx'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSpinDelay } from 'spin-delay'
 import { extendTailwindMerge } from 'tailwind-merge'
+import { ZodError } from 'zod'
 import { extendedTheme } from './extended-theme.ts'
 
 export function getUserImgSrc(imageId?: string | null) {
@@ -25,6 +26,16 @@ export function getErrorMessage(error: unknown) {
 	}
 	console.error('Unable to get error message for error', error)
 	return 'Unknown Error'
+}
+
+export function getOptionalZodErrorMessage(error: unknown) {
+	if (error instanceof ZodError) {
+		console.error('ZodError:', error)
+		return `Validation failed: ${error.errors.map(e => e.message).join(', ')}`
+	} else {
+		console.error('Error:', error)
+		return getErrorMessage(error)
+	}
 }
 
 function formatColors() {

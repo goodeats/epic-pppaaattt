@@ -1,7 +1,5 @@
-import {
-	type IDesign,
-	type IDesignTypeCreateOverrides,
-} from '#app/models/design/design.server'
+import { type IDesign } from '#app/models/design/definitions'
+import { IDesignTypeCreateOverrides } from '#app/models/design/definitions.create'
 import { LineDataSchema } from '#app/schema/line'
 import { prisma } from '#app/utils/db.server'
 

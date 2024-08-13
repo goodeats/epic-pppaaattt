@@ -7,7 +7,7 @@ import { useFetcher } from '@remix-run/react'
 import { redirectBack } from 'remix-utils/redirect-back'
 import { useHydrated } from 'remix-utils/use-hydrated'
 import { FetcherNumber } from '#app/components/templates/form/fetcher-number'
-import { type IDesignWithLayout } from '#app/models/design/design.server'
+import { type IDesignWithLayout } from '#app/models/design/definitions'
 import {
 	updateDesignTypeLayoutColumns,
 	validateDesignTypeUpdateLayoutColumnsSubmission,

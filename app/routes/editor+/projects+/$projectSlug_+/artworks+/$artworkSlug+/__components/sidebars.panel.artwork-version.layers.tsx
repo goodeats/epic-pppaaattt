@@ -1,10 +1,10 @@
 import { DashboardEntityPanel } from '#app/components/templates/panel/dashboard-entity-panel'
-import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/artwork-version.server'
-import { type ILayerWithChildren } from '#app/models/layer/layer.server'
+import { orderLinkedItems } from '#app/models/__shared/linked-list.utils'
+import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/definitions'
+import { type ILayerWithChildren } from '#app/models/layer/definitions'
 import { DashboardPanelCreateArtworkVersionLayerStrategy } from '#app/strategies/component/dashboard-panel/create-entity.strategy'
 import { DashboardPanelArtworkVersionLayerActionStrategy } from '#app/strategies/component/dashboard-panel/entity-action/entity-action'
 import { DashboardPanelUpdateArtworkVersionLayerTypeOrderStrategy } from '#app/strategies/component/dashboard-panel/update-entity-order.strategy'
-import { orderLinkedItems } from '#app/utils/linked-list.utils'
 
 export const PanelArtworkVersionLayers = ({
 	version,

@@ -1,4 +1,4 @@
-import { type IDesign } from '#app/models/design/design.server'
+import { type IDesign } from '#app/models/design/definitions'
 import { type IPalette } from '#app/models/design-type/palette/palette.server'
 import {
 	type IDesignTypePaletteUpdatedResponse,

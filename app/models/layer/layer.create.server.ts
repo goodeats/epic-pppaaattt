@@ -4,9 +4,10 @@ import { ValidateArtworkVersionParentSubmissionStrategy } from '#app/strategies/
 import { validateEntitySubmission } from '#app/utils/conform-utils'
 import { prisma } from '#app/utils/db.server'
 import { type IArtwork } from '../artwork/artwork.server'
-import { type IArtworkVersion } from '../artwork-version/artwork-version.server'
-import { type ILayer } from '../layer/layer.server'
+import { type IArtworkVersion } from '../artwork-version/definitions'
+import { type ILayer } from '../layer/definitions'
 import { type IUser } from '../user/user.server'
+import { ILayerParentCreateData } from './definitions.create'
 
 export interface ILayerCreatedResponse {
 	success: boolean
@@ -28,18 +29,6 @@ export const validateArtworkVersionNewLayerSubmission = async ({
 	})
 }
 
-export const createLayer = async ({
-	data,
-}: {
-	data: {
-		ownerId: IUser['id']
-		name: string
-		artworkId?: IArtwork['id']
-		artworkVersionId?: IArtworkVersion['id']
-		description?: string | undefined
-		slug?: string | undefined
-		visible?: boolean
-	}
-}): Promise<ILayer> => {
-	return await prisma.layer.create({ data })
+export const createLayer = ({ data }: { data: ILayerParentCreateData }) => {
+	return prisma.layer.create({ data })
 }

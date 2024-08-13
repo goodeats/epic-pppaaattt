@@ -1,4 +1,4 @@
-import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/definitions'
 
 export const getArtworkVersionContainer = ({
 	version,

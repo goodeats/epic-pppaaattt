@@ -6,7 +6,7 @@ import {
 import { ValidateDesignParentSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntitySubmission } from '#app/utils/conform-utils'
 import { findFirstPaletteInstance } from '#app/utils/prisma-extensions-palette'
-import { type IDesign } from '../../design/design.server'
+import { type IDesign } from '../../design/definitions'
 import { type IPalette } from './palette.server'
 
 export interface IDesignTypePaletteUpdatedResponse {

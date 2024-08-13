@@ -1,13 +1,8 @@
 import { prisma } from '#app/utils/db.server'
-import { type IDesign } from '../design/design.server'
+import { type IDesignDeleteParams } from './definitions.delete'
 
-export interface IDesignDeletedResponse {
-	success: boolean
-	message?: string
-}
-
-export const deleteDesign = ({ id }: { id: IDesign['id'] }) => {
+export const deleteDesign = ({ id, ownerId }: IDesignDeleteParams) => {
 	return prisma.design.delete({
-		where: { id },
+		where: { id, ownerId },
 	})
 }

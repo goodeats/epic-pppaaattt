@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react'
 import { SidebarPanelPopoverFormContainer } from '#app/components/layout/popover'
-import { type IDesignWithStroke } from '#app/models/design/design.server'
+import { type IDesignWithStroke } from '#app/models/design/definitions'
 import { DesignTypeStrokeBasis } from '#app/routes/resources+/api.v1+/design.type.stroke.update.basis'
 import { DesignTypeStrokeStyle } from '#app/routes/resources+/api.v1+/design.type.stroke.update.style'
 import { DesignTypeStrokeValue } from '#app/routes/resources+/api.v1+/design.type.stroke.update.value'

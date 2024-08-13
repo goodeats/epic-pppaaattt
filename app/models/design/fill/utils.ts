@@ -1,6 +1,6 @@
 import { ZodError } from 'zod'
-import { DesignAttributesFillSchema } from '#app/schema/design/fill'
-import { type IDesignAttributesFill } from './fill.server'
+import { type IDesignAttributesFill } from './definitions'
+import { DesignAttributesFillSchema } from './schema'
 
 export const parseDesignFillAttributes = (
 	attributes: string,

@@ -1,8 +1,8 @@
 import { type Artwork } from '@prisma/client'
 import { type DateOrString } from '#app/definitions/prisma-helper'
-import { type IArtworkBranchWithVersions } from '../artwork-branch/artwork-branch.server'
 import { type IAssetParsed } from '../asset/asset.server'
 import { type IProjectWithArtworks } from '../project/project.server'
+import { IArtworkBranchWithVersions } from '../artwork-branch/_._definitions'
 
 // Omitting 'createdAt' and 'updatedAt' from the Artwork interface
 // prisma query returns a string for these fields

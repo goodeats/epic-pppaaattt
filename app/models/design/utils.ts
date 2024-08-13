@@ -1,7 +1,8 @@
 import { ZodError } from 'zod'
-import { DesignTypeEnum, type designTypeEnum } from '#app/schema/design'
-import { orderLinkedItems } from '#app/utils/linked-list.utils'
-import { safelyAssignValue } from '#app/utils/typescript-helpers'
+import {
+	initializeEnumItemsMap,
+	safelyAssignValue,
+} from '#app/utils/typescript-helpers'
 import {
 	type IDesignByType,
 	type IDesign,
@@ -9,23 +10,78 @@ import {
 	type IDesignsByTypeWithType,
 	type IDesignTypeSelected,
 	type IDesignTypeSelectedFiltered,
-} from './design.server'
-import { type IDesignFill } from './fill/fill.server'
-import { parseDesignFillAttributes } from './fill/utils'
-import { type IDesignLayout } from './layout/layout.server'
-import { parseDesignLayoutAttributes } from './layout/utils'
-import { type IDesignLine } from './line/line.server'
-import { parseDesignLineAttributes } from './line/utils'
-import { type IDesignPalette } from './palette/palette.server'
-import { parseDesignPaletteAttributes } from './palette/utils'
-import { type IDesignRotate } from './rotate/rotate.server'
-import { parseDesignRotateAttributes } from './rotate/utils'
-import { type IDesignSize } from './size/size.server'
-import { parseDesignSizeAttributes } from './size/utils'
-import { type IDesignStroke } from './stroke/stroke.server'
-import { parseDesignStrokeAttributes } from './stroke/utils'
-import { type IDesignTemplate } from './template/template.server'
-import { parseDesignTemplateAttributes } from './template/utils'
+	type IDesignAttributes,
+	designTypeEnum,
+	DesignTypeEnum,
+	IDesignToGroup,
+	IDesignType,
+} from './definitions'
+import {
+	type IDesignAttributesFill,
+	type IDesignFill,
+} from './fill/definitions'
+import { DesignAttributesFillDefaultSchema } from './fill/schema'
+import {
+	parseDesignFillAttributes,
+	stringifyDesignFillAttributes,
+} from './fill/utils'
+import {
+	type IDesignAttributesLayout,
+	type IDesignLayout,
+} from './layout/layout.server'
+import {
+	parseDesignLayoutAttributes,
+	stringifyDesignLayoutAttributes,
+} from './layout/utils'
+import {
+	type IDesignAttributesLine,
+	type IDesignLine,
+} from './line/line.server'
+import {
+	parseDesignLineAttributes,
+	stringifyDesignLineAttributes,
+} from './line/utils'
+import {
+	type IDesignAttributesPalette,
+	type IDesignPalette,
+} from './palette/palette.server'
+import {
+	parseDesignPaletteAttributes,
+	stringifyDesignPaletteAttributes,
+} from './palette/utils'
+import {
+	type IDesignAttributesRotate,
+	type IDesignRotate,
+} from './rotate/rotate.server'
+import {
+	parseDesignRotateAttributes,
+	stringifyDesignRotateAttributes,
+} from './rotate/utils'
+import {
+	type IDesignAttributesSize,
+	type IDesignSize,
+} from './size/size.server'
+import {
+	parseDesignSizeAttributes,
+	stringifyDesignSizeAttributes,
+} from './size/utils'
+import {
+	type IDesignAttributesStroke,
+	type IDesignStroke,
+} from './stroke/stroke.server'
+import {
+	parseDesignStrokeAttributes,
+	stringifyDesignStrokeAttributes,
+} from './stroke/utils'
+import {
+	type IDesignAttributesTemplate,
+	type IDesignTemplate,
+} from './template/template.server'
+import {
+	parseDesignTemplateAttributes,
+	stringifyDesignTemplateAttributes,
+} from './template/utils'
+import { orderLinkedItems } from '../__shared/linked-list.utils'
 
 export const deserializeDesigns = ({
 	designs,
@@ -96,11 +152,96 @@ export const validateDesignAttributes = ({
 	}
 }
 
-export const filterDesignsVisible = ({
+export const serializeDesigns = ({
 	designs,
 }: {
 	designs: IDesignParsed[]
-}): IDesignParsed[] => {
+}): IDesign[] => {
+	return designs.map(design => serializeDesign({ design }))
+}
+
+export const serializeDesign = ({
+	design,
+}: {
+	design: IDesignParsed
+}): IDesign => {
+	const type = design.type as designTypeEnum
+	const { attributes } = design
+
+	const stringifiedDesignAttributes = stringifyDesignAttributes({
+		type,
+		attributes,
+	})
+
+	return {
+		...design,
+		type,
+		attributes: stringifiedDesignAttributes,
+	}
+}
+
+export const stringifyDesignAttributes = ({
+	type,
+	attributes,
+}: {
+	type: designTypeEnum
+	attributes: IDesignAttributes
+}) => {
+	try {
+		switch (type) {
+			case DesignTypeEnum.FILL:
+				return stringifyDesignFillAttributes(
+					attributes as IDesignAttributesFill,
+				)
+			case DesignTypeEnum.LAYOUT:
+				return stringifyDesignLayoutAttributes(
+					attributes as IDesignAttributesLayout,
+				)
+			case DesignTypeEnum.LINE:
+				return stringifyDesignLineAttributes(
+					attributes as IDesignAttributesLine,
+				)
+			case DesignTypeEnum.PALETTE:
+				return stringifyDesignPaletteAttributes(
+					attributes as IDesignAttributesPalette,
+				)
+			case DesignTypeEnum.ROTATE:
+				return stringifyDesignRotateAttributes(
+					attributes as IDesignAttributesRotate,
+				)
+			case DesignTypeEnum.SIZE:
+				return stringifyDesignSizeAttributes(
+					attributes as IDesignAttributesSize,
+				)
+			case DesignTypeEnum.STROKE:
+				return stringifyDesignStrokeAttributes(
+					attributes as IDesignAttributesStroke,
+				)
+			case DesignTypeEnum.TEMPLATE:
+				return stringifyDesignTemplateAttributes(
+					attributes as IDesignAttributesTemplate,
+				)
+			default:
+				throw new Error(`Unsupported design type: ${type}`)
+		}
+	} catch (error: any) {
+		if (error instanceof ZodError) {
+			throw new Error(
+				`Validation failed for design type ${type}: ${error.errors.map(e => e.message).join(', ')}`,
+			)
+		} else {
+			throw new Error(
+				`Unexpected error during validation for design type ${type}: ${error.message}`,
+			)
+		}
+	}
+}
+
+export const filterDesignsVisible = ({
+	designs,
+}: {
+	designs: IDesignToGroup[]
+}): IDesignToGroup[] => {
 	return designs.filter(design => design.visible)
 }
 
@@ -108,60 +249,60 @@ export const filterDesignType = ({
 	designs,
 	type,
 }: {
-	designs: IDesignParsed[]
+	designs: IDesignToGroup[]
 	type: designTypeEnum
-}): IDesignParsed[] => {
+}): IDesignToGroup[] => {
 	return designs.filter(design => design.type === type)
 }
 
 export const groupDesignsByType = ({
 	designs,
 }: {
-	designs: IDesignParsed[]
+	designs: IDesignToGroup[]
 }): IDesignByType => {
-	const designFills = orderLinkedItems<IDesignParsed>(
+	const designFills = orderLinkedItems<IDesignToGroup>(
 		filterDesignType({
 			designs,
 			type: DesignTypeEnum.FILL,
 		}),
 	) as IDesignFill[]
-	const designLayouts = orderLinkedItems<IDesignParsed>(
+	const designLayouts = orderLinkedItems<IDesignToGroup>(
 		filterDesignType({
 			designs,
 			type: DesignTypeEnum.LAYOUT,
 		}),
 	) as IDesignLayout[]
-	const designLines = orderLinkedItems<IDesignParsed>(
+	const designLines = orderLinkedItems<IDesignToGroup>(
 		filterDesignType({
 			designs,
 			type: DesignTypeEnum.LINE,
 		}),
 	) as IDesignLine[]
-	const designPalettes = orderLinkedItems<IDesignParsed>(
+	const designPalettes = orderLinkedItems<IDesignToGroup>(
 		filterDesignType({
 			designs,
 			type: DesignTypeEnum.PALETTE,
 		}),
 	) as IDesignPalette[]
-	const designRotates = orderLinkedItems<IDesignParsed>(
+	const designRotates = orderLinkedItems<IDesignToGroup>(
 		filterDesignType({
 			designs,
 			type: DesignTypeEnum.ROTATE,
 		}),
 	) as IDesignRotate[]
-	const designSizes = orderLinkedItems<IDesignParsed>(
+	const designSizes = orderLinkedItems<IDesignToGroup>(
 		filterDesignType({
 			designs,
 			type: DesignTypeEnum.SIZE,
 		}),
 	) as IDesignSize[]
-	const designStrokes = orderLinkedItems<IDesignParsed>(
+	const designStrokes = orderLinkedItems<IDesignToGroup>(
 		filterDesignType({
 			designs,
 			type: DesignTypeEnum.STROKE,
 		}),
 	) as IDesignStroke[]
-	const designTemplates = orderLinkedItems<IDesignParsed>(
+	const designTemplates = orderLinkedItems<IDesignToGroup>(
 		filterDesignType({
 			designs,
 			type: DesignTypeEnum.TEMPLATE,
@@ -178,6 +319,24 @@ export const groupDesignsByType = ({
 		designStrokes,
 		designTemplates,
 	}
+}
+
+export const groupDesignTypes = ({
+	designs,
+}: {
+	designs: IDesignToGroup[]
+}): IDesignType[][] => {
+	const groupedDesignsByType = groupDesignsByType({ designs })
+	return [
+		groupedDesignsByType.designFills,
+		groupedDesignsByType.designLayouts,
+		groupedDesignsByType.designLines,
+		groupedDesignsByType.designPalettes,
+		groupedDesignsByType.designRotates,
+		groupedDesignsByType.designSizes,
+		groupedDesignsByType.designStrokes,
+		groupedDesignsByType.designTemplates,
+	]
 }
 
 export const designsByTypeToPanelArray = ({
@@ -350,4 +509,24 @@ export const verifySelectedDesignTypesAllPresent = ({
 
 	// if all design types are present
 	return { success: true, message: 'All selected designs are present' }
+}
+
+export const findDesignAttributesDefaultSchemaByType = ({
+	type,
+}: {
+	type: designTypeEnum
+}) => {
+	switch (type) {
+		case DesignTypeEnum.FILL:
+			return DesignAttributesFillDefaultSchema
+		case DesignTypeEnum.LAYOUT:
+		case DesignTypeEnum.LINE:
+		case DesignTypeEnum.PALETTE:
+		case DesignTypeEnum.ROTATE:
+		case DesignTypeEnum.SIZE:
+		case DesignTypeEnum.STROKE:
+		case DesignTypeEnum.TEMPLATE:
+		default:
+			throw new Error(`Unsupported design type: ${type}`)
+	}
 }

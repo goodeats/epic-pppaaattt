@@ -1,5 +1,5 @@
 import { type IArtworkVersionGenerator } from '#app/definitions/artwork-generator'
-import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/definitions'
 import {
 	buildDefaultGeneratorLayer,
 	buildGeneratorLayers,

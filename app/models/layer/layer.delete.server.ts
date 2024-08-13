@@ -3,7 +3,7 @@ import { DeleteArtworkVersionLayerSchema } from '#app/schema/layer-artwork-versi
 import { ValidateArtworkVersionParentSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntitySubmission } from '#app/utils/conform-utils'
 import { prisma } from '#app/utils/db.server'
-import { type ILayer } from '../layer/layer.server'
+import { type ILayer } from '../layer/definitions'
 
 export interface ILayerDeletedResponse {
 	success: boolean

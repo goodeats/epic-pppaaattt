@@ -5,7 +5,7 @@ import {
 	SidebarPanelRowContainer,
 	SidebarPanelRowValuesContainer,
 } from '#app/components/templates'
-import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/definitions'
 import { ArtworkVersionBackground } from '#app/routes/resources+/api.v1+/artwork-version.update.background'
 
 export const PanelArtworkVersionBackground = ({

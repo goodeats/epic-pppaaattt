@@ -1,4 +1,4 @@
-import { type IDesign } from '#app/models/design/design.server'
+import { type IDesign } from '#app/models/design/definitions'
 import { type IStroke } from '#app/models/design-type/stroke/stroke.server'
 import {
 	type IDesignTypeStrokeUpdatedResponse,

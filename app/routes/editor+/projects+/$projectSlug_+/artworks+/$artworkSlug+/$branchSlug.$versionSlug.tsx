@@ -13,7 +13,7 @@ import {
 	FlexRow,
 } from '#app/components/layout'
 import { getArtworkWithAssets } from '#app/models/artwork/artwork.get.server'
-import { getArtworkBranch } from '#app/models/artwork-branch/artwork-branch.get.server'
+import { getArtworkBranch } from '#app/models/artwork-branch/_.get.server.js'
 import { getArtworkVersionWithChildren } from '#app/models/artwork-version/artwork-version.get.server'
 import { getUserBasic } from '#app/models/user/user.get.server'
 import { artworkVersionGeneratorBuildService } from '#app/services/artwork/version/generator/build.service'

@@ -1,4 +1,4 @@
-import { type ILayerWithChildren } from '#app/models/layer/layer.server'
+import { type ILayerWithChildren } from '#app/models/layer/definitions'
 import { DashboardPanelCreateLayerDesignTypeStrategy } from '#app/strategies/component/dashboard-panel/create-entity.strategy'
 import { DashboardPanelLayerDesignActionStrategy } from '#app/strategies/component/dashboard-panel/entity-action/entity-action'
 import { DashboardPanelUpdateLayerDesignTypeOrderStrategy } from '#app/strategies/component/dashboard-panel/update-entity-order.strategy'

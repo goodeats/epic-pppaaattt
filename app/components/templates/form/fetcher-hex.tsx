@@ -5,6 +5,7 @@ import { useRef } from 'react'
 import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
 import { type z } from 'zod'
 import { Input } from '#app/components/ui/input'
+import { NoJsInput } from '#app/components/ui/input-hidden'
 import { useOptimisticValue } from '#app/utils/forms'
 import { useDebounce, useIsPending } from '#app/utils/misc'
 import { TooltipHydrated } from '../tooltip'
@@ -86,7 +87,7 @@ export const FetcherHex = ({
 			className="flex-1"
 		>
 			<AuthenticityTokenInput />
-			<input type="hidden" name="no-js" value={String(!isHydrated)} />
+			<NoJsInput value={String(!isHydrated)} />
 			{/* hidden field values */}
 			{children}
 

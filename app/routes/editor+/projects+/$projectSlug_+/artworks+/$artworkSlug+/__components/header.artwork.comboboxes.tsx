@@ -3,8 +3,8 @@ import { FlexRow } from '#app/components/layout'
 import { ComboboxNav } from '#app/components/templates/combobox'
 import { TooltipIcon, TooltipIconLink } from '#app/components/templates/navbar'
 import { type IArtworkWithBranchesAndVersions } from '#app/models/artwork/artwork.server'
-import { type IArtworkBranchWithVersions } from '#app/models/artwork-branch/artwork-branch.server'
-import { type IArtworkVersion } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkBranchWithVersions } from '#app/models/artwork-branch/_._definitions.js'
+import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
 import { type IProjectWithArtworks } from '#app/models/project/project.server'
 
 export const NavComboboxes = memo(

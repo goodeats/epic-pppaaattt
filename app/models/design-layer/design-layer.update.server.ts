@@ -19,17 +19,3 @@ export const validateLayerToggleVisibeDesignSubmission = async ({
 		strategy,
 	})
 }
-
-export const validateLayerReorderDesignSubmission = async ({
-	userId,
-	formData,
-}: IntentActionArgs) => {
-	const strategy = new ValidateLayerParentSubmissionStrategy()
-
-	return await validateEntitySubmission({
-		userId,
-		formData,
-		schema: ReorderLayerDesignSchema,
-		strategy,
-	})
-}

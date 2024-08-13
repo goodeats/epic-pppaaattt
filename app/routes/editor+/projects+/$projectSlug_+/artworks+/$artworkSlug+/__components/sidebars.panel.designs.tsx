@@ -2,7 +2,7 @@ import { DashboardEntityPanel } from '#app/components/templates/panel/dashboard-
 import {
 	type IDesignParent,
 	type IDesignsByTypeWithType,
-} from '#app/models/design/design.server'
+} from '#app/models/design/definitions'
 import {
 	designsByTypeToPanelArray,
 	groupDesignsByType,

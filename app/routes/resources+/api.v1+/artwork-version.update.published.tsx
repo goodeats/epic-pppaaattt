@@ -16,7 +16,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from '#app/components/ui/tooltip'
-import { type IArtworkVersion } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
 import { validateArtworkVersionPublishedSubmission } from '#app/models/artwork-version/artwork-version.update.server'
 import { ArtworkVersionPublishedSchema } from '#app/schema/artwork-version'
 import { validateNoJS } from '#app/schema/form-data'

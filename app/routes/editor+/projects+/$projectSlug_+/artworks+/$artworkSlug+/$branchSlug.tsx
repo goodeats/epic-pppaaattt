@@ -6,7 +6,7 @@ import {
 } from '@remix-run/node'
 import { GeneralErrorBoundary } from '#app/components/error-boundary'
 import { getArtwork } from '#app/models/artwork/artwork.get.server'
-import { getArtworkBranchWithVersions } from '#app/models/artwork-branch/artwork-branch.get.server'
+import { getArtworkBranchWithVersions } from '#app/models/artwork-branch/_.get.server.js'
 import { getUserBasic } from '#app/models/user/user.get.server'
 import { requireUserId } from '#app/utils/auth.server'
 import { routeLoaderMetaData } from '#app/utils/matches'

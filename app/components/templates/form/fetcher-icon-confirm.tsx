@@ -15,6 +15,7 @@ import {
 	DialogTrigger,
 } from '#app/components/ui/dialog'
 import { type IconName } from '#app/components/ui/icon'
+import { NoJsInput } from '#app/components/ui/input-hidden'
 import { PanelIconButton } from '#app/components/ui/panel-icon-button'
 import { StatusButton } from '#app/components/ui/status-button'
 import { useIsPending } from '#app/utils/misc'
@@ -78,7 +79,7 @@ export const FetcherIconConfirm = ({
 				</DialogHeader>
 				<fetcher.Form method="POST" action={route} {...form.props}>
 					<AuthenticityTokenInput />
-					<input type="hidden" name="no-js" value={String(!isHydrated)} />
+					<NoJsInput value={String(!isHydrated)} />
 					{children}
 				</fetcher.Form>
 				<DialogFooter>

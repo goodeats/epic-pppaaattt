@@ -1,7 +1,7 @@
 import {
 	type IDesignWithLayout,
 	type IDesignWithType,
-} from '#app/models/design/design.server'
+} from '#app/models/design/definitions'
 import { type ILayout } from './layout.server'
 
 export const findFirstLayoutInDesignArray = ({

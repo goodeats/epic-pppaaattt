@@ -4,6 +4,7 @@ import { type FetcherWithComponents } from '@remix-run/react'
 import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
 import { type z } from 'zod'
 import { type IconName } from '#app/components/ui/icon'
+import { NoJsInput } from '#app/components/ui/input-hidden'
 import { PanelIconButton } from '#app/components/ui/panel-icon-button'
 import { useIsPending } from '#app/utils/misc'
 import { TooltipHydrated } from '../tooltip'
@@ -25,7 +26,7 @@ export const FetcherIconButton = ({
 	formId: string
 	icon: IconName
 	iconText: string
-	tooltipText: string
+	tooltipText?: string
 	isHydrated: boolean
 	children: JSX.Element
 }) => {
@@ -40,18 +41,16 @@ export const FetcherIconButton = ({
 	})
 
 	return (
-		<fetcher.Form
-			method="POST"
-			action={route}
-			{...form.props}
-			// className="flex-1"
-		>
+		<fetcher.Form method="POST" action={route} {...form.props}>
 			<AuthenticityTokenInput />
-			<input type="hidden" name="no-js" value={String(!isHydrated)} />
+			<NoJsInput value={String(!isHydrated)} />
 			{/* hidden field values */}
 			{children}
 
-			<TooltipHydrated tooltipText={tooltipText} isHydrated={isHydrated}>
+			<TooltipHydrated
+				tooltipText={tooltipText || iconText}
+				isHydrated={isHydrated}
+			>
 				<PanelIconButton
 					type="submit"
 					iconName={icon}

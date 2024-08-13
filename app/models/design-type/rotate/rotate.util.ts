@@ -1,7 +1,7 @@
 import {
 	type IDesignWithRotate,
 	type IDesignWithType,
-} from '#app/models/design/design.server'
+} from '#app/models/design/definitions'
 import { type IRotate } from './rotate.server'
 
 export const findFirstRotateInDesignArray = ({

@@ -2,7 +2,7 @@ import {
 	type IGeneratorDesigns,
 	type ILayerGenerator,
 } from '#app/definitions/artwork-generator'
-import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/definitions'
 import { filterAssetsVisible, groupAssetsByType } from '#app/models/asset/utils'
 import { findManyDesignsWithType } from '#app/models/design/design.get.server'
 import {
@@ -11,11 +11,11 @@ import {
 } from '#app/models/design/utils'
 import { getArtworkVersionVisiblePalettes } from '#app/models/design-artwork-version/design-artwork-version.server'
 import { getLayerVisiblePalettes } from '#app/models/design-layer/design-layer.server'
-import { type ILayerWithChildren } from '#app/models/layer/layer.server'
+import { type ILayerWithChildren } from '#app/models/layer/definitions'
 import { filterLayersVisible } from '#app/utils/layer.utils'
-import { orderLinkedItems } from '#app/utils/linked-list.utils'
 import { getArtworkVersionContainer } from './build.container.service'
 import { getRotates } from './build.rotates.service'
+import { orderLinkedItems } from '#app/models/__shared/linked-list.utils'
 
 // default/global design settings for each layer
 // layer can override any of these values

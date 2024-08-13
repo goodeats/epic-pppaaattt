@@ -14,7 +14,7 @@ import { getAllPublishedArtworkVersions } from '#app/models/artwork-version/artw
 import {
 	type IArtworkVersionWithChildren,
 	type IArtworkVersionWithGenerator,
-} from '#app/models/artwork-version/artwork-version.server.ts'
+} from '#app/models/artwork-version/definitions.ts'
 import { artworkVersionGeneratorBuildService } from '#app/services/artwork/version/generator/build.service.ts'
 import { prisma } from '#app/utils/db.server.ts'
 import { CanvasGrid } from './components/canvas-grid.tsx'

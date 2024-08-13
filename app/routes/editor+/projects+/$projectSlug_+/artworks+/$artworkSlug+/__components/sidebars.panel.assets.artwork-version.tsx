@@ -1,4 +1,4 @@
-import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/definitions'
 import { DashboardPanelCreateArtworkVersionAssetTypeStrategy } from '#app/strategies/component/dashboard-panel/create-entity.strategy'
 import { DashboardPanelArtworkVersionAssetActionStrategy } from '#app/strategies/component/dashboard-panel/entity-action/entity-action'
 import { DashboardPanelUpdateArtworkVersionAssetTypeOrderStrategy } from '#app/strategies/component/dashboard-panel/update-entity-order.strategy'

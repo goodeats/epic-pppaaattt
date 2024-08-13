@@ -4,23 +4,21 @@ import {
 	type LoaderFunctionArgs,
 } from '@remix-run/node'
 import { useFetcher } from '@remix-run/react'
-import { redirectBack } from 'remix-utils/redirect-back'
 import { useHydrated } from 'remix-utils/use-hydrated'
 import { FetcherText } from '#app/components/templates/form/fetcher-text'
 import { type IAssetType } from '#app/models/asset/asset.server'
-import {
-	updateDesignTypeFillValue,
-	validateDesignTypeUpdateFillValueSubmission,
-} from '#app/models/design-type/fill/fill.update.server'
-import { EditDesignFillValueSchema } from '#app/schema/fill'
-import { validateNoJS } from '#app/schema/form-data'
 import { requireUserId } from '#app/utils/auth.server'
 import { Routes } from '#app/utils/routes.const'
+import { EditAssetImageFitSchema } from '#app/schema/asset/image'
+import {
+	handleFormData,
+	handleRedirectIfNeeded,
+} from '#app/utils/action-handling'
 
 // https://www.epicweb.dev/full-stack-components
 
 const route = Routes.RESOURCES.API.V1.DESIGN.TYPE.FILL.UPDATE.VALUE
-const schema = EditDesignFillValueSchema
+const schema = EditAssetImageFitSchema
 
 // auth GET request to endpoint
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -30,36 +28,19 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export async function action({ request }: ActionFunctionArgs) {
 	const userId = await requireUserId(request)
-	const formData = await request.formData()
-	const noJS = validateNoJS({ formData })
+	const { formData, noJS } = await handleFormData({ request })
 
-	let updateSuccess = false
-	const { status, submission } =
-		await validateDesignTypeUpdateFillValueSubmission({
-			userId,
-			formData,
-		})
-
-	if (status === 'success') {
-		const { success } = await updateDesignTypeFillValue({
-			userId,
-			...submission.value,
-		})
-		updateSuccess = success
+	const { status, submission, responseSuccess, message } = {
+		status: 'error',
+		submission: null,
+		responseSuccess: false,
+		message: 'Invalid intent',
 	}
 
-	if (noJS) {
-		throw redirectBack(request, {
-			fallback: '/',
-		})
-	}
-
-	return json(
-		{ status, submission },
-		{
-			status: status === 'error' || !updateSuccess ? 404 : 200,
-		},
-	)
+	await handleRedirectIfNeeded({ request, noJS })
+	const body = { status, submission, message }
+	const code = responseSuccess ? 201 : 422
+	return json(body, { status: code })
 }
 
 export const AssetUpdateName = ({

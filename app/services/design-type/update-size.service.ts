@@ -1,4 +1,4 @@
-import { type IDesign } from '#app/models/design/design.server'
+import { type IDesign } from '#app/models/design/definitions'
 import { type ISize } from '#app/models/design-type/size/size.server'
 import {
 	type IDesignTypeSizeUpdatedResponse,

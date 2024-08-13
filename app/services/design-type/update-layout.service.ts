@@ -1,4 +1,4 @@
-import { type IDesign } from '#app/models/design/design.server'
+import { type IDesign } from '#app/models/design/definitions'
 import { type ILayout } from '#app/models/design-type/layout/layout.server'
 import {
 	type IDesignTypeLayoutUpdatedResponse,

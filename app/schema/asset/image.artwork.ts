@@ -6,7 +6,7 @@ import {
 	NewAssetImageSchema,
 } from './image'
 
-const ArtworkParentSchema = z.object({
+export const ArtworkParentSchema = z.object({
 	artworkId: z.string(),
 })
 

@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react'
 import { SidebarPanelPopoverFormContainer } from '#app/components/layout/popover'
-import { type IDesignWithLayout } from '#app/models/design/design.server'
+import { type IDesignWithLayout } from '#app/models/design/definitions'
 import { DesignTypeLayoutColumns } from '#app/routes/resources+/api.v1+/design.type.layout.update.columns'
 import { DesignTypeLayoutCount } from '#app/routes/resources+/api.v1+/design.type.layout.update.count'
 import { DesignTypeLayoutRows } from '#app/routes/resources+/api.v1+/design.type.layout.update.rows'

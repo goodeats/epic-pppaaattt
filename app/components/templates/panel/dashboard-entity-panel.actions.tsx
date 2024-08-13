@@ -13,8 +13,8 @@ import { type IDashboardPanelSelectEntityStrategy } from '#app/strategies/compon
 import { type IDashboardPanelUpdateEntityVisibleStrategy } from '#app/strategies/component/dashboard-panel/update-entity-visible.strategy'
 import { SidebarPanelRowActionsContainer } from '..'
 import { PanelEntityDeleteAction } from './dashboard-entity-panel.actions.delete'
-import { PanelEntityToggleSelectedAction } from './dashboard-entity-panel.actions.toggle-selected'
-import { PanelEntityToggleVisobleAction } from './dashboard-entity-panel.actions.toggle-visible'
+import { PanelEntityToggleSelectedAction } from './dashboard-entity-panel.actions.update.selected'
+import { PanelEntityToggleVisobleAction } from './dashboard-entity-panel.actions.update.visible'
 
 export const PanelEntityRowActions = ({
 	entity,

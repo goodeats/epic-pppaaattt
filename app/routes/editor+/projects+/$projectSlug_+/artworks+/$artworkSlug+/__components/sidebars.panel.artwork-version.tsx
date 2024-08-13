@@ -1,4 +1,4 @@
-import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/definitions'
 import { PanelArtworkVersionBackground } from './sidebars.panel.artwork-version.background'
 import { PanelArtworkVersionFrame } from './sidebars.panel.artwork-version.frame'
 import { PanelArtworkVersionWatermark } from './sidebars.panel.artwork-version.watermark'

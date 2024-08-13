@@ -13,7 +13,50 @@ import { ValidateArtworkVersionSubmissionStrategy } from '#app/strategies/valida
 import { validateEntitySubmission } from '#app/utils/conform-utils'
 import { prisma } from '#app/utils/db.server'
 import { findFirstArtworkVersionInstance } from '#app/utils/prisma-extensions-artwork-version'
-import { type IArtworkVersion } from './artwork-version.server'
+import {
+	queryArtworkVersionWhereArgsType,
+	validateQueryWhereArgsPresent,
+} from './artwork-version.get.server'
+import { IArtworkVersion } from './definitions'
+import { IArtworkVersionUpdateParams } from './definitions.update'
+
+type IArtworkVersionUpdateFields =
+	| 'starred'
+	| 'published'
+	| 'watermark'
+	| 'watermarkColor'
+	| 'width'
+	| 'height'
+	| 'background'
+	| 'nextId'
+	| 'prevId'
+
+export const updateArtworkVersionField = ({
+	id,
+	ownerId,
+	data,
+}: IArtworkVersionUpdateParams & {
+	data: Pick<Partial<IArtworkVersion>, IArtworkVersionUpdateFields>
+}) => {
+	return prisma.artworkVersion.update({
+		where: { id, ownerId },
+		data,
+	})
+}
+
+export const updateArtworkVersionFields = ({
+	where,
+	data,
+}: {
+	where: queryArtworkVersionWhereArgsType
+	data: Pick<Partial<IArtworkVersion>, IArtworkVersionUpdateFields>
+}) => {
+	validateQueryWhereArgsPresent(where)
+	return prisma.artworkVersion.updateMany({
+		where,
+		data,
+	})
+}
 
 const validateUpdateSubmission = async ({
 	userId,

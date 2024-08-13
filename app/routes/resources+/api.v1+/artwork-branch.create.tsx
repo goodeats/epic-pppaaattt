@@ -28,15 +28,15 @@ import {
 import { PanelIconButton } from '#app/components/ui/panel-icon-button'
 import { StatusButton } from '#app/components/ui/status-button'
 import { type IArtwork } from '#app/models/artwork/artwork.server'
-import { validateNewArtworkBranchSubmission } from '#app/models/artwork-branch/artwork-branch.create.server'
-import { type IArtworkBranch } from '#app/models/artwork-branch/artwork-branch.server'
-import { type IArtworkVersion } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkBranch } from '#app/models/artwork-branch/_._definitions.js'
+import { validateNewArtworkBranchSubmission } from '#app/models/artwork-branch/_.create.db.server.js'
 import { NewArtworkBranchSchema } from '#app/schema/artwork-branch'
 import { validateNoJS } from '#app/schema/form-data'
 import { artworkBranchCreateService } from '#app/services/artwork/branch/create.service'
 import { requireUserId } from '#app/utils/auth.server'
 import { stringToSlug, useIsPending } from '#app/utils/misc'
 import { Routes } from '#app/utils/routes.const'
+import { IArtworkVersion } from '#app/models/artwork-version/definitions.js'
 
 // https://www.epicweb.dev/full-stack-components
 

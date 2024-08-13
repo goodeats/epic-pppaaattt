@@ -1,6 +1,6 @@
 import { invariant } from '@epic-web/invariant'
 import { z } from 'zod'
-import { DesignTypeEnum } from '#app/schema/design'
+import { DesignTypeEnum } from '#app/models/design/definitions'
 import { prisma } from '#app/utils/db.server'
 import { deserializeDesign } from '../utils'
 import { type IDesignPalette } from './palette.server'

@@ -5,7 +5,7 @@ import {
 	SidebarPanelRowContainer,
 	SidebarPanelRowValuesContainer,
 } from '#app/components/templates'
-import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/definitions'
 import { ArtworkVersionHeight } from '#app/routes/resources+/api.v1+/artwork-version.update.height'
 import { ArtworkVersionWidth } from '#app/routes/resources+/api.v1+/artwork-version.update.width'
 

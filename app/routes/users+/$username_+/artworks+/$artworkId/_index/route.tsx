@@ -16,7 +16,7 @@ import { getStarredArtworkVersionsByArtworkId } from '#app/models/artwork-versio
 import {
 	type IArtworkVersionWithGenerator,
 	type IArtworkVersionWithChildren,
-} from '#app/models/artwork-version/artwork-version.server.ts'
+} from '#app/models/artwork-version/definitions.ts'
 import { artworkVersionGeneratorBuildService } from '#app/services/artwork/version/generator/build.service.ts'
 import { requireUserId } from '#app/utils/auth.server'
 import { validateCSRF } from '#app/utils/csrf.server'

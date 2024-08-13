@@ -8,7 +8,7 @@ import {
 import { ValidateDesignParentSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntitySubmission } from '#app/utils/conform-utils'
 import { findFirstLineInstance } from '#app/utils/prisma-extensions-line'
-import { type IDesign } from '../../design/design.server'
+import { type IDesign } from '../../design/definitions'
 import { type ILine } from './line.server'
 
 export interface IDesignTypeLineUpdatedResponse {

@@ -8,7 +8,7 @@ import { deserializeDesigns } from '../design/utils'
 import {
 	type IArtworkVersion,
 	type IArtworkVersionWithChildren,
-} from './artwork-version.server'
+} from './definitions'
 
 export type queryArtworkVersionWhereArgsType = z.infer<typeof whereArgs>
 const whereArgs = z.object({
@@ -55,7 +55,7 @@ const artworkVersionChildren = {
 // TODO: Add schemas for each type of query and parse with zod
 // aka if by id that should be present, if by slug that should be present
 // owner id should be present unless admin (not set up yet)
-const validateQueryWhereArgsPresent = (
+export const validateQueryWhereArgsPresent = (
 	where: queryArtworkVersionWhereArgsType,
 ) => {
 	const nullValuesAllowed: string[] = ['nextId', 'prevId']
@@ -76,18 +76,29 @@ const validateQueryWhereArgsPresent = (
 	}
 }
 
-export const getArtworkVersions = async ({
+export const getArtworkVersions = ({
 	where,
 }: {
 	where: queryArtworkVersionWhereArgsType
 }): Promise<IArtworkVersion[]> => {
 	validateQueryWhereArgsPresent(where)
-	return await prisma.artworkVersion.findMany({
+	return prisma.artworkVersion.findMany({
 		where,
 	})
 }
 
-export const getArtworkVersion = async ({
+export const getArtworkVersion = ({
+	where,
+}: {
+	where: queryArtworkVersionWhereArgsType
+}): Promise<IArtworkVersion | null> => {
+	validateQueryWhereArgsPresent(where)
+	return prisma.artworkVersion.findFirst({
+		where,
+	})
+}
+
+export const verifyArtworkVersion = async ({
 	where,
 }: {
 	where: queryArtworkVersionWhereArgsType
@@ -96,6 +107,7 @@ export const getArtworkVersion = async ({
 	const artworkVersion = await prisma.artworkVersion.findFirst({
 		where,
 	})
+	invariant(artworkVersion, 'Artwork Version not found')
 	return artworkVersion
 }
 

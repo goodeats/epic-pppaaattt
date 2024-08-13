@@ -40,6 +40,19 @@ export const getArtwork = async ({
 	return artwork
 }
 
+export const verifyArtwork = async ({
+	where,
+}: {
+	where: queryArtworkWhereArgsType
+}): Promise<IArtwork | null> => {
+	validateQueryWhereArgsPresent(where)
+	const artwork = await prisma.artwork.findFirst({
+		where,
+	})
+	invariant(artwork, 'Artwork not found')
+	return artwork
+}
+
 export const getArtworkWithBranchesAndVersions = async ({
 	where,
 }: {

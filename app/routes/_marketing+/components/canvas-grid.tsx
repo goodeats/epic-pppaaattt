@@ -1,6 +1,6 @@
 import { MarketingCanvasGrid } from '#app/components/layout/marketing'
 import { ArtworkCanvas } from '#app/components/templates/canvas'
-import { type IArtworkVersionWithGenerator } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersionWithGenerator } from '#app/models/artwork-version/definitions'
 
 export const CanvasGrid = ({
 	versions,

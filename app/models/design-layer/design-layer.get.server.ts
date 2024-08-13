@@ -1,8 +1,8 @@
-import { type designTypeEnum } from '#app/schema/design'
+import { designTypeEnum } from '#app/models/design/definitions'
 import { prisma } from '#app/utils/db.server'
-import { orderLinkedItems } from '#app/utils/linked-list.utils'
-import { type IDesign } from '../design/design.server'
-import { type ILayer } from '../layer/layer.server'
+import { orderLinkedItems } from '../__shared/linked-list.utils'
+import { type IDesign } from '../design/definitions'
+import { type ILayer } from '../layer/definitions'
 
 export const findFirstVisibleLayerDesignByType = async ({
 	layerId,

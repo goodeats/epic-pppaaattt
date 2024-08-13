@@ -1,7 +1,7 @@
 import {
 	type IDesignWithFill,
 	type IDesignWithType,
-} from '#app/models/design/design.server'
+} from '#app/models/design/definitions'
 import { type IFill } from './fill.server'
 
 export const findFirstFillInDesignArray = ({

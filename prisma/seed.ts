@@ -10,7 +10,6 @@ import {
 	img,
 } from '#tests/db-utils.ts'
 import { insertGitHubUser } from '#tests/mocks/github.ts'
-import { seedArtwork } from './seed-artwork'
 
 async function seed() {
 	console.log('🌱 Seeding...')
@@ -294,9 +293,11 @@ async function seed() {
 			},
 		},
 	})
+	console.log('adminUser', adminUser)
 	console.timeEnd(`🐨 Created admin user "pat"`)
 
-	await seedArtwork({ ownerId: adminUser.id, projectId: '1zxo9f8e' })
+	// skipping until designs are redone
+	// await seedArtwork({ ownerId: adminUser.id, projectId: '1zxo9f8e' })
 
 	console.timeEnd(`🌱 Database has been seeded`)
 }
