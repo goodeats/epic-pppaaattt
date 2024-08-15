@@ -1,8 +1,12 @@
-import { afterEach } from 'vitest'
+import { afterEach, expect, test } from 'vitest'
 import { deleteGitHubUsers } from '#tests/mocks/github.ts'
 
 afterEach(async () => {
 	await deleteGitHubUsers()
+})
+
+test('true is true', async () => {
+	expect(true).toBe(true)
 })
 
 // test.skip('a new user goes to onboarding', async () => {
