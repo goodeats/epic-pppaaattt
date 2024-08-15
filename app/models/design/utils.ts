@@ -1,8 +1,5 @@
 import { ZodError } from 'zod'
-import {
-	initializeEnumItemsMap,
-	safelyAssignValue,
-} from '#app/utils/typescript-helpers'
+import { safelyAssignValue } from '#app/utils/typescript-helpers'
 import { orderLinkedItems } from '../__shared/linked-list.utils'
 import {
 	type IDesignByType,
@@ -88,7 +85,7 @@ export const deserializeDesigns = ({
 }: {
 	designs: IDesign[]
 }): IDesignParsed[] => {
-	return designs.map(design => deserializeDesign({ design }))
+	return designs.map((design) => deserializeDesign({ design }))
 }
 
 export const deserializeDesign = ({
@@ -142,7 +139,7 @@ export const validateDesignAttributes = ({
 	} catch (error: any) {
 		if (error instanceof ZodError) {
 			throw new Error(
-				`Validation failed for design type ${type}: ${error.errors.map(e => e.message).join(', ')}`,
+				`Validation failed for design type ${type}: ${error.errors.map((e) => e.message).join(', ')}`,
 			)
 		} else {
 			throw new Error(
@@ -157,7 +154,7 @@ export const serializeDesigns = ({
 }: {
 	designs: IDesignParsed[]
 }): IDesign[] => {
-	return designs.map(design => serializeDesign({ design }))
+	return designs.map((design) => serializeDesign({ design }))
 }
 
 export const serializeDesign = ({
@@ -227,7 +224,7 @@ export const stringifyDesignAttributes = ({
 	} catch (error: any) {
 		if (error instanceof ZodError) {
 			throw new Error(
-				`Validation failed for design type ${type}: ${error.errors.map(e => e.message).join(', ')}`,
+				`Validation failed for design type ${type}: ${error.errors.map((e) => e.message).join(', ')}`,
 			)
 		} else {
 			throw new Error(
@@ -242,7 +239,7 @@ export const filterDesignsVisible = ({
 }: {
 	designs: IDesignToGroup[]
 }): IDesignToGroup[] => {
-	return designs.filter(design => design.visible)
+	return designs.filter((design) => design.visible)
 }
 
 export const filterDesignType = ({
@@ -252,7 +249,7 @@ export const filterDesignType = ({
 	designs: IDesignToGroup[]
 	type: designTypeEnum
 }): IDesignToGroup[] => {
-	return designs.filter(design => design.type === type)
+	return designs.filter((design) => design.type === type)
 }
 
 export const groupDesignsByType = ({

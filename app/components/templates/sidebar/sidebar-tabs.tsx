@@ -14,13 +14,13 @@ const SidebarTabs = ({
 	defaultValue?: string
 	children: React.ReactNode
 }) => {
-	const defaultTab = defaultValue || tabs[0]
+	const defaultTab = defaultValue || tabs[0] || ''
 
 	return (
 		<TabbedSidebar defaultValue={defaultTab}>
 			{/* tab triggers */}
 			<TabbedSidebarList cols={tabs.length}>
-				{tabs.map(tab => (
+				{tabs.map((tab) => (
 					<TabbedSidebarTrigger key={tab} value={tab} />
 				))}
 			</TabbedSidebarList>

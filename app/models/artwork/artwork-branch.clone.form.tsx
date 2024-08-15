@@ -1,9 +1,8 @@
-import { useNavigate, useParams } from '@remix-run/react'
+import { useNavigate } from '@remix-run/react'
 import { memo } from 'react'
 import { type DynamicFormFieldConfig } from '#app/components/templates/form/dynamic-form-field.js'
 import {
 	HiddenInputArtwork,
-	HiddenInputArtworkVersion,
 	HiddenInputId,
 } from '#app/components/ui/input-hidden'
 import {
@@ -11,42 +10,30 @@ import {
 	EntityCreateDialogIntent,
 } from '#app/routes/resources+/api.v1+/entity.create.dialog'
 import { generateParentFormId } from '#app/utils/form-id'
+import { stringToSlug } from '#app/utils/misc.js'
 import { type IArtworkBranch } from '../artwork-branch/_._definitions'
 import { CloneArtworkBranchArtworkVersionSchema } from '../artwork-branch/artwork-version.clone.schema'
-import { type IArtworkVersion } from '../artwork-version/definitions'
 import { type IArtwork } from './artwork.server'
 
-// Reminder that this is an option if the file is copied
-const CloneVersionContent = () => {
-	return null
-}
-
-const CloneVersionContentWarning = () => {
-	return null
-}
-
 export const CloneArtworkArtworkBranchForm = memo(
-	({
-		artwork,
-		branch,
-		version,
-	}: {
-		artwork: IArtwork
-		branch: IArtworkBranch
-		version: IArtworkVersion
-	}) => {
+	({ artwork, branch }: { artwork: IArtwork; branch: IArtworkBranch }) => {
 		const formId = generateParentFormId({
 			action: 'clone',
 			parentType: 'artwork',
 			parentId: artwork.id,
 			entityType: 'artwork-branch',
 		})
-		const intent = EntityCreateDialogIntent.ARTWORK_BRANCH.ARTWORK_VERSION
+		const intent = EntityCreateDialogIntent.ARTWORK.ARTWORK_BRANCH
 
 		const description =
-			'Save current settings of this artwork to a version. Add a description to help understand the changes. A new version will be created from here.'
+			'Start a new branch for this artwork off the current settings. Add a name and description to help understand the changes.'
 
 		const formFields: DynamicFormFieldConfig[] = [
+			{
+				type: 'input',
+				name: 'name',
+				label: 'Name',
+			},
 			{
 				type: 'textarea',
 				name: 'description',
@@ -54,15 +41,11 @@ export const CloneArtworkArtworkBranchForm = memo(
 			},
 		]
 
-		const onLatestVersion = version.nextId === null
-
-		const params = useParams()
 		const navigate = useNavigate()
-		const handleSuccessfulSubmission = () => {
-			if (params.versionSlug !== 'latest') {
-				// navigate to latest version if not already on that route
-				navigate('../latest')
-			}
+		const handleSuccessfulSubmission = (data: any) => {
+			const newBranchName = data.submission.value.name
+			const newBranchSlug = stringToSlug(newBranchName)
+			navigate(`../../${newBranchSlug}`)
 		}
 
 		return (
@@ -70,24 +53,16 @@ export const CloneArtworkArtworkBranchForm = memo(
 				formId={formId}
 				intent={intent}
 				schema={CloneArtworkBranchArtworkVersionSchema}
-				icon="card-stack-plus"
-				iconText="New Version..."
-				title="Save Version"
+				icon="file-plus"
+				iconText="New Branch..."
+				title="New Branch"
 				description={description}
 				formFields={formFields}
-				content={
-					onLatestVersion ? (
-						<CloneVersionContent />
-					) : (
-						<CloneVersionContentWarning />
-					)
-				}
 				onSuccessfulSubmission={handleSuccessfulSubmission}
 			>
 				<div className="hidden">
 					<HiddenInputId id={branch.id} />
 					<HiddenInputArtwork id={artwork.id} />
-					<HiddenInputArtworkVersion id={version.id} />
 				</div>
 			</EntityCreateDialogForm>
 		)

@@ -3,11 +3,10 @@ import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
 import { ToggleArtworkVersionDesignVisibleForm } from '#app/models/artwork-version/design/__components.panel.visible'
 import { ToggleArtworkVersionLayerVisibleForm } from '#app/models/artwork-version/layer/__components.panel.visible'
 import { type IAssetImage } from '#app/models/asset/image/image.server'
-import { type IDesign } from '#app/models/design/definitions'
 import { type ILayer } from '#app/models/layer/definitions'
+import { ToggleLayerDesignVisibleForm } from '#app/models/layer/design.__components.panel.visible'
 import { AssetImageArtworkVersionUpdateVisible } from '#app/routes/resources+/api.v1+/asset.image.artwork-version.update.visible'
 import { AssetImageLayerUpdateVisible } from '#app/routes/resources+/api.v1+/asset.image.layer.update.visible'
-import { LayerDesignToggleVisible } from '#app/routes/resources+/api.v1+/layer.design.update.visible'
 import {
 	type entityParentTypeEnum,
 	type entityTypeEnum,
@@ -72,9 +71,10 @@ const LayerToggleVisibleChildEntityForm = memo(
 				)
 			case EntityType.DESIGN:
 				return (
-					<LayerDesignToggleVisible
-						design={entity as IDesign}
-						layer={parent as ILayer}
+					<ToggleLayerDesignVisibleForm
+						entityType={entityType}
+						entity={entity}
+						parent={parent}
 					/>
 				)
 			default:

@@ -1,7 +1,3 @@
-import { type IntentActionArgs } from '#app/definitions/intent-action-args'
-import { NewArtworkBranchSchema } from '#app/schema/artwork-branch'
-import { ValidateArtworkParentSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
-import { validateEntitySubmission } from '#app/utils/conform-utils'
 import { prisma } from '#app/utils/db.server'
 import { type IArtwork } from '../artwork/artwork.server'
 import { type IUser } from '../user/user.server'
@@ -14,20 +10,6 @@ export interface IArtworkBranchCreatedResponse {
 	success: boolean
 	message?: string
 	createdArtworkBranch?: IArtworkBranch
-}
-
-export const validateNewArtworkBranchSubmission = async ({
-	userId,
-	formData,
-}: IntentActionArgs) => {
-	const strategy = new ValidateArtworkParentSubmissionStrategy()
-
-	return await validateEntitySubmission({
-		userId,
-		formData,
-		schema: NewArtworkBranchSchema,
-		strategy,
-	})
 }
 
 export const createArtworkBranch = ({

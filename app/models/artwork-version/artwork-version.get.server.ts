@@ -1,6 +1,6 @@
 import { invariant } from '@epic-web/invariant'
-import { z } from 'zod'
-import { zodStringOrNull } from '#app/schema/zod-helpers'
+import { type z } from 'zod'
+import { type zodStringOrNull } from '#app/schema/zod-helpers'
 import { prisma } from '#app/utils/db.server'
 import { assetSelect } from '../asset/asset.get.server'
 import { deserializeAssets } from '../asset/utils'
@@ -10,16 +10,17 @@ import {
 	type IArtworkVersionWithChildren,
 } from './definitions'
 
-export type queryArtworkVersionWhereArgsType = z.infer<typeof whereArgs>
-const whereArgs = z.object({
-	id: z.string().optional(),
-	ownerId: z.string().optional(),
-	slug: z.string().optional(),
-	branchId: z.string().optional(),
-	nextId: zodStringOrNull.optional(),
-	prevId: zodStringOrNull.optional(),
-	starred: z.boolean().optional(),
-})
+export type queryArtworkVersionWhereArgsType = z.infer<
+	z.ZodObject<{
+		id: z.ZodOptional<z.ZodString>
+		ownerId: z.ZodOptional<z.ZodString>
+		slug: z.ZodOptional<z.ZodString>
+		branchId: z.ZodOptional<z.ZodString>
+		nextId: z.ZodOptional<typeof zodStringOrNull>
+		prevId: z.ZodOptional<typeof zodStringOrNull>
+		starred: z.ZodOptional<z.ZodBoolean>
+	}>
+>
 
 const includeDesigns = {
 	palette: true,
@@ -87,6 +88,35 @@ export const getArtworkVersions = ({
 	})
 }
 
+export const getArtworkVersionsWithChildren = async ({
+	where,
+}: {
+	where: queryArtworkVersionWhereArgsType
+}): Promise<IArtworkVersionWithChildren[]> => {
+	validateQueryWhereArgsPresent(where)
+	const artworkVersions = await prisma.artworkVersion.findMany({
+		where,
+		include: artworkVersionChildren,
+	})
+	return artworkVersions.map((artworkVersion) => {
+		const validatedAssets = deserializeAssets({ assets: artworkVersion.assets })
+		const validatedDesigns = deserializeDesigns({
+			designs: artworkVersion.designs,
+		})
+		const layersWithValidatedAssets = artworkVersion.layers.map((layer) => {
+			const validatedAssets = deserializeAssets({ assets: layer.assets })
+			const validatedDesigns = deserializeDesigns({ designs: layer.designs })
+			return { ...layer, assets: validatedAssets, designs: validatedDesigns }
+		})
+		return {
+			...artworkVersion,
+			assets: validatedAssets,
+			designs: validatedDesigns,
+			layers: layersWithValidatedAssets,
+		}
+	})
+}
+
 export const getArtworkVersion = ({
 	where,
 }: {
@@ -127,7 +157,7 @@ export const getArtworkVersionWithChildren = async ({
 	const validatedDesigns = deserializeDesigns({
 		designs: artworkVersion.designs,
 	})
-	const layersWithValidatedAssets = artworkVersion.layers.map(layer => {
+	const layersWithValidatedAssets = artworkVersion.layers.map((layer) => {
 		const validatedAssets = deserializeAssets({ assets: layer.assets })
 		const validatedDesigns = deserializeDesigns({ designs: layer.designs })
 		return { ...layer, assets: validatedAssets, designs: validatedDesigns }
@@ -161,14 +191,14 @@ export const getStarredArtworkVersionsByArtworkId = async ({
 		},
 	})
 
-	const validatedStarredVersions = starredVersions.map(artworkVersion => {
+	const validatedStarredVersions = starredVersions.map((artworkVersion) => {
 		const validatedArtboardVersionAssets = deserializeAssets({
 			assets: artworkVersion.assets,
 		})
 		const validatedArtboardVersionDesigns = deserializeDesigns({
 			designs: artworkVersion.designs,
 		})
-		const layersWithValidatedAssets = artworkVersion.layers.map(layer => {
+		const layersWithValidatedAssets = artworkVersion.layers.map((layer) => {
 			const validatedLayerAssets = deserializeAssets({ assets: layer.assets })
 			const validatedLayerDesigns = deserializeDesigns({
 				designs: layer.designs,
@@ -203,14 +233,14 @@ export const getAllPublishedArtworkVersions = async (): Promise<
 		},
 	})
 
-	const validatedPublishedVersions = publishedVersions.map(artworkVersion => {
+	const validatedPublishedVersions = publishedVersions.map((artworkVersion) => {
 		const validatedArtboardVersionAssets = deserializeAssets({
 			assets: artworkVersion.assets,
 		})
 		const validatedArtboardVersionDesigns = deserializeDesigns({
 			designs: artworkVersion.designs,
 		})
-		const layersWithValidatedAssets = artworkVersion.layers.map(layer => {
+		const layersWithValidatedAssets = artworkVersion.layers.map((layer) => {
 			const validatedLayerAssets = deserializeAssets({ assets: layer.assets })
 			const validatedLayerDesigns = deserializeDesigns({
 				designs: layer.designs,

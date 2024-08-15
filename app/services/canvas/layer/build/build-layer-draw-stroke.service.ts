@@ -25,7 +25,7 @@ export const canvasBuildLayerDrawStrokeService = ({
 		case StrokeBasisTypeEnum.RANDOM:
 			return colorRandomHex()
 		case StrokeBasisTypeEnum.PALETTE_SELECTED:
-			return palette[0].attributes.value
+			return palette[0]!.attributes.value
 		case StrokeBasisTypeEnum.PALETTE_RANDOM:
 			return getRandomItemInArray(palette).attributes.value
 		case StrokeBasisTypeEnum.PALETTE_LOOP:

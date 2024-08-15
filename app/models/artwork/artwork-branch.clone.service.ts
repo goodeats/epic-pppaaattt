@@ -3,9 +3,13 @@ import { type IUser } from '#app/models/user/user.server'
 import { prisma } from '#app/utils/db.server'
 import { getOptionalZodErrorMessage, stringToSlug } from '#app/utils/misc'
 import { type IArtworkBranch } from '../artwork-branch/_._definitions'
-import { createArtworkBranch } from '../artwork-branch/_.create.db.server'
+import {
+	createArtworkBranch,
+	type IArtworkBranchCreatedResponse,
+} from '../artwork-branch/_.create.db.server'
 import { verifyArtworkBranch } from '../artwork-branch/_.get.server'
-import { verifyArtworkVersion } from '../artwork-version/artwork-version.get.server'
+import { cloneArtworkVersionsToArtworkBranchService } from '../artwork-branch/artwork-versions.clone.service'
+import { getArtworkVersionsWithChildren } from '../artwork-version/artwork-version.get.server'
 import { ArtworkArtworkBranchSchema } from './artwork-branch._schema'
 import { type IArtworkArtworkBranchCloneSubmission } from './artwork-branch.clone.definitions'
 import { type IArtworkArtworkBranchCreateData } from './artwork-branch.create.definitions'
@@ -15,10 +19,9 @@ export const cloneArtworkArtworkBranchService = async ({
 	userId,
 	id,
 	artworkId,
-	versionId,
 	name,
 	description,
-}: IArtworkArtworkBranchCloneSubmission): Promise<IArtworkVersionCreatedResponse> => {
+}: IArtworkArtworkBranchCloneSubmission): Promise<IArtworkBranchCreatedResponse> => {
 	try {
 		// Step 1: verify the artwork branch exists
 		const artworkBranch = await verifyArtworkBranch({
@@ -33,13 +36,6 @@ export const cloneArtworkArtworkBranchService = async ({
 		await verifyArtwork({
 			where: { id: artworkId, ownerId: userId },
 		})
-		// Step 2.1: verify the artwork version exists and belongs to the artwork branch
-		const artworkVersion = await verifyArtworkVersion({
-			where: { id: versionId, ownerId: userId },
-		})
-		if (!artworkVersion || artworkVersion.branchId !== artworkBranch.id) {
-			invariant(false, 'Artwork version not found')
-		}
 
 		// Step 3: get data for cloned artwork branch
 		const validatedArtworkBranchData = validateArtworkBranchData({
@@ -58,6 +54,13 @@ export const cloneArtworkArtworkBranchService = async ({
 		const [clonedArtworkBranch] = await prisma.$transaction([
 			cloneArtworkBranchPromise,
 		])
+
+		// Step 6: clone artwork versions from prev artwork branch
+		await cloneArtworkVersionsToArtworkBranch({
+			userId,
+			artworkBranch,
+			clonedArtworkBranch,
+		})
 
 		return {
 			createdArtworkBranch: clonedArtworkBranch,
@@ -93,4 +96,23 @@ const validateArtworkBranchData = ({
 	}
 	// Step 3: validate the design data with the schema
 	return ArtworkArtworkBranchSchema.parse(artworkBranchData)
+}
+
+const cloneArtworkVersionsToArtworkBranch = async ({
+	userId,
+	artworkBranch,
+	clonedArtworkBranch,
+}: {
+	userId: IUser['id']
+	artworkBranch: IArtworkBranch
+	clonedArtworkBranch: IArtworkBranch
+}) => {
+	const artworkVersions = await getArtworkVersionsWithChildren({
+		where: { branchId: artworkBranch.id },
+	})
+	return await cloneArtworkVersionsToArtworkBranchService({
+		userId,
+		artworkBranchId: clonedArtworkBranch.id,
+		artworkVersions,
+	})
 }

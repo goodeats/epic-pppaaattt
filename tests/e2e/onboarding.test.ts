@@ -33,7 +33,7 @@ const test = base.extend<{
 	},
 })
 
-test('onboarding not allowed', async ({ page, login }) => {
+test('onboarding not allowed', async ({ page }) => {
 	await page.goto('/')
 
 	// no login link

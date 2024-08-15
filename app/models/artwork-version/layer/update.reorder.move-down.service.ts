@@ -18,7 +18,7 @@ export const updateArtworkVersionLayerReorderMoveDownService = async ({
 		})
 
 		// Step 2: verify the layer exists
-		const layer = await verifyLayer({
+		await verifyLayer({
 			where: { id, artworkVersionId, ownerId: userId },
 		})
 

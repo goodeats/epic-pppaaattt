@@ -31,7 +31,12 @@ export const handleCloneArtworkArtworkBranchSubmission = async ({
 			userId,
 			...submission.value,
 		})
-		return { status, submission, responseSuccess: success, message }
+		return {
+			status: success ? 'success' : 'error',
+			submission,
+			responseSuccess: success,
+			message,
+		}
 	}
 
 	return { status, submission, responseSuccess: false }

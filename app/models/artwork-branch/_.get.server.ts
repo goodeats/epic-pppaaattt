@@ -1,15 +1,19 @@
 import { invariant } from '@epic-web/invariant'
-import { z } from 'zod'
+import { type z } from 'zod'
 import { prisma } from '#app/utils/db.server'
-import { type IArtworkBranch, type IArtworkBranchWithVersions } from './_._definitions'
+import {
+	type IArtworkBranch,
+	type IArtworkBranchWithVersions,
+} from './_._definitions'
 
-export type queryArtworkBranchWhereArgsType = z.infer<typeof whereArgs>
-const whereArgs = z.object({
-	id: z.string().optional(),
-	ownerId: z.string().optional(),
-	slug: z.string().optional(),
-	artworkId: z.string().optional(),
-})
+export type queryArtworkBranchWhereArgsType = z.infer<
+	z.ZodObject<{
+		id: z.ZodOptional<z.ZodString>
+		ownerId: z.ZodOptional<z.ZodString>
+		slug: z.ZodOptional<z.ZodString>
+		artworkId: z.ZodOptional<z.ZodString>
+	}>
+>
 
 // TODO: Add schemas for each type of query and parse with zod
 // aka if by id that should be present, if by slug that should be present

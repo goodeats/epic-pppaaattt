@@ -1,6 +1,5 @@
 import { type IArtworkBranchSubmission } from '../artwork-branch/_._definitions'
 import { type IArtworkBranchCloneData } from '../artwork-branch/_.clone.definitions'
-import { type IArtworkVersion } from '../artwork-version/definitions'
 import { type IArtworkParentData } from './_._definiitions'
 
 export interface IArtworkArtworkBranchCloneData
@@ -12,5 +11,4 @@ export interface IArtworkArtworkBranchCloneSubmission
 		IArtworkBranchSubmission {
 	name: string
 	description: string
-	versionId: IArtworkVersion['id']
 }

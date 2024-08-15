@@ -1,4 +1,3 @@
-import { prisma } from '#app/utils/db.server'
 import { type ILayer } from './definitions'
 import { updateLayerFields } from './layer.update.server'
 

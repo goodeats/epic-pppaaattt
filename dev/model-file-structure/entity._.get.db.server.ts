@@ -1,17 +1,29 @@
 import { invariant } from '@epic-web/invariant'
-import { z } from 'zod'
+import { type z } from 'zod'
 import {
 	type IExampleEntity,
 	type IExampleEntityWithChildren,
 } from './entity._._definitions'
 
-export type queryExampleEntityWhereArgsType = z.infer<typeof whereArgs>
-const whereArgs = z.object({
-	id: z.string().optional(),
-	name: z.string().optional(),
-	ownerId: z.string().optional(),
-	exampleEntityId: z.string().optional(),
-})
+const exampleEntityRecord = {
+	id: '1',
+	name: 'Example Entity',
+	description: 'Example description',
+	visible: true,
+	createdAt: new Date(),
+	updatedAt: new Date(),
+	ownerId: '1',
+	exampleEntityId: '1',
+} as IExampleEntity
+
+export type queryExampleEntityWhereArgsType = z.infer<
+	z.ZodObject<{
+		id: z.ZodOptional<z.ZodString>
+		name: z.ZodOptional<z.ZodString>
+		ownerId: z.ZodOptional<z.ZodString>
+		exampleEntityId: z.ZodOptional<z.ZodString>
+	}>
+>
 
 // TODO: Add schemas for each type of query and parse with zod
 // aka if by id that should be present, if by slug that should be present
@@ -46,20 +58,10 @@ export const getExampleEntities = ({
 	where: queryExampleEntityWhereArgsType
 }): Promise<IExampleEntity[]> => {
 	validateQueryWhereArgsPresent(where)
-	// return prisma.exampleEntity.findMany({
+	// return prisma.exampleEntityRecord.findMany({
 	// 	where,
 	// })
-	return Promise.resolve([
-		{
-			id: '1',
-			name: 'Example Entity',
-			description: 'Example description',
-			createdAt: new Date(),
-			updatedAt: new Date(),
-			ownerId: '1',
-			exampleEntityId: '1',
-		},
-	])
+	return Promise.resolve([exampleEntityRecord])
 }
 
 export const getExampleEntity = ({
@@ -68,19 +70,10 @@ export const getExampleEntity = ({
 	where: queryExampleEntityWhereArgsType
 }): Promise<IExampleEntity | null> => {
 	validateQueryWhereArgsPresent(where)
-	// return prisma.exampleEntity.findFirst({
+	// return prisma.exampleEntityRecord.findFirst({
 	// 	where,
 	// })
-	return Promise.resolve({
-		id: '1',
-		name: 'Example Entity',
-		description: 'Example description',
-		visible: true,
-		createdAt: new Date(),
-		updatedAt: new Date(),
-		ownerId: '1',
-		exampleEntityId: '1',
-	})
+	return Promise.resolve(exampleEntityRecord)
 }
 
 export const verifyExampleEntity = async ({
@@ -89,12 +82,12 @@ export const verifyExampleEntity = async ({
 	where: queryExampleEntityWhereArgsType
 }): Promise<IExampleEntity | null> => {
 	validateQueryWhereArgsPresent(where)
-	// const artworkVersion = await prisma.exampleEntity.findFirst({
+	// const artworkVersion = await prisma.exampleEntityRecord.findFirst({
 	// 	where,
 	// })
-	const exampleEntity = await getExampleEntity({ where })
-	invariant(exampleEntity, 'Example Entity not found')
-	return exampleEntity
+	const exampleEntityRecord = await getExampleEntity({ where })
+	invariant(exampleEntityRecord, 'Example Entity not found')
+	return exampleEntityRecord
 }
 
 export const getExampleEntityWithChildren = async ({
@@ -108,14 +101,7 @@ export const getExampleEntityWithChildren = async ({
 	// 	include: artworkVersionChildren,
 	// })
 	const exampleEntityWithChildren = {
-		id: '1',
-		name: 'Example Entity',
-		description: 'Example description',
-		visible: true,
-		createdAt: new Date(),
-		updatedAt: new Date(),
-		ownerId: '1',
-		exampleEntityId: '1',
+		...exampleEntityRecord,
 		children: [
 			{
 				id: '1',

@@ -26,11 +26,10 @@ export const handleUpdateDesignFillStyleSubmission = async ({
 	})
 
 	if (status === 'success') {
-		const { success, message, updatedDesign } =
-			await updateDesignFillStyleService({
-				userId,
-				...submission.value,
-			})
+		const { success, message } = await updateDesignFillStyleService({
+			userId,
+			...submission.value,
+		})
 
 		return { status, submission, responseSuccess: success, message }
 	}

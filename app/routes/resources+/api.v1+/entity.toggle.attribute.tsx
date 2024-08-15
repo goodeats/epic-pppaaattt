@@ -26,7 +26,7 @@ import { type ExtractStringValues } from '#app/utils/typescript-helpers'
 
 // https://www.epicweb.dev/full-stack-components
 
-const route = `${resourceRouteApiV1}/toggle/entity/attribute`
+const route = `${resourceRouteApiV1}/entity/toggle/attribute`
 
 export const EntityToggleAttributeIntent = {
 	ARTWORK_VERSION: {

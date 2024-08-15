@@ -1,7 +1,7 @@
 import { invariant } from '@epic-web/invariant'
-import { z } from 'zod'
+import { type z } from 'zod'
 import { type findLayerArgsType, type whereArgsType } from '#app/schema/layer'
-import { arrayOfIds, zodStringOrNull } from '#app/schema/zod-helpers'
+import { type arrayOfIds, type zodStringOrNull } from '#app/schema/zod-helpers'
 import { prisma } from '#app/utils/db.server'
 import { assetSelect } from '../asset/asset.get.server'
 import { deserializeAssets } from '../asset/utils'
@@ -12,16 +12,17 @@ import {
 	type ILayerWithDesigns,
 } from '../layer/definitions'
 
-export type queryLayerWhereArgsType = z.infer<typeof whereArgs>
-const whereArgs = z.object({
-	id: z.union([z.string(), arrayOfIds]).optional(),
-	visible: z.boolean().optional(),
-	selected: z.boolean().optional(),
-	ownerId: z.string().optional(),
-	artworkVersionId: z.string().optional(),
-	nextId: zodStringOrNull.optional(),
-	prevId: zodStringOrNull.optional(),
-})
+export type queryLayerWhereArgsType = z.infer<
+	z.ZodObject<{
+		id: z.ZodOptional<z.ZodUnion<[z.ZodString, typeof arrayOfIds]>>
+		visible: z.ZodOptional<z.ZodBoolean>
+		selected: z.ZodOptional<z.ZodBoolean>
+		ownerId: z.ZodOptional<z.ZodString>
+		artworkVersionId: z.ZodOptional<z.ZodString>
+		nextId: z.ZodOptional<typeof zodStringOrNull>
+		prevId: z.ZodOptional<typeof zodStringOrNull>
+	}>
+>
 
 // TODO: Add schemas for each type of query and parse with zod
 // aka if by id that should be present, if by slug that should be present
@@ -98,7 +99,7 @@ export const getLayersWithChildren = async ({
 		},
 	})
 
-	return layers.map(layer => {
+	return layers.map((layer) => {
 		const validatedAssets = deserializeAssets({ assets: layer.assets })
 		const validatedDesigns = deserializeDesigns({ designs: layer.designs })
 		return { ...layer, assets: validatedAssets, designs: validatedDesigns }

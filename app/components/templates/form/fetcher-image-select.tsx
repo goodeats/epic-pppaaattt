@@ -129,7 +129,7 @@ export const FetcherImageSelect = ({
 							<fieldset>
 								<FlexColumn className="gap-4">
 									{conform
-										.collection(assetImageId, {
+										.collection(assetImageId!, {
 											type: 'radio',
 											options: images.map(image => image.id),
 										})

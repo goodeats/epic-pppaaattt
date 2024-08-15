@@ -10,7 +10,6 @@ import {
 import { type IUser } from '#app/models/user/user.server'
 
 export const updateDesignTypeLayoutCountService = async ({
-	userId,
 	id,
 	designId,
 	count,
@@ -40,7 +39,6 @@ export const updateDesignTypeLayoutCountService = async ({
 }
 
 export const updateDesignTypeLayoutRowsService = async ({
-	userId,
 	id,
 	designId,
 	rows,
@@ -70,7 +68,6 @@ export const updateDesignTypeLayoutRowsService = async ({
 }
 
 export const updateDesignTypeLayoutColumnsService = async ({
-	userId,
 	id,
 	designId,
 	columns,
@@ -100,7 +97,6 @@ export const updateDesignTypeLayoutColumnsService = async ({
 }
 
 export const updateDesignTypeLayoutStyleService = async ({
-	userId,
 	id,
 	designId,
 	style,

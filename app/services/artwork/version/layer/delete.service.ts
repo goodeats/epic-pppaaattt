@@ -18,7 +18,6 @@ import { getOptionalZodErrorMessage } from '#app/utils/misc'
 export const artworkVersionLayerDeleteService = async ({
 	userId,
 	id,
-	artworkVersionId,
 }: {
 	userId: IUser['id']
 	id: ILayer['id']

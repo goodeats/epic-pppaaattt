@@ -2,7 +2,10 @@ import { type AllIntentValues } from '#app/constants/intent'
 import { type IArtwork } from '#app/models/artwork/artwork.server'
 import { type IArtworkBranch } from '#app/models/artwork-branch/_._definitions.js'
 import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
-import { type designTypeEnum, type IDesign } from '#app/models/design/definitions'
+import {
+	type designTypeEnum,
+	type IDesign,
+} from '#app/models/design/definitions'
 import { type ILayer } from '#app/models/layer/definitions'
 import { type IExampleEntity } from '#dev/model-file-structure/entity._._definitions.js'
 
@@ -29,7 +32,11 @@ export const HiddenInputId = ({ id }: { id: IArtworkVersion['id'] }) => {
 	return <HiddenInput name="id" value={id} />
 }
 
-export const HiddenInputExampleEntityId = ({ id }: { id: IExampleEntity['id'] }) => {
+export const HiddenInputExampleEntityId = ({
+	id,
+}: {
+	id: IExampleEntity['id']
+}) => {
 	return <HiddenInput name="exampleEntityId" value={id} />
 }
 
@@ -45,6 +52,10 @@ export const HiddenInputArtworkBranch = ({
 	id: IArtworkBranch['id']
 }) => {
 	return <HiddenInput name="branchId" value={id} />
+}
+
+export const HiddenInputVersion = ({ id }: { id: IArtworkVersion['id'] }) => {
+	return <HiddenInput name="versionId" value={id} />
 }
 
 export const HiddenInputArtworkVersion = ({

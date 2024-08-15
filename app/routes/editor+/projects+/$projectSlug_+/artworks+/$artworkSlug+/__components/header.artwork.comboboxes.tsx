@@ -28,7 +28,6 @@ export const NavComboboxes = memo(
 				<FlexRow className="gap-4">
 					<ComboboxNav
 						entities={project.artworks}
-						entitySingular="artwork"
 						entityPlural="artworks"
 						placeholder="Select an artwork..."
 						slugParam="artworkSlug"
@@ -47,7 +46,6 @@ export const NavComboboxes = memo(
 				<FlexRow className="gap-4">
 					<ComboboxNav
 						entities={artwork.branches}
-						entitySingular="branch"
 						entityPlural="branches"
 						placeholder={branch.name || 'Select a branch...'}
 						slugParam="branchSlug"
@@ -66,7 +64,6 @@ export const NavComboboxes = memo(
 				<FlexRow className="gap-4">
 					<ComboboxNav
 						entities={branch.versions}
-						entitySingular="version"
 						entityPlural="versions"
 						placeholder={version.name || 'Select a version...'}
 						slugParam="versionSlug"

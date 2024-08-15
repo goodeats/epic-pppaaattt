@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
 import { type z } from 'zod'
 import { DialogContentGrid } from '#app/components/layout/dialog'
+import { quickToast } from '#app/components/toaster.js'
 import {
 	Dialog,
 	DialogContent,
@@ -73,6 +74,15 @@ export const FetcherIconDialog = ({
 			// parent component may want to do something
 			// such as navigate to a new page
 			onSuccessfulSubmission(fetcher.data)
+		} else if (
+			fetcher.state === 'loading' &&
+			fetcher.data?.status === 'error'
+		) {
+			quickToast({
+				type: 'error',
+				title: 'Error',
+				description: fetcher.data.message,
+			})
 		}
 	}, [fetcher, onSuccessfulSubmission])
 

@@ -2,7 +2,6 @@ import { parse } from '@conform-to/zod'
 import {
 	json,
 	redirect,
-	type LoaderFunctionArgs,
 	type ActionFunctionArgs,
 	type MetaFunction,
 } from '@remix-run/node'
@@ -64,7 +63,7 @@ async function requireData({
 	}
 }
 
-export async function loader({ request, params }: LoaderFunctionArgs) {
+export async function loader() {
 	return redirectWithToast('/', {
 		type: 'error',
 		title: 'Access Denied',
@@ -118,7 +117,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
 				})
 				return
 			}
-		}).transform(async data => {
+		}).transform(async (data) => {
 			const session = await signupWithConnection({
 				...data,
 				email,

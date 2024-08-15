@@ -12,7 +12,7 @@ import { prisma } from '#app/utils/db.server'
 import { getOptionalZodErrorMessage } from '#app/utils/misc'
 import { verifyArtworkVersion } from '../artwork-version.get.server'
 import { type IArtworkVersion } from '../definitions'
-import { IArtworkVersionLayerCreateSubmission } from './definitions.create'
+import { type IArtworkVersionLayerCreateSubmission } from './definitions.create'
 import { ArtworkVersionLayerSchema } from './schema'
 
 export const createArtworkVersionLayerService = async ({

@@ -62,6 +62,35 @@ export const connectNodes = ({
 	return [connectNextToPrev, connectPrevToNext]
 }
 
+export const connectUnlinkedNodes = ({
+	items,
+	type,
+}: {
+	items: LinkedListNode[]
+	type: linkedListNodeTypeEnum
+}) => {
+	// Step 1: Initialize prevId as null
+	let prevId: string | null = null
+
+	// Step 2: Use map to iterate through the items and create promises
+	const promises = items.flatMap((item) => {
+		const connectPromise = prevId
+			? connectNodes({
+					type,
+					prevId,
+					nextId: item.id,
+				})
+			: []
+
+		// Step 3: Update prevId for the next iteration
+		prevId = item.id
+
+		return connectPromise
+	})
+
+	return promises
+}
+
 export const updateNodeToHead = ({
 	id,
 	type,
@@ -111,7 +140,7 @@ export const updateNodesRemoveNodes = ({
 	nodes: LinkedListNode[]
 	type: linkedListNodeTypeEnum
 }) => {
-	return nodes.map(node =>
+	return nodes.map((node) =>
 		updateNodeFields({
 			type,
 			where: { id: node.id },

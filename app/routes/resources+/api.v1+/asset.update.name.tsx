@@ -27,8 +27,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-	const userId = await requireUserId(request)
-	const { formData, noJS } = await handleFormData({ request })
+	await requireUserId(request)
+	const { noJS } = await handleFormData({ request })
 
 	const { status, submission, responseSuccess, message } = {
 		status: 'error',

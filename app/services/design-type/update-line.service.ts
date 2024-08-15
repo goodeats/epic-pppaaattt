@@ -9,7 +9,6 @@ import {
 import { type IUser } from '#app/models/user/user.server'
 
 export const updateDesignTypeLineWidthService = async ({
-	userId,
 	id,
 	designId,
 	width,
@@ -39,7 +38,6 @@ export const updateDesignTypeLineWidthService = async ({
 }
 
 export const updateDesignTypeLineBasisService = async ({
-	userId,
 	id,
 	designId,
 	basis,
@@ -69,7 +67,6 @@ export const updateDesignTypeLineBasisService = async ({
 }
 
 export const updateDesignTypeLineFormatService = async ({
-	userId,
 	id,
 	designId,
 	format,

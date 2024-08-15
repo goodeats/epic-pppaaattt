@@ -7,7 +7,6 @@ import {
 import { type IUser } from '#app/models/user/user.server'
 
 export const updateDesignTypePaletteValueService = async ({
-	userId,
 	id,
 	designId,
 	value,

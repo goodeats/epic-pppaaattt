@@ -73,7 +73,7 @@ export const initializeEnumItemsMap = <
 
 	// Iterate over the enum values and initialize the map with empty arrays
 	const enumValues = Object.values(enumObj)
-	enumValues.forEach(value => {
+	enumValues.forEach((value) => {
 		itemsMap[value as EnumValue] = []
 	})
 

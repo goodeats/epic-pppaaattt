@@ -3,10 +3,7 @@ import { NewArtworkVersionLayerSchema } from '#app/schema/layer-artwork-version'
 import { ValidateArtworkVersionParentSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntitySubmission } from '#app/utils/conform-utils'
 import { prisma } from '#app/utils/db.server'
-import { type IArtwork } from '../artwork/artwork.server'
-import { type IArtworkVersion } from '../artwork-version/definitions'
 import { type ILayer } from '../layer/definitions'
-import { type IUser } from '../user/user.server'
 import { type ILayerParentCreateData } from './definitions.create'
 
 export interface ILayerCreatedResponse {

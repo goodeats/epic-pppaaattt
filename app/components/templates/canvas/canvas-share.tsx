@@ -19,7 +19,7 @@ export const ShareCanvas = memo(
 				const canvas = canvasRef.current
 				if (!canvas) return false
 
-				canvas.toBlob(blob => {
+				canvas.toBlob((blob) => {
 					if (!blob) return
 					const file = new File([blob], downloadImageFileName(), {
 						type: 'image/png',
@@ -63,7 +63,7 @@ export const ShareCanvas = memo(
 			const shareData = {
 				files: filesArray,
 			}
-			navigator.share(shareData as any).then(() => {
+			void navigator.share(shareData as any).then(() => {
 				console.log('Shared successfully')
 			})
 		}

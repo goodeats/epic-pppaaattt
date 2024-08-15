@@ -1,6 +1,6 @@
 import { type PrismaPromise } from '@prisma/client'
 import { LinkedListNodeTypeEnum } from '#app/models/__shared/linked-list.definitions'
-import { connectNodes } from '#app/models/__shared/linked-list.node.update.server'
+import { connectUnlinkedNodes } from '#app/models/__shared/linked-list.node.update.server.js'
 import { type IDesignsClonedResponse } from '#app/models/design/definitions.clone'
 import {
 	type ILayer,
@@ -38,8 +38,9 @@ export const cloneLayersToArtworkVersionService = async ({
 
 		// Step 5: Prepare layer update promises
 		// re-link the cloned layers
-		const updateLayerPromises = prepareLayerLinkedListPromises({
-			clonedLayers,
+		const updateLayerPromises = connectUnlinkedNodes({
+			items: clonedLayers,
+			type: LinkedListNodeTypeEnum.LAYER,
 		})
 		// Step 6: Execute transaction
 		await prisma.$transaction(updateLayerPromises)
@@ -94,7 +95,7 @@ const prepareLayerCreateData = ({
 	userId: IUser['id']
 	artworkVersionId: IArtworkVersion['id']
 }): IArtworkVersionLayerCreateData[] => {
-	return layers.map(layer =>
+	return layers.map((layer) =>
 		validateLayerData({
 			layer,
 			userId,
@@ -118,35 +119,6 @@ const prepareLayerCreatePromises = ({
 	return cloneLayerPromises
 }
 
-const prepareLayerLinkedListPromises = ({
-	clonedLayers,
-}: {
-	clonedLayers: ILayer[]
-}) => {
-	const updateLayerPromises = []
-
-	// Step 1: first design is the head of the linked list, no prevId
-	let prevId: string | null = null
-
-	// Step 2: iterate through the layers
-	for (let i = 0; i < clonedLayers.length; i++) {
-		const clonedLayer = clonedLayers[i]
-		// Step 3: connect the cloned layer to the previous layer, if it exists
-		if (prevId) {
-			const connectLayersPromise = connectNodes({
-				type: LinkedListNodeTypeEnum.LAYER,
-				prevId,
-				nextId: clonedLayer.id,
-			})
-			updateLayerPromises.push(...connectLayersPromise)
-		}
-
-		// Step 4: update the prevId for the next iteration
-		prevId = clonedLayer.id
-	}
-	return updateLayerPromises
-}
-
 const cloneDesignsToLayers = async ({
 	userId,
 	layers,
@@ -158,8 +130,8 @@ const cloneDesignsToLayers = async ({
 }) => {
 	// Step 1: iterate through the layers
 	for (let i = 0; i < layers.length; i++) {
-		const layer = layers[i]
-		const clonedLayer = clonedLayers[i]
+		const layer = layers[i]!
+		const clonedLayer = clonedLayers[i]!
 		// Step 2: get designs from the layer
 		const designs = layer.designs
 		// Step 3: clone the designs to the cloned layer

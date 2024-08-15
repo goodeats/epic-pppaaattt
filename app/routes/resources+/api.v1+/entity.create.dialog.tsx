@@ -74,6 +74,7 @@ export const action = serverOnly$(async ({ request }: ActionFunctionArgs) => {
 	const userId = await requireUserId(request)
 	const { formData, noJS } = await handleFormData({ request })
 
+	// TODO: option to redirect from server
 	const { status, submission, responseSuccess, message } =
 		await handleSubmission({
 			userId,

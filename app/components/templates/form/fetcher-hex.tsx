@@ -68,7 +68,7 @@ export const FetcherHex = ({
 	// hack to submit select form on change
 	// through conform-to and fetcher
 	const submitRef = useRef<HTMLButtonElement>(null)
-	const handleChangeSubmit = useDebounce((f: HTMLFormElement) => {
+	const handleChangeSubmit = useDebounce(() => {
 		submitRef.current?.click()
 	}, 400)
 
@@ -82,7 +82,7 @@ export const FetcherHex = ({
 		<fetcher.Form
 			method="POST"
 			action={route}
-			onChange={e => handleChangeSubmit(e.currentTarget)}
+			onChange={handleChangeSubmit}
 			{...form.props}
 			className="flex-1"
 		>
@@ -95,10 +95,10 @@ export const FetcherHex = ({
 				<Input
 					maxLength={6}
 					className="flex h-8"
-					onInput={e => handleInput(e.currentTarget)}
+					onInput={(e) => handleInput(e.currentTarget)}
 					placeholder={placeholder}
 					disabled={isPending}
-					{...conform.input(fields[fieldName], {
+					{...conform.input(fields[fieldName]!, {
 						ariaAttributes: true,
 					})}
 				/>

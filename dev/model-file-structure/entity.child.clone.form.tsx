@@ -67,7 +67,7 @@ export const CloneExampleEntityExampleChildForm = memo(
 			},
 		]
 
-		const handleSuccessfulSubmission = (data: any) => {
+		const handleSuccessfulSubmission = () => {
 			// do something
 		}
 

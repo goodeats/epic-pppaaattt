@@ -30,16 +30,7 @@ export const NavActionsButtonGroup = memo(
 				{/* <span>fork ab</span> */}
 				{/* <span>merge ab</span> */}
 				<ArtworkVersionToggleStarred version={version} />
-				{/* <ArtworkBranchCreate
-					branchId={branch.id}
-					artworkId={artwork.id}
-					versionId={version.id}
-				/> */}
-				<CloneArtworkArtworkBranchForm
-					artwork={artwork}
-					branch={branch}
-					version={version}
-				/>
+				<CloneArtworkArtworkBranchForm artwork={artwork} branch={branch} />
 				<CloneArtworkBranchArtworkVersionForm
 					branch={branch}
 					version={version}

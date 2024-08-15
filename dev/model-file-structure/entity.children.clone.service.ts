@@ -1,11 +1,10 @@
-import { LinkedListNodeTypeEnum } from '#app/models/__shared/linked-list.definitions'
-import { connectNodes } from '#app/models/__shared/linked-list.node.update.server'
 import { type IUser } from '#app/models/user/user.server'
 import { getOptionalZodErrorMessage } from '#app/utils/misc'
 import {
 	type IExampleEntity,
 	type IExampleEntityWithChildren,
 } from './entity._._definitions'
+import { getExampleEntityData } from './entity._._utils'
 import { type IExampleEntitiesClonedResponse } from './entity._.clone.definitions'
 import { createExampleEntity } from './entity._.create.db.server'
 import { ExampleEntityExampleChildSchema } from './entity.child._schema'
@@ -19,8 +18,8 @@ export const cloneChildrenToExampleEntityService = async ({
 	children,
 }: IExampleEntityChildrenCloneSubmission): Promise<IExampleEntitiesClonedResponse> => {
 	try {
-		// Step 2: Prepare children create data
-		const exampleEntityCloneDataList = prepareExampleEntityCloneDataList({
+		// Step 2: Prepare children create data list
+		const cloneDataList = prepareCloneDataList({
 			userId,
 			exampleEntityId,
 			children,
@@ -28,7 +27,7 @@ export const cloneChildrenToExampleEntityService = async ({
 
 		// Step 3: Create cloned children in order
 		const cloneExampleEntityChildrenPromises = prepareClonePromises({
-			exampleEntityCloneDataList,
+			cloneDataList,
 		})
 		const clonedExampleEntityChildren = await Promise.all(
 			cloneExampleEntityChildrenPromises,
@@ -37,17 +36,18 @@ export const cloneChildrenToExampleEntityService = async ({
 		// After clone:
 		// Potential Step: Prepare children update promises
 		// e.g. re-link the cloned children
-		// const updateClonedExampleEntityChildrenPromises = prepareExampleEntityChildrenLinkedListPromises({
-		// 	clonedExampleEntityChildren,
+		// const updateClonedPromises = connectUnlinkedNodes({
+		// 	items: clonedExampleEntityChildren,
+		// 	type: LinkedListNodeTypeEnum.ARTWORK_VERSION,
 		// })
-		// await prisma.$transaction(updateClonedExampleEntityChildrenPromises)
+		// await Promise.all(updateClonedPromises)
 
 		// Potential Step: clone childrens' children recursively
-		// await cloneChildrenChildrenToClonedChildren({
-		// 	userId,
-		// 	children,
-		// 	clonedExampleEntityChildren,
-		// })
+		await cloneChildrenChildrenToClonedChildren({
+			userId,
+			children,
+			clonedExampleEntityChildren,
+		})
 
 		return { success: true }
 	} catch (error) {
@@ -58,29 +58,15 @@ export const cloneChildrenToExampleEntityService = async ({
 	}
 }
 
-const prepareExampleEntityCloneData = ({
-	userId,
-	child,
-	exampleEntityId,
+const validateCloneData = ({
+	cloneData,
 }: {
-	userId: IUser['id']
-	exampleEntityId: IExampleEntity['id']
-	child: IExampleEntity
-}): IExampleEntityExampleChildCreateData => {
-	// Step 1: build the child data
-	const { name, description, visible } = child
-	const exampleEntityData = {
-		name,
-		description,
-		visible,
-		ownerId: userId,
-		exampleEntityId,
-	}
-	// Step 2: validate the children data with the schema
-	return ExampleEntityExampleChildSchema.parse(exampleEntityData)
+	cloneData: IExampleEntityExampleChildCreateData
+}) => {
+	return ExampleEntityExampleChildSchema.parse(cloneData)
 }
 
-const prepareExampleEntityCloneDataList = ({
+const prepareCloneDataList = ({
 	userId,
 	exampleEntityId,
 	children,
@@ -89,49 +75,25 @@ const prepareExampleEntityCloneDataList = ({
 	exampleEntityId: IExampleEntity['id']
 	children: IExampleEntity[]
 }): IExampleEntityExampleChildCreateData[] => {
-	return children.map(child =>
-		prepareExampleEntityCloneData({
-			userId,
-			child,
-			exampleEntityId,
+	return children.map((child) =>
+		validateCloneData({
+			cloneData: {
+				...getExampleEntityData({
+					exampleEntity: child,
+				}),
+				ownerId: userId,
+				exampleEntityId,
+			},
 		}),
 	)
 }
 
 const prepareClonePromises = ({
-	exampleEntityCloneDataList,
+	cloneDataList,
 }: {
-	exampleEntityCloneDataList: IExampleEntityExampleChildCreateData[]
+	cloneDataList: IExampleEntityExampleChildCreateData[]
 }): Promise<IExampleEntity>[] => {
-	return exampleEntityCloneDataList.map(data => createExampleEntity({ data }))
-}
-
-const prepareExampleEntityChildrenLinkedListPromises = ({
-	clonedExampleEntityChildren,
-}: {
-	clonedExampleEntityChildren: IExampleEntity[]
-}) => {
-	const promises = []
-
-	// Step 1: first clone is the head of the linked list, no prevId
-	let prevId: string | null = null
-
-	// Step 2: iterate through the cloned children
-	for (const clonedExampleEntity of clonedExampleEntityChildren) {
-		// Step 3: connect the cloned child to the previous cloned child, if it exists
-		if (prevId) {
-			const connectExampleEntityPromise = connectNodes({
-				type: LinkedListNodeTypeEnum.EXAMPLE_ENTITY,
-				prevId,
-				nextId: clonedExampleEntity.id,
-			})
-			promises.push(...connectExampleEntityPromise)
-		}
-
-		// Step 4: update the prevId for the next iteration
-		prevId = clonedExampleEntity.id
-	}
-	return promises
+	return cloneDataList.map((data) => createExampleEntity({ data }))
 }
 
 const cloneChildrenChildrenToClonedChildren = async ({
@@ -140,13 +102,16 @@ const cloneChildrenChildrenToClonedChildren = async ({
 	clonedExampleEntityChildren,
 }: {
 	userId: IUser['id']
-	children: IExampleEntityWithChildren[]
+	children: IExampleEntity[] | IExampleEntityWithChildren[]
 	clonedExampleEntityChildren: IExampleEntity[]
 }) => {
 	// Step 1: iterate through the each child and its clone
 	for (let i = 0; i < children.length; i++) {
-		const child = children[i]
-		const clonedLayer = clonedExampleEntityChildren[i]
+		const child = children[i]!
+		const clonedLayer = clonedExampleEntityChildren[i]!
+
+		// Type guard to check if child has children
+		if (!('children' in child)) continue
 
 		// Step 2: get child's children
 		const childChildren = child.children

@@ -7,7 +7,6 @@ import { type IUser } from '#app/models/user/user.server'
 import { prisma } from '#app/utils/db.server'
 
 export const assetImageArtworkDeleteService = async ({
-	userId,
 	id,
 }: {
 	userId: IUser['id']

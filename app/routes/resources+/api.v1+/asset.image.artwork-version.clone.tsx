@@ -21,7 +21,7 @@ import { ArtworkAssetImageSrcStrategy } from '#app/strategies/asset.image.src.st
 import { requireUserId } from '#app/utils/auth.server'
 import { Routes } from '#app/utils/routes.const'
 
-// technically this would be a clone of the artowrk asset image by id
+// technically this would be a clone of the artwork asset image by id
 
 // https://www.epicweb.dev/full-stack-components
 

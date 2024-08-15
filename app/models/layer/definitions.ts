@@ -4,7 +4,6 @@ import { type ISubmission } from '#app/definitions/submission.js'
 import { type IArtworkVersion } from '../artwork-version/definitions'
 import { type IAssetParsed } from '../asset/asset.server'
 import { type IDesignParsed, type IDesignWithType } from '../design/definitions'
-import { type IUser } from '../user/user.server'
 
 // Omitting 'createdAt' and 'updatedAt' from the Layer interface
 // prisma query returns a string for these fields

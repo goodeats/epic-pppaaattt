@@ -9,7 +9,6 @@ import {
 import { type IUser } from '#app/models/user/user.server'
 
 export const updateDesignTypeStrokeValueService = async ({
-	userId,
 	id,
 	designId,
 	value,
@@ -39,7 +38,6 @@ export const updateDesignTypeStrokeValueService = async ({
 }
 
 export const updateDesignTypeStrokeBasisService = async ({
-	userId,
 	id,
 	designId,
 	basis,
@@ -69,7 +67,6 @@ export const updateDesignTypeStrokeBasisService = async ({
 }
 
 export const updateDesignTypeStrokeStyleService = async ({
-	userId,
 	id,
 	designId,
 	style,

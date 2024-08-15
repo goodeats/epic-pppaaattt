@@ -1,7 +1,6 @@
 import { invariant } from '@epic-web/invariant'
-import { z } from 'zod'
-import { DesignTypeEnum } from '#app/models/design/definitions'
-import { arrayOfIds, zodStringOrNull } from '#app/schema/zod-helpers'
+import { type z } from 'zod'
+import { type DesignTypeEnum } from '#app/models/design/definitions'
 import { prisma } from '#app/utils/db.server'
 import {
 	type IDesignParsed,
@@ -10,19 +9,22 @@ import {
 } from '../design/definitions'
 import { deserializeDesigns } from './utils'
 
-export type queryDesignWhereArgsType = z.infer<typeof whereArgs>
-const whereArgs = z.object({
-	id: z.union([z.string(), arrayOfIds]).optional(),
-	type: z.nativeEnum(DesignTypeEnum).optional(),
-	visible: z.boolean().optional(),
-	selected: z.boolean().optional(),
-	ownerId: z.string().optional(),
-	artworkId: z.string().optional(),
-	artworkVersionId: z.string().optional(),
-	layerId: z.string().optional(),
-	nextId: zodStringOrNull.optional(),
-	prevId: zodStringOrNull.optional(),
-})
+export type queryDesignWhereArgsType = z.infer<
+	z.ZodObject<{
+		id: z.ZodOptional<
+			z.ZodUnion<[z.ZodString, z.ZodObject<{ in: z.ZodArray<z.ZodString> }>]>
+		>
+		type: z.ZodOptional<z.ZodNativeEnum<typeof DesignTypeEnum>>
+		visible: z.ZodOptional<z.ZodBoolean>
+		selected: z.ZodOptional<z.ZodBoolean>
+		ownerId: z.ZodOptional<z.ZodString>
+		artworkId: z.ZodOptional<z.ZodString>
+		artworkVersionId: z.ZodOptional<z.ZodString>
+		layerId: z.ZodOptional<z.ZodString>
+		nextId: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNull]>>
+		prevId: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNull]>>
+	}>
+>
 
 // no ordering for now since these are linked lists
 const designTypes = {

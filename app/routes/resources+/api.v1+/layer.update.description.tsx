@@ -103,7 +103,7 @@ export const LayerDescription = ({
 	})
 	const submitRef = useRef<HTMLButtonElement>(null)
 
-	const handleChangeSubmit = useDebounce((f: HTMLFormElement) => {
+	const handleChangeSubmit = useDebounce(() => {
 		submitRef.current?.click()
 	}, 400)
 
@@ -111,7 +111,7 @@ export const LayerDescription = ({
 		<fetcher.Form
 			method="POST"
 			action={route}
-			onChange={e => handleChangeSubmit(e.currentTarget)}
+			onChange={handleChangeSubmit}
 			{...form.props}
 		>
 			<AuthenticityTokenInput />

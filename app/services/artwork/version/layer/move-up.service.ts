@@ -11,7 +11,6 @@ import { prisma } from '#app/utils/db.server'
 export const artworkVersionLayerMoveUpService = async ({
 	userId,
 	id,
-	artworkVersionId,
 }: {
 	userId: IUser['id']
 	id: ILayer['id']

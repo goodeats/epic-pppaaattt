@@ -1,4 +1,4 @@
-import { type IArtworkBranch } from "./_._definitions"
+import { type IArtworkBranch } from './_._definitions'
 
 export interface IArtworkBranchCloneData {
 	id: IArtworkBranch['id']

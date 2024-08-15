@@ -51,10 +51,11 @@ export const cloneArtworkBranchArtworkVersionService = async ({
 		const artworkVersions = await getArtworkVersions({
 			where: { branchId },
 		})
-		const deleteArtworkVersionsPromise = deleteArtworkVersionsAfterCurrent({
-			id,
-			artworkVersions,
-		})
+		const deleteArtworkVersionsAfterCurrentPromise =
+			deleteArtworkVersionsAfterCurrent({
+				id,
+				artworkVersions,
+			})
 
 		// Step 3: get data for cloned artwork version
 		const validatedArtworkVersionData = validateArtworkVersionData({
@@ -68,9 +69,9 @@ export const cloneArtworkBranchArtworkVersionService = async ({
 			data: validatedArtworkVersionData,
 		})
 
-		// Step 5: execute the transactions
+		// Step 5: execute the clone transactions
 		const [, clonedArtworkVersion] = await prisma.$transaction([
-			deleteArtworkVersionsPromise,
+			deleteArtworkVersionsAfterCurrentPromise,
 			cloneArtworkVersionPromise,
 		])
 
@@ -121,13 +122,13 @@ const deleteArtworkVersionsAfterCurrent = ({
 
 	// Step 3: find the index of the current artwork version
 	const currentIndex = orderedArtworkVersions.findIndex(
-		artworkVersion => artworkVersion.id === id,
+		(artworkVersion) => artworkVersion.id === id,
 	)
 
 	// Step 4: get the id's of the artwork versions after the current index
 	const idsToDelete = orderedArtworkVersions
 		.slice(currentIndex + 1)
-		.map(artworkVersion => artworkVersion.id)
+		.map((artworkVersion) => artworkVersion.id)
 
 	// Step 5: return the promise that deletes them
 	return deleteArtworkVersions({

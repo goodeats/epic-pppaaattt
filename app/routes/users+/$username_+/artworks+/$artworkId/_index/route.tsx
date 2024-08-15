@@ -46,7 +46,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 
 	// get all generators for these versions
 	const generators: IArtworkVersionGenerator[] = await Promise.all(
-		starredVersions.map(version =>
+		starredVersions.map((version) =>
 			artworkVersionGeneratorBuildService({ version }),
 		),
 	)
@@ -55,7 +55,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 	const versionsWithGenerators: IArtworkVersionWithGenerator[] =
 		starredVersions.map((version, index) => ({
 			...version,
-			generator: generators[index],
+			generator: generators[index]!,
 		}))
 
 	const date = new Date(artwork.updatedAt)
@@ -154,7 +154,7 @@ export const meta: MetaFunction<
 	{ 'routes/users+/$username_+/artworks': typeof artworksLoader }
 > = ({ data, params, matches }) => {
 	const artworkssMatch = matches.find(
-		m => m.id === 'routes/users+/$username_+/artworks',
+		(m) => m.id === 'routes/users+/$username_+/artworks',
 	)
 	const displayName = artworkssMatch?.data?.owner.name ?? params.username
 	const entityTitle = data?.artwork.name ?? 'Artwork'

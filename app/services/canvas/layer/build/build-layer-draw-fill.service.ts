@@ -27,7 +27,7 @@ export const canvasBuildLayerDrawFillService = ({
 		case FillBasisTypeEnum.RANDOM:
 			return colorRandomHex()
 		case FillBasisTypeEnum.PALETTE_SELECTED:
-			return palette[0].attributes.value
+			return palette[0]!.attributes.value
 		case FillBasisTypeEnum.PALETTE_RANDOM:
 			return getRandomItemInArray(palette).attributes.value
 		case FillBasisTypeEnum.PALETTE_LOOP:

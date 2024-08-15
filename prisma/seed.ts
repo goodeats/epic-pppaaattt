@@ -11,6 +11,12 @@ import {
 } from '#tests/db-utils.ts'
 import { insertGitHubUser } from '#tests/mocks/github.ts'
 
+// we're ok to import from the test directory in this file
+/*
+eslint
+	no-restricted-imports: "off",
+*/
+
 async function seed() {
 	console.log('🌱 Seeding...')
 	console.time(`🌱 Database has been seeded`)
@@ -100,16 +106,18 @@ async function seed() {
 							images: {
 								create: Array.from({
 									length: faker.number.int({ min: 1, max: 3 }),
-								}).map(() => {
-									const imgNumber = faker.number.int({ min: 0, max: 9 })
-									return noteImages[imgNumber]
-								}),
+								})
+									.map(() => {
+										const imgNumber = faker.number.int({ min: 0, max: 9 })
+										return noteImages[imgNumber]
+									})
+									.filter((img) => img !== undefined), // Filter out undefined values
 							},
 						})),
 					},
 				},
 			})
-			.catch(e => {
+			.catch((e) => {
 				console.error('Error creating a user:', e)
 				return null
 			})
@@ -214,7 +222,7 @@ async function seed() {
 						id: '260366b1',
 						title: 'Not bears',
 						content:
-							"Although you may have heard people call them koala 'bears', these awesome animals aren’t bears at all – they are in fact marsupials. A group of mammals, most marsupials have pouches where their newborns develop.",
+							"Although you may have heard people call them koala 'bears', these awesome animals aren't bears at all– they are in fact marsupials. A group of mammals, most marsupials have pouches where their newborns develop.",
 					},
 					{
 						id: 'bb79cf45',
@@ -303,7 +311,7 @@ async function seed() {
 }
 
 seed()
-	.catch(e => {
+	.catch((e) => {
 		console.error(e)
 		process.exit(1)
 	})

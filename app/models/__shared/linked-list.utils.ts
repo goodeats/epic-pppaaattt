@@ -4,20 +4,20 @@ import { type LinkedListNode } from './linked-list.definitions'
 // i.e., two heads, two tails, missing items, etc.
 
 export const orderLinkedItems = <T extends LinkedListNode>(items: T[]): T[] => {
-	const heads = items.filter(item => !item.prevId)
+	const heads = items.filter((item) => !item.prevId)
 	if (heads.length > 1) {
 		console.warn('Multiple heads found in the linked list.')
 		console.log('heads', heads)
 	}
 
-	const tails = items.filter(item => !item.nextId)
+	const tails = items.filter((item) => !item.nextId)
 	if (tails.length > 1) {
 		console.warn('Multiple tails found in the linked list.')
 		console.log('tails', tails)
 	}
 
 	// Step 1: Find the head of the list
-	const head = items.find(item => !item.prevId)
+	const head = items.find((item) => !item.prevId)
 	if (!head) return []
 
 	// Step 2: Sequentially order the items starting from the head
@@ -25,7 +25,7 @@ export const orderLinkedItems = <T extends LinkedListNode>(items: T[]): T[] => {
 	let currentItem = head
 	while (currentItem.nextId) {
 		const nextId = currentItem.nextId
-		const nextItem = items.find(item => item.id === nextId)
+		const nextItem = items.find((item) => item.id === nextId)
 
 		if (nextItem) {
 			orderedItems.push(nextItem)

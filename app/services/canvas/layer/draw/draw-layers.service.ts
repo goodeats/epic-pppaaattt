@@ -16,7 +16,7 @@ export const canvasDrawLayersService = ({
 	loadedAssets: ILoadedAssets
 }) => {
 	for (let i = 0; i < drawLayers.length; i++) {
-		const layer = drawLayers[i]
+		const layer = drawLayers[i]!
 		canvasDrawLayerAssets({
 			ctx,
 			assets: layer.assets,
@@ -35,7 +35,7 @@ const drawLayerItems = ({
 	items: IGenerationItem[]
 }) => {
 	for (let i = 0; i < items.length; i++) {
-		const layerDrawItem = items[i]
+		const layerDrawItem = items[i]!
 		drawLayerItemService({ ctx, layerDrawItem })
 	}
 }

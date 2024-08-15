@@ -9,7 +9,7 @@ import { generateParentFormId } from '#app/utils/form-id'
 import { NewArtworkVersionLayerSchema } from './schema.create'
 
 export const CreateArtworkVersionLayerForm = memo(
-	({ entityType, type, parent }: CreateChildEntityFormProps) => {
+	({ entityType, parent }: CreateChildEntityFormProps) => {
 		const parentId = parent.id
 		const formId = generateParentFormId({
 			action: 'create',

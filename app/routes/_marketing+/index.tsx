@@ -1,9 +1,5 @@
 import { invariantResponse } from '@epic-web/invariant'
-import {
-	type LoaderFunctionArgs,
-	json,
-	type MetaFunction,
-} from '@remix-run/node'
+import { json, type MetaFunction } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import {
 	MarketingContentSection,
@@ -29,7 +25,7 @@ export interface IUserMarketing {
 	image: { id: string | null } | null
 }
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
+export async function loader() {
 	const user: IUserMarketing | null = await prisma.user.findFirst({
 		select: {
 			name: true,
@@ -49,7 +45,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 
 	// get all generators for these versions
 	const generators: IArtworkVersionGenerator[] = await Promise.all(
-		publishedVersions.map(version =>
+		publishedVersions.map((version) =>
 			artworkVersionGeneratorBuildService({ version }),
 		),
 	)
@@ -58,7 +54,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 	const versionsWithGenerators: IArtworkVersionWithGenerator[] =
 		publishedVersions.map((version, index) => ({
 			...version,
-			generator: generators[index],
+			generator: generators[index]!,
 		}))
 
 	return json({
