@@ -1,6 +1,5 @@
 import { type IntentActionArgs } from '#app/definitions/intent-action-args'
-import { type ILayer } from '#app/models/layer/layer.server'
-import { NewAssetImageLayerSchema } from '#app/schema/asset/image.layer'
+import { type ILayer } from '#app/models/layer/definitions'
 import { ValidateLayerParentSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntityImageSubmission } from '#app/utils/conform-utils'
 import { prisma } from '#app/utils/db.server'
@@ -8,6 +7,7 @@ import {
 	type IAssetImageCreateData,
 	type IAssetImageCreateSubmission,
 } from './image.create.server'
+import { NewAssetImageLayerServerSchema } from './schema.server'
 import { stringifyAssetImageAttributes } from './utils'
 
 export const validateNewAssetImageLayerSubmission = async ({
@@ -19,7 +19,7 @@ export const validateNewAssetImageLayerSubmission = async ({
 	return await validateEntityImageSubmission({
 		userId,
 		formData,
-		schema: NewAssetImageLayerSchema,
+		schema: NewAssetImageLayerServerSchema,
 		strategy,
 	})
 }

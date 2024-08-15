@@ -1,5 +1,5 @@
 import { prisma } from '#app/utils/db.server'
-import { type IArtworkVersion } from './artwork-version.server'
+import { type IArtworkVersion } from './definitions'
 
 export interface IArtworkVersionDeletedResponse {
 	success: boolean

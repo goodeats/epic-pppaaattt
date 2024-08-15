@@ -1,4 +1,5 @@
-import { type IDesign, type IDesignUpdateData } from '../design.server'
+import { type IDesign } from '../definitions'
+import { type IDesignUpdateData } from '../definitions.update'
 import {
 	type IDesignRotateSubmission,
 	type IDesignAttributesRotate,

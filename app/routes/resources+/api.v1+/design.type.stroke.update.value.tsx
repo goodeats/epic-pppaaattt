@@ -7,7 +7,7 @@ import { useFetcher } from '@remix-run/react'
 import { redirectBack } from 'remix-utils/redirect-back'
 import { useHydrated } from 'remix-utils/use-hydrated'
 import { FetcherHex } from '#app/components/templates/form/fetcher-hex'
-import { type IDesignWithStroke } from '#app/models/design/design.server'
+import { type IDesignWithStroke } from '#app/models/design/definitions'
 import {
 	updateDesignTypeStrokeValue,
 	validateDesignTypeUpdateStrokeValueSubmission,

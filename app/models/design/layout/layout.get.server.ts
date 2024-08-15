@@ -1,17 +1,18 @@
 import { invariant } from '@epic-web/invariant'
-import { z } from 'zod'
-import { DesignTypeEnum } from '#app/schema/design'
+import { type z } from 'zod'
+import { DesignTypeEnum } from '#app/models/design/definitions'
 import { prisma } from '#app/utils/db.server'
 import { deserializeDesign } from '../utils'
 import { type IDesignLayout } from './layout.server'
 
-export type queryWhereArgsType = z.infer<typeof whereArgs>
-const whereArgs = z.object({
-	id: z.string().optional(),
-	ownerId: z.string().optional(),
-	artworkVersionId: z.string().optional(),
-	layerId: z.string().optional(),
-})
+export type queryWhereArgsType = z.infer<
+	z.ZodObject<{
+		id: z.ZodOptional<z.ZodString>
+		ownerId: z.ZodOptional<z.ZodString>
+		artworkVersionId: z.ZodOptional<z.ZodString>
+		layerId: z.ZodOptional<z.ZodString>
+	}>
+>
 
 // TODO: Add schemas for each type of query and parse with zod
 // aka if by id that should be present, if by slug that should be present

@@ -21,7 +21,6 @@ import { capitalize } from '#app/utils/string-formatting'
 
 interface EntitySelectorProps extends PopoverProps {
 	entities: IEntityWithSlug[]
-	entitySingular?: string
 	entityPlural?: string
 	placeholder?: string
 	slugParam?: string
@@ -30,7 +29,6 @@ interface EntitySelectorProps extends PopoverProps {
 
 export function ComboboxNav({
 	entities,
-	entitySingular = 'entity',
 	entityPlural = 'entities',
 	placeholder = 'Select...',
 	slugParam,
@@ -40,7 +38,7 @@ export function ComboboxNav({
 	const [open, setOpen] = useState(false)
 	const params = useParams()
 	const paramsSlug = slugParam ? params[slugParam] : params.slug
-	const currentEntity = entities.find(entity => entity.slug === paramsSlug)
+	const currentEntity = entities.find((entity) => entity.slug === paramsSlug)
 
 	return (
 		<Popover open={open} onOpenChange={setOpen} {...props}>
@@ -64,7 +62,7 @@ export function ComboboxNav({
 					<CommandInput placeholder={`Search ${entityPlural}...`} />
 					<CommandEmpty>No {entityPlural} found.</CommandEmpty>
 					<CommandGroup heading={capitalize(entityPlural)}>
-						{entities.map(entity => (
+						{entities.map((entity) => (
 							<CommandItem key={entity.id} onSelect={() => setOpen(false)}>
 								<Link prefetch="intent" to={`${baseUrl}/${entity.slug}`}>
 									{entity.name}

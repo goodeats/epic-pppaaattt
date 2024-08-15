@@ -21,7 +21,7 @@ const Logo = () => {
 		<Link to="/" className="group grid leading-snug">
 			<div className="mt-[-12px] flex flex-col">
 				{/* It first renders the Character component for the first character of the string */}
-				<Character char={str[0]} />
+				<Character char={str[0] as string} />
 				<div className="flex">
 					{/* Then it maps over the rest of the string and for each character, it renders a Character component */}
 					{str

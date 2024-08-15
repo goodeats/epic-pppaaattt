@@ -7,13 +7,13 @@ import {
 } from './__shared'
 
 const MAX_ALT_TEXT_LENGTH = 240
-const AltTextSchema = z.string().max(MAX_ALT_TEXT_LENGTH).optional()
+export const AltTextSchema = z.string().max(MAX_ALT_TEXT_LENGTH).optional()
 
 const DimensionsSchema = z.number().int().positive()
 
 const MAX_MEGABYTES = 6
 export const MAX_UPLOAD_SIZE = 1024 * 1024 * MAX_MEGABYTES
-const ACCEPTED_IMAGE_TYPES = [
+export const ACCEPTED_IMAGE_TYPES = [
 	'image/jpeg',
 	'image/jpg',
 	'image/png',

@@ -5,8 +5,8 @@ import { StrokeBasisTypeEnum } from '#app/schema/stroke'
 export const shouldGetPixelHex = ({ layer }: { layer: ILayerGenerator }) => {
 	const { fill, stroke } = layer
 	return (
-		fill.basis === FillBasisTypeEnum.PIXEL ||
-		stroke.basis === StrokeBasisTypeEnum.PIXEL
+		fill.attributes.basis === FillBasisTypeEnum.PIXEL ||
+		stroke.attributes.basis === StrokeBasisTypeEnum.PIXEL
 	)
 }
 
@@ -78,10 +78,11 @@ const buildPixelImageData = ({
 }
 
 // Function to build the RGB values from image data
-const buildPixelRGB = ({ data }: { data: Uint8ClampedArray }) => {
-	const r = data[0] // Red value
-	const g = data[1] // Green value
-	const b = data[2] // Blue value
+type PixelRGB = { r: number; g: number; b: number }
+const buildPixelRGB = ({ data }: { data: Uint8ClampedArray }): PixelRGB => {
+	const r = data[0] || 0 // Red value
+	const g = data[1] || 0 // Green value
+	const b = data[2] || 0 // Blue value
 	// The alpha value at index 3 is not included as we are only interested in the RGB values for color representation.
 	return { r, g, b }
 }

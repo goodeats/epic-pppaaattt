@@ -11,7 +11,7 @@ import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
 import { redirectBack } from 'remix-utils/redirect-back'
 import { useHydrated } from 'remix-utils/use-hydrated'
 import { Input } from '#app/components/ui/input'
-import { type ILayer } from '#app/models/layer/layer.server'
+import { type ILayer } from '#app/models/layer/definitions'
 import {
 	updateLayerName,
 	validateLayerNameSubmission,
@@ -103,7 +103,7 @@ export const LayerName = ({
 	})
 	const submitRef = useRef<HTMLButtonElement>(null)
 
-	const handleChangeSubmit = useDebounce((f: HTMLFormElement) => {
+	const handleChangeSubmit = useDebounce(() => {
 		submitRef.current?.click()
 	}, 400)
 
@@ -111,7 +111,7 @@ export const LayerName = ({
 		<fetcher.Form
 			method="POST"
 			action={route}
-			onChange={e => handleChangeSubmit(e.currentTarget)}
+			onChange={handleChangeSubmit}
 			{...form.props}
 		>
 			<AuthenticityTokenInput />

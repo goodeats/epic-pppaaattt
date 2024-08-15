@@ -1,5 +1,8 @@
-import { type DesignTypeEnum } from '#app/schema/design'
-import { type IDesignSubmission, type IDesignParsed } from '../design.server'
+import {
+	type IDesignSubmission,
+	type IDesignParsed,
+	type DesignTypeEnum,
+} from '../definitions'
 
 export interface IDesignTemplate extends IDesignParsed {
 	type: typeof DesignTypeEnum.TEMPLATE
@@ -12,7 +15,7 @@ export type IDesignTemplateStyle = 'triangle'
 // make sure it starts as optional or is set to a default value
 // for when parsing the design from the deserializer
 export interface IDesignAttributesTemplate {
-	style?: IDesignTemplateStyle
+	style: IDesignTemplateStyle
 }
 
 export interface IDesignTemplateSubmission

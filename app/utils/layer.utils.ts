@@ -2,7 +2,7 @@ import {
 	type ILayerWithDesigns,
 	type ILayer,
 	type ILayerWithChildren,
-} from '#app/models/layer/layer.server'
+} from '#app/models/layer/definitions'
 
 type FilteredLayer = ILayer | ILayerWithDesigns | ILayerWithChildren
 

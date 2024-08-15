@@ -1,4 +1,4 @@
-import { type IDesign } from '#app/models/design/design.server'
+import { type IDesign } from '#app/models/design/definitions'
 import { type IRotate } from '#app/models/design-type/rotate/rotate.server'
 import {
 	type IDesignTypeRotateUpdatedResponse,
@@ -8,7 +8,6 @@ import {
 import { type IUser } from '#app/models/user/user.server'
 
 export const updateDesignTypeRotateValueService = async ({
-	userId,
 	id,
 	designId,
 	value,
@@ -38,7 +37,6 @@ export const updateDesignTypeRotateValueService = async ({
 }
 
 export const updateDesignTypeRotateBasisService = async ({
-	userId,
 	id,
 	designId,
 	basis,

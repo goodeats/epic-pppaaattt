@@ -1,5 +1,8 @@
-import { type DesignTypeEnum } from '#app/schema/design'
-import { type IDesignSubmission, type IDesignParsed } from '../design.server'
+import {
+	type IDesignSubmission,
+	type IDesignParsed,
+	type DesignTypeEnum,
+} from '../definitions'
 
 export interface IDesignStroke extends IDesignParsed {
 	type: typeof DesignTypeEnum.STROKE
@@ -21,9 +24,9 @@ export type IDesignStrokeStyle = 'solid'
 // make sure it starts as optional or is set to a default value
 // for when parsing the design from the deserializer
 export interface IDesignAttributesStroke {
-	basis?: IDesignStrokeBasis
-	style?: IDesignStrokeStyle
-	value?: string
+	basis: IDesignStrokeBasis
+	style: IDesignStrokeStyle
+	value: string
 }
 
 export interface IDesignStrokeSubmission

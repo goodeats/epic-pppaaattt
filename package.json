@@ -4,7 +4,8 @@
   "sideEffects": false,
   "type": "module",
   "imports": {
-    "#*": "./*"
+    "#*": "./*",
+    "#tests/*": "./tests/*"
   },
   "scripts": {
     "build": "run-s build:*",
@@ -17,6 +18,7 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "lint:debug": "eslint --debug .",
     "setup": "npm run build && prisma generate && prisma migrate deploy && prisma db seed && playwright install",
     "start": "cross-env NODE_ENV=production node .",
     "start:mocks": "cross-env NODE_ENV=production MOCKS=true tsx .",
@@ -39,7 +41,6 @@
     "fly:console:prisma:studio:proxy:prod": "npm run fly:console:prisma:studio:proxy -- --env=production",
     "fly:console:prisma:studio:proxy:staging": "npm run fly:console:prisma:studio:proxy -- --env=staging",
     "fly:console:prisma:studio:proxy": "./scripts/fly.io/app-console-prisma-studio-proxy.sh",
-    "data:migrate": "npx tsx ./prisma/data-migrations/populate-design-attributes-by-type.ts",
     "prepare": "husky install"
   },
   "eslintIgnore": [
@@ -77,11 +78,11 @@
     "@radix-ui/react-toast": "^1.1.5",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@react-email/components": "^0.0.11",
-    "@remix-run/css-bundle": "^2.9.1",
-    "@remix-run/express": "^2.9.1",
-    "@remix-run/node": "^2.9.1",
-    "@remix-run/react": "^2.9.1",
-    "@remix-run/server-runtime": "^2.9.1",
+    "@remix-run/css-bundle": "^2.9.2",
+    "@remix-run/express": "^2.9.2",
+    "@remix-run/node": "^2.9.2",
+    "@remix-run/react": "^2.9.2",
+    "@remix-run/server-runtime": "^2.9.2",
     "@sentry/profiling-node": "^1.2.6",
     "@sentry/remix": "^7.83.0",
     "address": "^2.0.1",
@@ -113,6 +114,7 @@
     "lru-cache": "^10.1.0",
     "lucide-react": "^0.316.0",
     "morgan": "^1.10.0",
+    "node-fetch": "^3.3.2",
     "prisma": "^5.6.0",
     "qrcode": "^1.5.3",
     "react": "^18.2.0",
@@ -120,7 +122,7 @@
     "reactflow": "^11.10.4",
     "remix-auth": "^3.6.0",
     "remix-auth-form": "^1.4.0",
-    "remix-auth-github": "^1.6.0",
+    "remix-auth-github": "^1.8.0",
     "remix-utils": "^7.3.0",
     "set-cookie-parser": "^2.6.0",
     "sonner": "^1.3.1",
@@ -134,10 +136,10 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@epic-web/config": "^1.12.0",
     "@faker-js/faker": "^8.3.1",
     "@playwright/test": "^1.40.1",
     "@remix-run/dev": "^2.9.1",
-    "@remix-run/eslint-config": "^2.9.1",
     "@remix-run/serve": "^2.9.1",
     "@remix-run/testing": "^2.9.1",
     "@sentry/vite-plugin": "^2.16.1",
@@ -150,7 +152,7 @@
     "@types/better-sqlite3": "^7.6.8",
     "@types/compression": "^1.7.5",
     "@types/cookie": "^0.6.0",
-    "@types/eslint": "^8.44.7",
+    "@types/eslint": "^8.56.11",
     "@types/express": "^4.17.21",
     "@types/fs-extra": "^11.0.4",
     "@types/glob": "^8.1.0",
@@ -166,8 +168,7 @@
     "chokidar": "^3.5.3",
     "enforce-unique": "^1.2.0",
     "esbuild": "^0.19.8",
-    "eslint": "^8.54.0",
-    "eslint-config-prettier": "^9.0.0",
+    "eslint": "^9.9.0",
     "fs-extra": "^11.2.0",
     "husky": "^8.0.0",
     "jsdom": "^22.1.0",
@@ -177,11 +178,12 @@
     "prettier": "^3.1.0",
     "prettier-plugin-sql": "^0.17.0",
     "prettier-plugin-tailwindcss": "^0.5.7",
-    "remix-development-tools": "^4.1.6",
+    "remix-development-tools": "^4.2.0",
     "remix-flat-routes": "^0.6.2",
     "tsx": "^4.6.0",
     "typescript": "^5.3.2",
     "vite": "^5.2.11",
+    "vite-env-only": "^3.0.1",
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^0.34.6"
   },
@@ -191,5 +193,6 @@
   "epic-stack": true,
   "prisma": {
     "seed": "tsx prisma/seed.ts"
-  }
+  },
+  "prettier": "@epic-web/config/prettier"
 }

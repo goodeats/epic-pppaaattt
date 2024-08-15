@@ -1,9 +1,40 @@
 const pathBase = '/resources/api/v1'
+export const resourceRouteApiV1 = '/resources/api/v1'
+
+// const route = getRouteInfo(
+//   'routes',
+//   '/resources+/api.v1+/update.design.toggle.tsx',
+//   {},
+// ).path
 
 export const Routes = {
 	RESOURCES: {
 		API: {
 			V1: {
+				CREATE: {
+					DESIGN: `${pathBase}/create/design`,
+					LAYER: `${pathBase}/create/layer`,
+				},
+				DELETE: {
+					DESIGN: `${pathBase}/delete/design`,
+				},
+				UPDATE: {
+					DESIGN: {
+						REORDER: `${pathBase}/update/design/reorder`,
+						TOGGLE: `${pathBase}/update/design/toggle`,
+						TYPE: {
+							ATTRIBUTE: {
+								HEX: `${pathBase}/update/design/type/attribute/hex`,
+								SELECT: `${pathBase}/update/design/type/attribute/select`,
+							},
+						},
+					},
+					LINKED_LIST: {
+						NODE: {
+							MOVE: `${pathBase}/update/linked-list/node/move`,
+						},
+					},
+				},
 				ARTWORK_BRANCH: {
 					CREATE: `${pathBase}/artwork-branch/create`,
 				},

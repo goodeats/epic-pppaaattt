@@ -1,4 +1,4 @@
-import { type IDesign } from '#app/models/design/design.server'
+import { type IDesign } from '#app/models/design/definitions'
 import { type IStroke } from '#app/models/design-type/stroke/stroke.server'
 import {
 	type IDesignTypeStrokeUpdatedResponse,
@@ -9,7 +9,6 @@ import {
 import { type IUser } from '#app/models/user/user.server'
 
 export const updateDesignTypeStrokeValueService = async ({
-	userId,
 	id,
 	designId,
 	value,
@@ -39,7 +38,6 @@ export const updateDesignTypeStrokeValueService = async ({
 }
 
 export const updateDesignTypeStrokeBasisService = async ({
-	userId,
 	id,
 	designId,
 	basis,
@@ -69,7 +67,6 @@ export const updateDesignTypeStrokeBasisService = async ({
 }
 
 export const updateDesignTypeStrokeStyleService = async ({
-	userId,
 	id,
 	designId,
 	style,

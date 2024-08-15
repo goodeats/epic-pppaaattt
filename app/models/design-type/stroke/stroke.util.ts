@@ -1,7 +1,7 @@
 import {
 	type IDesignWithStroke,
 	type IDesignWithType,
-} from '#app/models/design/design.server'
+} from '#app/models/design/definitions'
 import { type IStroke } from './stroke.server'
 
 export const findFirstStrokeInDesignArray = ({

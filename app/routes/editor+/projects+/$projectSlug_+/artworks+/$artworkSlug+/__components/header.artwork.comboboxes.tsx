@@ -3,8 +3,8 @@ import { FlexRow } from '#app/components/layout'
 import { ComboboxNav } from '#app/components/templates/combobox'
 import { TooltipIcon, TooltipIconLink } from '#app/components/templates/navbar'
 import { type IArtworkWithBranchesAndVersions } from '#app/models/artwork/artwork.server'
-import { type IArtworkBranchWithVersions } from '#app/models/artwork-branch/artwork-branch.server'
-import { type IArtworkVersion } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkBranchWithVersions } from '#app/models/artwork-branch/_._definitions.js'
+import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
 import { type IProjectWithArtworks } from '#app/models/project/project.server'
 
 export const NavComboboxes = memo(
@@ -28,7 +28,6 @@ export const NavComboboxes = memo(
 				<FlexRow className="gap-4">
 					<ComboboxNav
 						entities={project.artworks}
-						entitySingular="artwork"
 						entityPlural="artworks"
 						placeholder="Select an artwork..."
 						slugParam="artworkSlug"
@@ -47,7 +46,6 @@ export const NavComboboxes = memo(
 				<FlexRow className="gap-4">
 					<ComboboxNav
 						entities={artwork.branches}
-						entitySingular="branch"
 						entityPlural="branches"
 						placeholder={branch.name || 'Select a branch...'}
 						slugParam="branchSlug"
@@ -66,7 +64,6 @@ export const NavComboboxes = memo(
 				<FlexRow className="gap-4">
 					<ComboboxNav
 						entities={branch.versions}
-						entitySingular="version"
 						entityPlural="versions"
 						placeholder={version.name || 'Select a version...'}
 						slugParam="versionSlug"

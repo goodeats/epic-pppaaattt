@@ -1,12 +1,11 @@
 import { memo, useCallback } from 'react'
-import { type IArtworkVersion } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
+import { DeleteArtworkVersionDesignForm } from '#app/models/artwork-version/design/__components.panel.delete'
 import { type IAssetImage } from '#app/models/asset/image/image.server'
-import { type IDesign } from '#app/models/design/design.server'
-import { type ILayer } from '#app/models/layer/layer.server'
-import { ArtworkVersionDesignDelete } from '#app/routes/resources+/api.v1+/artwork-version.design.delete'
+import { DeleteLayerDesignForm } from '#app/models/layer/__components.panel.delete.design'
+import { type ILayer } from '#app/models/layer/definitions'
 import { AssetImageArtworkVersionDelete } from '#app/routes/resources+/api.v1+/asset.image.artwork-version.delete'
 import { AssetImageLayerDelete } from '#app/routes/resources+/api.v1+/asset.image.layer.delete'
-import { LayerDesignDelete } from '#app/routes/resources+/api.v1+/layer.design.delete'
 import {
 	type entityParentTypeEnum,
 	type entityTypeEnum,
@@ -17,7 +16,7 @@ import {
 } from '#app/schema/entity'
 import { type IDashboardPanelDeleteEntityStrategy } from '#app/strategies/component/dashboard-panel/delete-entity.strategy'
 
-interface DeleteChildEntityFormProps {
+export interface DeleteChildEntityFormProps {
 	entityType: entityTypeEnum
 	parentType?: entityParentTypeEnum
 	entity: IEntityVisible
@@ -36,9 +35,10 @@ const ArtworkVersionDeleteChildEntityForm = memo(
 				)
 			case EntityType.DESIGN:
 				return (
-					<ArtworkVersionDesignDelete
-						design={entity as IDesign}
-						versionId={parent.id}
+					<DeleteArtworkVersionDesignForm
+						entityType={entityType}
+						entity={entity}
+						parent={parent}
 					/>
 				)
 			case EntityType.LAYER:
@@ -69,7 +69,11 @@ const LayerDeleteChildEntityForm = memo(
 				)
 			case EntityType.DESIGN:
 				return (
-					<LayerDesignDelete design={entity as IDesign} layerId={parent.id} />
+					<DeleteLayerDesignForm
+						entityType={entityType}
+						entity={entity}
+						parent={parent}
+					/>
 				)
 			default:
 				console.log('unknown layer entity type', entityType)

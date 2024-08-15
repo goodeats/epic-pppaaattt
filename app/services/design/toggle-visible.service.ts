@@ -1,17 +1,14 @@
 import { type User } from '@prisma/client'
-import { getDesign } from '#app/models/design/design.get.server'
 import {
 	type IDesign,
 	type IDesignEntityId,
-} from '#app/models/design/design.server'
-import {
-	updateDesignVisible,
-	type IDesignUpdatedResponse,
-} from '#app/models/design/design.update.server'
-import { type designTypeEnum } from '#app/schema/design'
+ type designTypeEnum } from '#app/models/design/definitions'
+import { type IDesignUpdatedResponse } from '#app/models/design/definitions.update'
+import { getDesign } from '#app/models/design/design.get.server'
+import { updateSelectedDesignService } from '#app/models/design/design.update.selected.service'
+import { updateDesignVisible } from '#app/models/design/design.update.server'
 import { type IUpdateSelectedDesignStrategy } from '#app/strategies/design/update-selected.strategy'
 import { prisma } from '#app/utils/db.server'
-import { updateSelectedDesignService } from './update-selected.service'
 
 export const designToggleVisibleService = async ({
 	userId,
@@ -33,6 +30,7 @@ export const designToggleVisibleService = async ({
 		// Step 2: update the design visible state
 		const toggleDesignVisiblePromise = updateDesignVisible({
 			id,
+			ownerId: userId,
 			visible: !visible,
 		})
 		const [updatedDesign] = await prisma.$transaction([

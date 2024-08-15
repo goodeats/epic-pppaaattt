@@ -1,9 +1,8 @@
-import { type LoaderFunctionArgs } from '@remix-run/node'
 import { redirectWithToast } from '#app/utils/toast.server.ts'
 
 // const destroyRedirectTo = { 'set-cookie': destroyRedirectToHeader }
 
-export async function loader({ request, params }: LoaderFunctionArgs) {
+export async function loader() {
 	return redirectWithToast('/', {
 		type: 'error',
 		title: 'Access Denied',

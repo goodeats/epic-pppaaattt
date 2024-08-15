@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { DesignTypeEnum, type designTypeEnum } from './design'
+import { DesignTypeEnum, type designTypeEnum } from '#app/models/design/definitions'
 
 interface DesignLayer {
 	type: designTypeEnum

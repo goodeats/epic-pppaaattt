@@ -4,6 +4,7 @@ import { type FetcherWithComponents } from '@remix-run/react'
 import { useRef } from 'react'
 import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
 import { type z } from 'zod'
+import { NoJsInput } from '#app/components/ui/input-hidden'
 import {
 	Select,
 	SelectContent,
@@ -70,7 +71,7 @@ export const FetcherSelect = ({
 	// hack to submit select form on change
 	// through conform-to and fetcher
 	const submitRef = useRef<HTMLButtonElement>(null)
-	const handleChangeSubmit = (f: HTMLFormElement) => {
+	const handleChangeSubmit = () => {
 		submitRef.current?.click()
 	}
 
@@ -78,24 +79,24 @@ export const FetcherSelect = ({
 		<fetcher.Form
 			method="POST"
 			action={route}
-			onChange={e => handleChangeSubmit(e.currentTarget)}
+			onChange={handleChangeSubmit}
 			{...form.props}
 			className="flex-1"
 		>
 			<AuthenticityTokenInput />
-			<input type="hidden" name="no-js" value={String(!isHydrated)} />
+			<NoJsInput value={String(!isHydrated)} />
 			{/* hidden field values */}
 			{children}
 
-			<Select disabled={isPending} {...conform.input(fields[fieldName])}>
+			<Select disabled={isPending} {...conform.input(fields[fieldName]!)}>
 				<TooltipHydrated tooltipText={tooltipText} isHydrated={isHydrated}>
 					<SelectTrigger className="flex h-8 flex-1 text-left">
 						<SelectValue placeholder={placeholder} />
 					</SelectTrigger>
 				</TooltipHydrated>
 				<SelectContent>
-					{options.map(option => {
-						const [value, label] = Object.entries(option)[0]
+					{options.map((option) => {
+						const [value, label] = Object.entries(option)[0] as [string, string]
 						return (
 							<SelectItem key={label} value={value}>
 								{label as string}

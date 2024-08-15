@@ -29,6 +29,7 @@ import {
 	DialogTrigger,
 } from '#app/components/ui/dialog'
 import { Icon, type IconName } from '#app/components/ui/icon'
+import { NoJsInput } from '#app/components/ui/input-hidden'
 import { Label } from '#app/components/ui/label'
 import { PanelIconButton } from '#app/components/ui/panel-icon-button'
 import { StatusButton } from '#app/components/ui/status-button'
@@ -114,7 +115,7 @@ export const FetcherImageUpload = ({
 						{...form.props}
 					>
 						<AuthenticityTokenInput />
-						<input type="hidden" name="no-js" value={String(!isHydrated)} />
+						<NoJsInput value={String(!isHydrated)} />
 						{children}
 
 						<DialogFormsContainer>
@@ -123,7 +124,7 @@ export const FetcherImageUpload = ({
 								<ImagePreviewContainer>
 									<ImagePreviewWrapper>
 										<ImagePreviewLabel
-											htmlFor={fields.file.id}
+											htmlFor={fields.file?.id ?? ''}
 											className={!previewImage ? noImagePreviewClassName : ''}
 										>
 											{previewImage ? (
@@ -158,7 +159,7 @@ export const FetcherImageUpload = ({
 													}
 												}}
 												accept="image/*"
-												{...conform.input(fields.file, {
+												{...conform.input(fields.file!, {
 													type: 'file',
 													ariaAttributes: true,
 												})}
@@ -167,8 +168,8 @@ export const FetcherImageUpload = ({
 									</ImagePreviewWrapper>
 									<div className="min-h-[32px] px-4 pb-3 pt-1">
 										<ErrorList
-											id={fields.file.errorId}
-											errors={fields.file.errors}
+											id={fields.file?.errorId ?? ''}
+											errors={fields.file?.errors ?? []}
 										/>
 									</div>
 								</ImagePreviewContainer>
@@ -176,29 +177,29 @@ export const FetcherImageUpload = ({
 									labelProps={{ children: 'Name' }}
 									inputProps={{
 										autoFocus: true,
-										...conform.input(fields.name, { ariaAttributes: true }),
-										onChange: e => setName(e.currentTarget.value),
+										...conform.input(fields.name!, { ariaAttributes: true }),
+										onChange: (e) => setName(e.currentTarget.value),
 									}}
-									errors={fields.name.errors}
+									errors={fields.name!.errors}
 								/>
 								<TextareaField
 									labelProps={{ children: 'Description' }}
 									textareaProps={{
-										...conform.textarea(fields.description, {
+										...conform.textarea(fields.description!, {
 											ariaAttributes: true,
 										}),
 									}}
-									errors={fields.description.errors}
+									errors={fields.description!.errors}
 								/>
 								<TextareaField
 									labelProps={{ children: 'Alt Text' }}
 									textareaProps={{
-										...conform.textarea(fields.altText, {
+										...conform.textarea(fields.altText!, {
 											ariaAttributes: true,
 										}),
-										onChange: e => setAltText(e.currentTarget.value),
+										onChange: (e) => setAltText(e.currentTarget.value),
 									}}
-									errors={fields.altText.errors}
+									errors={fields.altText!.errors}
 								/>
 							</FlexColumn>
 						</DialogFormsContainer>

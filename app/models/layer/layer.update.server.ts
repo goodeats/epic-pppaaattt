@@ -5,13 +5,61 @@ import {
 } from '#app/schema/layer'
 import { ValidateLayerSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntitySubmission } from '#app/utils/conform-utils'
+import { prisma } from '#app/utils/db.server'
 import { findFirstLayerInstance } from '#app/utils/prisma-extensions-layer'
-import { type ILayer } from '../layer/layer.server'
+import { type ILayer } from '../layer/definitions'
+import { type ILayerUpdateParams, type ILayerUpdatedResponse } from './definitions.update'
+import {
+	type queryLayerWhereArgsType,
+	validateQueryWhereArgsPresent,
+} from './layer.get.server'
 
-export interface ILayerUpdatedResponse {
-	success: boolean
-	message?: string
-	updatedLayer?: ILayer
+type ILayerUpdateFields =
+	| 'visible'
+	| 'selected'
+	| 'name'
+	| 'description'
+	| 'slug'
+	| 'nextId'
+	| 'prevId'
+
+export const updateLayerField = ({
+	id,
+	ownerId,
+	data,
+}: ILayerUpdateParams & {
+	data: Pick<Partial<ILayer>, ILayerUpdateFields>
+}) => {
+	return prisma.layer.update({
+		where: { id, ownerId },
+		data,
+	})
+}
+
+export const updateLayerFields = ({
+	where,
+	data,
+}: {
+	where: queryLayerWhereArgsType
+	data: Pick<Partial<ILayer>, ILayerUpdateFields>
+}) => {
+	validateQueryWhereArgsPresent(where)
+	return prisma.layer.updateMany({
+		where,
+		data,
+	})
+}
+
+export const updateLayerVisible = ({
+	id,
+	ownerId,
+	visible,
+}: ILayerUpdateParams & { visible: boolean }) => {
+	return updateLayerField({
+		id,
+		ownerId,
+		data: { visible },
+	})
 }
 
 export const validateLayerNameSubmission = async ({

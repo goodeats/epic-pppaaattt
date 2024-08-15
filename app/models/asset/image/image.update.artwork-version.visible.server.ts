@@ -1,5 +1,5 @@
 import { type IntentActionArgs } from '#app/definitions/intent-action-args'
-import { type IArtworkVersion } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
 import { type IUser } from '#app/models/user/user.server'
 import { EditVisibleAssetImageArtworkVersionSchema } from '#app/schema/asset/image.artwork-version'
 import { ValidateAssetSubmissionStrategy } from '#app/strategies/validate-submission.strategy'

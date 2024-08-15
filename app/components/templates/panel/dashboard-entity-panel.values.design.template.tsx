@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react'
 import { SidebarPanelPopoverFormContainer } from '#app/components/layout/popover'
-import { type IDesignWithTemplate } from '#app/models/design/design.server'
+import { type IDesignWithTemplate } from '#app/models/design/definitions'
 import { DesignTypeTemplateStyle } from '#app/routes/resources+/api.v1+/design.type.template.update.style'
 import { type IEntity } from '#app/schema/entity'
 import { SidebarPanelRowValuesContainer } from '..'

@@ -1,5 +1,8 @@
-import { type DesignTypeEnum } from '#app/schema/design'
-import { type IDesignSubmission, type IDesignParsed } from '../design.server'
+import {
+	type IDesignSubmission,
+	type IDesignParsed,
+	type DesignTypeEnum,
+} from '../definitions'
 
 export interface IDesignLayout extends IDesignParsed {
 	type: typeof DesignTypeEnum.LAYOUT
@@ -12,10 +15,10 @@ export type IDesignLayoutStyle = 'random' | 'grid'
 // make sure it starts as optional or is set to a default value
 // for when parsing the design from the deserializer
 export interface IDesignAttributesLayout {
-	basis?: IDesignLayoutStyle
-	count?: number
-	rows?: number
-	columns?: number
+	style: IDesignLayoutStyle
+	count: number
+	rows: number
+	columns: number
 }
 
 export interface IDesignLayoutSubmission

@@ -1,75 +1,88 @@
 import { prisma } from '#app/utils/db.server'
-import { type IDesign } from '../design/design.server'
+import { type IDesign } from '../design/definitions'
+import {
+	type IDesignUpdateAttributesParams,
+	type IDesignUpdateParams,
+} from './definitions.update'
+import {
+	type queryDesignWhereArgsType,
+	validateQueryWhereArgsPresent,
+} from './design.get.server'
+import { stringifyDesignAttributes } from './utils'
 
-export interface IDesignUpdatedResponse {
-	success: boolean
-	message?: string
-	updatedDesign?: IDesign
+type IDesignUpdateFields =
+	| 'visible'
+	| 'selected'
+	| 'attributes'
+	| 'nextId'
+	| 'prevId'
+
+export const updateDesignField = ({
+	id,
+	ownerId,
+	data,
+}: IDesignUpdateParams & {
+	data: Pick<Partial<IDesign>, IDesignUpdateFields>
+}) => {
+	return prisma.design.update({
+		where: { id, ownerId },
+		data,
+	})
+}
+
+export const updateDesignFields = ({
+	where,
+	data,
+}: {
+	where: queryDesignWhereArgsType
+	data: Pick<Partial<IDesign>, IDesignUpdateFields>
+}) => {
+	validateQueryWhereArgsPresent(where)
+	return prisma.design.updateMany({
+		where,
+		data,
+	})
+}
+
+export const updateDesignAttributes = ({
+	id,
+	ownerId,
+	type,
+	attributes,
+}: IDesignUpdateAttributesParams) => {
+	const jsonAttributes = stringifyDesignAttributes({
+		type,
+		attributes,
+	})
+	const serializedData = { attributes: jsonAttributes }
+	return updateDesignField({
+		id,
+		ownerId,
+		data: serializedData,
+	})
 }
 
 export const updateDesignVisible = ({
 	id,
+	ownerId,
 	visible,
-}: {
-	id: IDesign['id']
-	visible: boolean
-}) => {
-	return prisma.design.update({
-		where: { id },
+}: IDesignUpdateParams & { visible: boolean }) => {
+	return updateDesignField({
+		id,
+		ownerId,
 		data: { visible },
 	})
 }
 
-export const connectPrevAndNextDesigns = ({
-	prevId,
-	nextId,
-}: {
-	prevId: IDesign['id']
-	nextId: IDesign['id']
-}) => {
-	const connectNextToPrev = prisma.design.update({
-		where: { id: prevId },
-		data: { nextId },
-	})
-	const connectPrevToNext = prisma.design.update({
-		where: { id: nextId },
-		data: { prevId },
-	})
-	return [connectNextToPrev, connectPrevToNext]
-}
-
-export const updateDesignToHead = ({ id }: { id: IDesign['id'] }) => {
-	return prisma.design.update({
-		where: { id },
-		data: { prevId: null },
-	})
-}
-
-export const updateDesignToTail = ({ id }: { id: IDesign['id'] }) => {
-	return prisma.design.update({
-		where: { id },
-		data: { nextId: null },
-	})
-}
-
-export const updateDesignRemoveNodes = ({ id }: { id: IDesign['id'] }) => {
-	return prisma.design.update({
-		where: { id },
-		data: { prevId: null, nextId: null },
-	})
-}
-
-export const updateDesignNodes = ({
+export const updateDesignSelected = ({
 	id,
-	nextId,
-	prevId,
+	selected,
 }: {
-	id: string
-	nextId: string | null
-	prevId: string | null
+	id: IDesign['id']
+	selected: boolean
 }) => {
-	return prisma.design.update({
+	return updateDesignFields({
 		where: { id },
-		data: { prevId, nextId },
+		data: { selected },
 	})
 }

@@ -1,7 +1,7 @@
 import {
 	type IDesignWithSize,
 	type IDesignWithType,
-} from '#app/models/design/design.server'
+} from '#app/models/design/definitions'
 import { type ISize } from './size.server'
 
 export const findFirstSizeInDesignArray = ({

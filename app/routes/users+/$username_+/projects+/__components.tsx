@@ -1,4 +1,3 @@
-import { type Project } from '@prisma/client'
 import { Link, NavLink, useLoaderData } from '@remix-run/react'
 import {
 	BreadcrumbsContainer,
@@ -10,6 +9,7 @@ import {
 	sideNavLinkDefaultClassName,
 } from '#app/components/shared'
 import { Icon } from '#app/components/ui/icon'
+import { type IProject } from '#app/models/project/project.server'
 import { useBreadcrumbs } from '#app/utils/breadcrumbs'
 import { cn, getUserImgSrc } from '#app/utils/misc'
 import { useOptionalUser, useUser } from '#app/utils/user'
@@ -56,7 +56,7 @@ export const List = () => {
 		)
 	}
 
-	const ListItem = ({ project }: { project: Project }) => {
+	const ListItem = ({ project }: { project: IProject }) => {
 		const { slug, name } = project
 		return (
 			<SideNavListItem key={slug}>
@@ -78,7 +78,7 @@ export const List = () => {
 		<SideNavList>
 			{isOwner ? <NewListItem /> : null}
 			{owner.projects.map(project => (
-				<ListItem key={project.slug} project={project as Project} />
+				<ListItem key={project.slug} project={project as IProject} />
 			))}
 		</SideNavList>
 	)

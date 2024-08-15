@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react'
 import { SidebarPanelPopoverFormContainer } from '#app/components/layout/popover'
 import { type IconName } from '#app/components/ui/icon'
-import { type IDesignWithLine } from '#app/models/design/design.server'
+import { type IDesignWithLine } from '#app/models/design/definitions'
 import { DesignTypeLineBasis } from '#app/routes/resources+/api.v1+/design.type.line.update.basis'
 import { DesignTypeLineFormat } from '#app/routes/resources+/api.v1+/design.type.line.update.format'
 import { DesignTypeLineWidth } from '#app/routes/resources+/api.v1+/design.type.line.update.width'

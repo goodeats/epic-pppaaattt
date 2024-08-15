@@ -20,13 +20,13 @@ export const ArtworkCanvas = memo(
 		useEffect(() => {
 			const canvas = canvasRef.current
 			if (canvas) {
-				canvasDrawService({ canvas, generator })
+				void canvasDrawService({ canvas, generator })
 			}
 		}, [canvasRef, generator, refresh])
 
 		const canvasFooter = useCallback(() => {
 			const handleRefresh = () => {
-				setRefresh(prev => prev + 1)
+				setRefresh((prev) => prev + 1)
 			}
 			return (
 				<CanvasFooter

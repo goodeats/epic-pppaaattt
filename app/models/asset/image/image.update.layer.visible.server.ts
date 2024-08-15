@@ -1,5 +1,5 @@
 import { type IntentActionArgs } from '#app/definitions/intent-action-args'
-import { type ILayer } from '#app/models/layer/layer.server'
+import { type ILayer } from '#app/models/layer/definitions'
 import { type IUser } from '#app/models/user/user.server'
 import { EditVisibleAssetImageLayerSchema } from '#app/schema/asset/image.layer'
 import { ValidateAssetSubmissionStrategy } from '#app/strategies/validate-submission.strategy'

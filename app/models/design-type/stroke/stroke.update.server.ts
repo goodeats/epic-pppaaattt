@@ -8,7 +8,7 @@ import {
 import { ValidateDesignParentSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntitySubmission } from '#app/utils/conform-utils'
 import { findFirstStrokeInstance } from '#app/utils/prisma-extensions-stroke'
-import { type IDesign } from '../../design/design.server'
+import { type IDesign } from '../../design/definitions'
 import { type IStroke } from './stroke.server'
 
 export interface IDesignTypeStrokeUpdatedResponse {

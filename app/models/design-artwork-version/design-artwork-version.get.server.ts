@@ -1,8 +1,8 @@
-import { type designTypeEnum } from '#app/schema/design'
+import { type designTypeEnum } from '#app/models/design/definitions'
 import { prisma } from '#app/utils/db.server'
-import { orderLinkedItems } from '#app/utils/linked-list.utils'
-import { type IArtworkVersion } from '../artwork-version/artwork-version.server'
-import { type IDesign } from '../design/design.server'
+import { orderLinkedItems } from '../__shared/linked-list.utils'
+import { type IArtworkVersion } from '../artwork-version/definitions'
+import { type IDesign } from '../design/definitions'
 
 export const findFirstVisibleArtworkVersionDesignByType = async ({
 	artworkVersionId,

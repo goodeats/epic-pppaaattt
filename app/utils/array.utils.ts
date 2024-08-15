@@ -4,7 +4,7 @@ import { randomIndex } from './random.utils'
 
 // If the index is out of bounds, it wraps around the array.
 export const getCircularItemInArray = <T>(array: T[], index: number): T => {
-	return array[index % array.length]
+	return array[index % array.length] as T
 }
 
 // Function to get an item from an array in a reverse circular manner.
@@ -13,9 +13,9 @@ export const getReverseCircularItemInArray = <T>(
 	array: T[],
 	index: number,
 ): T => {
-	return array[array.length - 1 - (index % array.length)]
+	return array[array.length - 1 - (index % array.length)] as T
 }
 
 export const getRandomItemInArray = <T>(array: T[]): T => {
-	return array[randomIndex(array)]
+	return array[randomIndex(array)] as T
 }

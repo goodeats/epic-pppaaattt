@@ -1,10 +1,7 @@
 import { memo, useCallback } from 'react'
-import { type IArtworkVersion } from '#app/models/artwork-version/artwork-version.server'
-import { type IDesign } from '#app/models/design/design.server'
-import { type ILayer } from '#app/models/layer/layer.server'
-import { ArtworkVersionDesignReorder } from '#app/routes/resources+/api.v1+/artwork-version.design.update.order'
-import { ArtworkVersionLayerReorder } from '#app/routes/resources+/api.v1+/artwork-version.layer.update.order'
-import { LayerDesignReorder } from '#app/routes/resources+/api.v1+/layer.design.update.order'
+import { UpdateArtworkVersionReorderDesignForm } from '#app/models/artwork-version/design/__components.panel.reorder'
+import { UpdateArtworkVersionReorderLayerForm } from '#app/models/artwork-version/layer/__components.panel.reorder'
+import { UpdateLayerReorderDesignForm } from '#app/models/layer/design.__components.panel.reorder'
 import {
 	EntityParentType,
 	type entityParentTypeEnum,
@@ -16,7 +13,7 @@ import {
 import { type IDashboardPanelUpdateEntityOrderStrategy } from '#app/strategies/component/dashboard-panel/update-entity-order.strategy'
 import { SidebarPanelRowReorderContainer } from '..'
 
-interface ReorderChildEntityFormProps {
+export interface ReorderChildEntityFormProps {
 	entityType: entityTypeEnum
 	parentType?: entityParentTypeEnum
 	entity: IEntity
@@ -36,37 +33,23 @@ const ArtworkVersionReorderChildEntityForm = memo(
 		switch (entityType) {
 			case EntityType.DESIGN:
 				return (
-					<>
-						<ArtworkVersionDesignReorder
-							design={entity as IDesign}
-							version={parent as IArtworkVersion}
-							direction="up"
-							atTopOrBottom={atTop}
-						/>
-						<ArtworkVersionDesignReorder
-							design={entity as IDesign}
-							version={parent as IArtworkVersion}
-							direction="down"
-							atTopOrBottom={atBottom}
-						/>
-					</>
+					<UpdateArtworkVersionReorderDesignForm
+						entityType={entityType}
+						entity={entity}
+						parent={parent}
+						atTop={atTop}
+						atBottom={atBottom}
+					/>
 				)
 			case EntityType.LAYER:
 				return (
-					<>
-						<ArtworkVersionLayerReorder
-							layer={entity as ILayer}
-							version={parent as IArtworkVersion}
-							direction="up"
-							atTopOrBottom={atTop}
-						/>
-						<ArtworkVersionLayerReorder
-							layer={entity as ILayer}
-							version={parent as IArtworkVersion}
-							direction="down"
-							atTopOrBottom={atBottom}
-						/>
-					</>
+					<UpdateArtworkVersionReorderLayerForm
+						entityType={entityType}
+						entity={entity}
+						parent={parent}
+						atTop={atTop}
+						atBottom={atBottom}
+					/>
 				)
 			default:
 				console.log('unknown artwork version entity type', entityType)
@@ -88,20 +71,13 @@ const LayerReorderChildEntityForm = memo(
 		switch (entityType) {
 			case EntityType.DESIGN:
 				return (
-					<>
-						<LayerDesignReorder
-							design={entity as IDesign}
-							layer={parent as ILayer}
-							direction="up"
-							atTopOrBottom={atTop}
-						/>
-						<LayerDesignReorder
-							design={entity as IDesign}
-							layer={parent as ILayer}
-							direction="down"
-							atTopOrBottom={atBottom}
-						/>
-					</>
+					<UpdateLayerReorderDesignForm
+						entityType={entityType}
+						entity={entity}
+						parent={parent}
+						atTop={atTop}
+						atBottom={atBottom}
+					/>
 				)
 			default:
 				console.log('unknown layer entity type', entityType)

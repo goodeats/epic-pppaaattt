@@ -1,4 +1,4 @@
-import { type ILayerWithChildren } from '#app/models/layer/layer.server'
+import { type ILayerWithChildren } from '#app/models/layer/definitions'
 import { PanelLayerAssets } from './sidebars.panel.assets.layer'
 import { PanelLayerDesigns } from './sidebars.panel.designs.layer'
 

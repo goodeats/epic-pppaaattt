@@ -15,12 +15,12 @@ export const canvasDrawLayerAssets = ({
 	const { assetImages } = assets
 
 	for (let i = 0; i < assetImages.length; i++) {
-		const image = assetImages[i]
+		const image = assetImages[i]!
 
 		// may want to draw image to get pixel data on build
 		if (timeToDraw && image.hideOnDraw) continue
 
-		const img = loadedAssets[image.id]
+		const img = loadedAssets[image.id]!
 		const { x, y, width, height } = image
 		ctx.drawImage(img, x, y, width, height)
 	}

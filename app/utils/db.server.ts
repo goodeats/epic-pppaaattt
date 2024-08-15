@@ -56,7 +56,7 @@ export const prisma = remember('prisma', () => {
 		],
 	})
 	// $on prevents the ability to use prisma extensions
-	client.$on('query', async e => {
+	client.$on('query', async (e) => {
 		if (e.duration < logThreshold) return
 		const color =
 			e.duration < logThreshold * 1.1
@@ -71,6 +71,6 @@ export const prisma = remember('prisma', () => {
 		const dur = chalk[color](`${e.duration}ms`)
 		console.info(`prisma:query - ${dur} - ${e.query}`)
 	})
-	client.$connect()
+	void client.$connect()
 	return client
 })

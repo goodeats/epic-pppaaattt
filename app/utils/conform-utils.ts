@@ -59,7 +59,7 @@ export async function parseEntitySubmission({
 }) {
 	return await parse(formData, {
 		schema: schema.superRefine(async (data, ctx) => {
-			strategy.validateFormDataEntity({ userId, data, ctx })
+			void strategy.validateFormDataEntity({ userId, data, ctx })
 		}),
 		async: true,
 	})
@@ -105,7 +105,7 @@ export async function parseEntityImageSubmission({
 	return await parse(formData, {
 		schema: schema
 			.superRefine(async (data, ctx) => {
-				strategy.validateFormDataEntity({ userId, data, ctx })
+				void strategy.validateFormDataEntity({ userId, data, ctx })
 			})
 			.transform(transformAssetImageData),
 		async: true,

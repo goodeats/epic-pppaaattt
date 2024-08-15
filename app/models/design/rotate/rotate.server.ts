@@ -1,5 +1,8 @@
-import { type DesignTypeEnum } from '#app/schema/design'
-import { type IDesignSubmission, type IDesignParsed } from '../design.server'
+import {
+	type IDesignSubmission,
+	type IDesignParsed,
+	type DesignTypeEnum,
+} from '../definitions'
 
 export interface IDesignRotate extends IDesignParsed {
 	type: typeof DesignTypeEnum.ROTATE
@@ -33,8 +36,8 @@ export type IDesignRotateFormat = 'pixel' | 'percent'
 // make sure it starts as optional or is set to a default value
 // for when parsing the design from the deserializer
 export interface IDesignAttributesRotate {
-	basis?: IDesignRotateBasis
-	value?: number
+	basis: IDesignRotateBasis
+	value: number
 }
 
 export interface IDesignRotateSubmission

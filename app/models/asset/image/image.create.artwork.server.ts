@@ -1,6 +1,5 @@
 import { type IntentActionArgs } from '#app/definitions/intent-action-args'
 import { type IArtwork } from '#app/models/artwork/artwork.server'
-import { NewAssetImageArtworkSchema } from '#app/schema/asset/image.artwork'
 import { ValidateArtworkParentSubmissionStrategy } from '#app/strategies/validate-submission.strategy'
 import { validateEntityImageSubmission } from '#app/utils/conform-utils'
 import { prisma } from '#app/utils/db.server'
@@ -8,6 +7,7 @@ import {
 	type IAssetImageCreateData,
 	type IAssetImageCreateSubmission,
 } from './image.create.server'
+import { NewAssetImageArtworkServerSchema } from './schema.server'
 import { stringifyAssetImageAttributes } from './utils'
 
 export const validateNewAssetImageArtworkSubmission = async ({
@@ -19,7 +19,7 @@ export const validateNewAssetImageArtworkSubmission = async ({
 	return await validateEntityImageSubmission({
 		userId,
 		formData,
-		schema: NewAssetImageArtworkSchema,
+		schema: NewAssetImageArtworkServerSchema,
 		strategy,
 	})
 }

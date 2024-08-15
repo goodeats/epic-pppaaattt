@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { type z } from 'zod'
 import { prisma } from '#app/utils/db.server'
 import { type IAsset } from './asset.server'
 
@@ -21,11 +21,12 @@ export const assetSelect = {
 	layerId: true,
 }
 
-export type queryAssetWhereArgsType = z.infer<typeof whereArgs>
-const whereArgs = z.object({
-	id: z.string().optional(),
-	ownerId: z.string().optional(),
-})
+export type queryAssetWhereArgsType = z.infer<
+	z.ZodObject<{
+		id: z.ZodOptional<z.ZodString>
+		ownerId: z.ZodOptional<z.ZodString>
+	}>
+>
 
 // TODO: Add schemas for each type of query and parse with zod
 // aka if by id that should be present, if by slug that should be present

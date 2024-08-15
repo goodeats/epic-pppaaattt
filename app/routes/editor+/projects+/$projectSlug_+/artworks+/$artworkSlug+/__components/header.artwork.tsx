@@ -20,7 +20,7 @@ export const ArtworkHeader = () => {
 		artworkVersionLoaderRoute,
 	)
 	const onLatestVersion =
-		version.slug === 'latest' || branch.versions[0].id === version.id
+		version.slug === 'latest' || branch.versions[0]!.id === version.id
 
 	const navComboboxes = useCallback(
 		() => (
@@ -41,10 +41,9 @@ export const ArtworkHeader = () => {
 				artwork={artwork}
 				branch={branch}
 				version={version}
-				onLatestVersion={onLatestVersion}
 			/>
 		),
-		[artwork, branch, version, onLatestVersion],
+		[artwork, branch, version],
 	)
 
 	return (

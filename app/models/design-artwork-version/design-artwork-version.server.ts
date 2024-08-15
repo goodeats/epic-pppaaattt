@@ -1,86 +1,51 @@
-import { type Design } from '@prisma/client'
-import { DesignTypeEnum, type designTypeEnum } from '#app/schema/design'
-import { prisma } from '#app/utils/db.server'
-import { filterVisibleDesigns } from '#app/utils/design'
-import { orderLinkedItems } from '#app/utils/linked-list.utils'
-import { filterNonArrayRotates } from '#app/utils/rotate'
-import { type IArtworkVersion } from '../artwork-version/artwork-version.server'
-import { findManyDesignsWithType } from '../design/design.get.server'
+import { orderLinkedItems } from '../__shared/linked-list.utils'
+import { type IArtworkVersion } from '../artwork-version/definitions'
 import {
-	type IDesignWithPalette,
+	type IDesignParsed,
 	type IDesign,
-	type IDesignWithRotate,
-} from '../design/design.server'
-import { type IPalette } from '../design-type/palette/palette.server'
-import { type IRotate } from '../design-type/rotate/rotate.server'
+	DesignTypeEnum,
+} from '../design/definitions'
+import { findManyDesignsWithType } from '../design/design.get.server'
+import { type IDesignPalette } from '../design/palette/palette.server'
+import { type IDesignRotate } from '../design/rotate/rotate.server'
+import { filterDesignsVisible } from '../design/utils'
 
 export interface IDesignWithArtworkVersion extends IDesign {
 	artworkVersion: IArtworkVersion
-}
-
-export const updateArtworkVersionSelectedDesign = ({
-	artworkVersionId,
-	designId,
-	type,
-}: {
-	artworkVersionId: IArtworkVersion['id']
-	designId: Design['id']
-	type: designTypeEnum
-}) => {
-	const deselectDesign = deselectArtworkVersionSelectedDesign({
-		artworkVersionId,
-		type,
-	})
-	const selectDesign = prisma.design.update({
-		where: { id: designId },
-		data: { selected: true },
-	})
-	return [deselectDesign, selectDesign]
-}
-
-export const deselectArtworkVersionSelectedDesign = ({
-	artworkVersionId,
-	type,
-}: {
-	artworkVersionId: IArtworkVersion['id']
-	type: designTypeEnum
-}) => {
-	return prisma.design.updateMany({
-		where: { artworkVersionId, type, selected: true },
-		data: { selected: false },
-	})
 }
 
 export const getArtworkVersionVisiblePalettes = async ({
 	artworkVersionId,
 }: {
 	artworkVersionId: IArtworkVersion['id']
-}): Promise<IPalette[]> => {
+}): Promise<IDesignPalette[]> => {
 	const designPalettes = (await findManyDesignsWithType({
 		where: { type: DesignTypeEnum.PALETTE, artworkVersionId },
-	})) as IDesignWithPalette[]
+	})) as IDesignParsed[]
 
-	const visibleDesignPalettes = filterVisibleDesigns(
-		orderLinkedItems<IDesignWithPalette>(designPalettes),
-	) as IDesignWithPalette[]
+	const orderedPalettes = orderLinkedItems<IDesignParsed>(designPalettes)
 
-	return visibleDesignPalettes.map(design => design.palette)
+	const visibleDesignPalettes = filterDesignsVisible({
+		designs: orderedPalettes,
+	}) as IDesignPalette[]
+
+	return visibleDesignPalettes
 }
 
 export const getArtworkVersionVisibleRotates = async ({
 	artworkVersionId,
 }: {
 	artworkVersionId: IArtworkVersion['id']
-}): Promise<IRotate[]> => {
+}): Promise<IDesignRotate[]> => {
 	const designRotates = (await findManyDesignsWithType({
 		where: { type: DesignTypeEnum.ROTATE, artworkVersionId },
-	})) as IDesignWithRotate[]
+	})) as IDesignParsed[]
 
-	const visibleDesignRotates = filterVisibleDesigns(
-		orderLinkedItems<IDesignWithRotate>(designRotates),
-	) as IDesignWithRotate[]
+	const orderedRotates = orderLinkedItems<IDesignParsed>(designRotates)
 
-	return filterNonArrayRotates(
-		visibleDesignRotates.map(design => design.rotate),
-	)
+	const visibleDesignRotates = filterDesignsVisible({
+		designs: orderedRotates,
+	}) as IDesignRotate[]
+
+	return visibleDesignRotates
 }

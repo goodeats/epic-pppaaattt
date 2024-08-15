@@ -1,6 +1,6 @@
 import { type z } from 'zod'
 import { getArtwork } from '#app/models/artwork/artwork.get.server'
-import { getArtworkBranch } from '#app/models/artwork-branch/artwork-branch.get.server'
+import { getArtworkBranch } from '#app/models/artwork-branch/_.get.server.js'
 import { getArtworkVersion } from '#app/models/artwork-version/artwork-version.get.server'
 import { getAsset } from '#app/models/asset/asset.get.server'
 import { getDesign } from '#app/models/design/design.get.server'

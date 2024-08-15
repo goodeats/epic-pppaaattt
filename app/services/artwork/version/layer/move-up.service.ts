@@ -1,17 +1,16 @@
-import { type IArtworkVersion } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
+import { type ILayer } from '#app/models/layer/definitions'
+import { findFirstLayer } from '#app/models/layer/layer.get.server'
 import {
-	findFirstLayer,
-	updateLayerRemoveNodes,
-	type ILayer,
 	updateLayerNodes,
-} from '#app/models/layer/layer.server'
+	updateLayerRemoveNodes,
+} from '#app/models/layer/layer.update.linked-list.server'
 import { type IUser } from '#app/models/user/user.server'
 import { prisma } from '#app/utils/db.server'
 
 export const artworkVersionLayerMoveUpService = async ({
 	userId,
 	id,
-	artworkVersionId,
 }: {
 	userId: IUser['id']
 	id: ILayer['id']
@@ -98,7 +97,7 @@ const getAdjacentLayers = async ({
 		? await getLayer({
 				id: prevPrevId,
 				userId,
-		  })
+			})
 		: null
 
 	const nextLayer = nextId ? await getLayer({ id: nextId, userId }) : null

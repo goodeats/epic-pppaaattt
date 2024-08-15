@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { DesignTypeEnum, type designTypeEnum } from './design'
+import { DesignTypeEnum, type designTypeEnum } from '#app/models/design/definitions'
 
 export interface DesignArtworkVersion {
 	type: designTypeEnum
@@ -14,11 +14,6 @@ export const ArtworkVersionDesignDataCreateSchema = z.object({
 	visible: z.boolean().optional(),
 	selected: z.boolean().optional(),
 }) satisfies z.Schema<DesignArtworkVersion>
-
-export const NewArtworkVersionDesignSchema = z.object({
-	artworkVersionId: z.string(),
-	type: z.nativeEnum(DesignTypeEnum),
-})
 
 export const DeleteArtworkVersionDesignSchema = z.object({
 	id: z.string(),

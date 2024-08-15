@@ -1,6 +1,6 @@
 import { invariant } from '@epic-web/invariant'
 import { type IArtworkVersionGeneratorMetadata } from '#app/definitions/artwork-generator'
-import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/artwork-version.server'
+import { type IArtworkVersionWithChildren } from '#app/models/artwork-version/definitions'
 import { prisma } from '#app/utils/db.server'
 
 export const buildGeneratorMetadata = async ({

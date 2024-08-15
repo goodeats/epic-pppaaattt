@@ -1,4 +1,3 @@
-import { getDesignsWithType } from '#app/models/design/design.get.server'
 import {
 	type IDesignWithStroke,
 	type IDesignWithFill,
@@ -10,8 +9,11 @@ import {
 	type IDesignWithRotate,
 	type IDesignWithSize,
 	type IDesignWithTemplate,
-} from '#app/models/design/design.server'
-import { type IDesignAttributesFill } from '#app/models/design/fill/fill.server'
+	DesignTypeEnum,
+	type designTypeEnum,
+} from '#app/models/design/definitions'
+import { getDesignsWithType } from '#app/models/design/design.get.server'
+import { type IDesignAttributesFill } from '#app/models/design/fill/definitions'
 import { stringifyDesignFillAttributes } from '#app/models/design/fill/utils'
 import { type IDesignAttributesLayout } from '#app/models/design/layout/layout.server'
 import { stringifyDesignLayoutAttributes } from '#app/models/design/layout/utils'
@@ -27,7 +29,6 @@ import { type IDesignAttributesStroke } from '#app/models/design/stroke/stroke.s
 import { stringifyDesignStrokeAttributes } from '#app/models/design/stroke/utils'
 import { type IDesignAttributesTemplate } from '#app/models/design/template/template.server'
 import { stringifyDesignTemplateAttributes } from '#app/models/design/template/utils'
-import { DesignTypeEnum, type designTypeEnum } from '#app/schema/design'
 import { prisma } from '#app/utils/db.server'
 
 // designs will have attributes string as json now
@@ -45,7 +46,7 @@ import { prisma } from '#app/utils/db.server'
 
 // how to run:
 // 1) add the folowing to package.json scripts:
-// "data:migrate": "npx vite-node ./prisma/data-migrations/populate-design-attributes-by-type.ts"
+// "data:migrate": "npx tsx ./prisma/data-migrations/populate-design-attributes-by-type.ts"
 // 2) run `npm run data:migrate`
 // 3) remove the script from package.json
 

@@ -6,6 +6,7 @@ import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
 import { type z } from 'zod'
 import { Icon, type IconName } from '#app/components/ui/icon'
 import { Input } from '#app/components/ui/input'
+import { NoJsInput } from '#app/components/ui/input-hidden'
 import { Label } from '#app/components/ui/label'
 import { useOptimisticValue } from '#app/utils/forms'
 import { cn, useDebounce, useIsPending } from '#app/utils/misc'
@@ -66,7 +67,7 @@ export const FetcherNumber = ({
 	// hack to submit select form on change
 	// through conform-to and fetcher
 	const submitRef = useRef<HTMLButtonElement>(null)
-	const handleChangeSubmit = useDebounce((f: HTMLFormElement) => {
+	const handleChangeSubmit = useDebounce(() => {
 		submitRef.current?.click()
 	}, 400)
 
@@ -74,12 +75,12 @@ export const FetcherNumber = ({
 		<fetcher.Form
 			method="POST"
 			action={route}
-			onChange={e => handleChangeSubmit(e.currentTarget)}
+			onChange={handleChangeSubmit}
 			{...form.props}
 			className="flex-1"
 		>
 			<AuthenticityTokenInput />
-			<input type="hidden" name="no-js" value={String(!isHydrated)} />
+			<NoJsInput value={String(!isHydrated)} />
 			{/* hidden field values */}
 			{children}
 
@@ -87,7 +88,7 @@ export const FetcherNumber = ({
 			<div className="flex w-full items-center space-x-2">
 				{/* icon might be for artwork height, width */}
 				{icon && (
-					<Label htmlFor={fields[fieldName].id} className="w-5 flex-shrink-0">
+					<Label htmlFor={fields[fieldName]!.id} className="w-5 flex-shrink-0">
 						<Icon name={icon} className="h-5 w-5" />
 					</Label>
 				)}
@@ -102,7 +103,7 @@ export const FetcherNumber = ({
 						autoComplete="off"
 						placeholder={placeholder}
 						disabled={isPending}
-						{...conform.input(fields[fieldName], {
+						{...conform.input(fields[fieldName]!, {
 							ariaAttributes: true,
 						})}
 					/>

@@ -6,7 +6,7 @@ import {
 	NewAssetImageSchema,
 } from './image'
 
-const LayerParentSchema = z.object({
+export const LayerParentSchema = z.object({
 	layerId: z.string(),
 })
 

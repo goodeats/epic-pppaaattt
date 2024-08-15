@@ -25,14 +25,14 @@ export class GitHubProvider implements AuthProvider {
 	getAuthStrategy() {
 		return new GitHubStrategy(
 			{
-				clientID: process.env.GITHUB_CLIENT_ID,
+				clientId: process.env.GITHUB_CLIENT_ID,
 				clientSecret: process.env.GITHUB_CLIENT_SECRET,
-				callbackURL: '/auth/github/callback',
+				redirectURI: '/auth/github/callback',
 			},
 			async ({ profile }) => {
-				const email = profile.emails[0].value.trim().toLowerCase()
+				const email = profile.emails[0]!.value.trim().toLowerCase()
 				const username = profile.displayName
-				const imageUrl = profile.photos[0].value
+				const imageUrl = profile.photos[0]!.value
 				return {
 					email,
 					id: profile.id,
@@ -55,7 +55,7 @@ export class GitHubProvider implements AuthProvider {
 			ttl: 1000 * 60,
 			swr: 1000 * 60 * 60 * 24 * 7,
 			async getFreshValue(context) {
-				await new Promise(r => setTimeout(r, 3000))
+				await new Promise((r) => setTimeout(r, 3000))
 				const response = await fetch(
 					`https://api.github.com/user/${providerId}`,
 					{ headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` } },

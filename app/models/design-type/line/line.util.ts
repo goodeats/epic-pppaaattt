@@ -1,7 +1,7 @@
 import {
 	type IDesignWithLine,
 	type IDesignWithType,
-} from '#app/models/design/design.server'
+} from '#app/models/design/definitions'
 import { type ILine } from './line.server'
 
 export const findFirstLineInDesignArray = ({

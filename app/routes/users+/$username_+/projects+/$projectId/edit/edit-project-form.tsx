@@ -1,6 +1,5 @@
 import { conform, useForm } from '@conform-to/react'
 import { getFieldsetConstraint, parse } from '@conform-to/zod'
-import { type Project } from '@prisma/client'
 import { type SerializeFrom } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
 import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
@@ -21,6 +20,7 @@ import {
 } from '#app/components/shared'
 import { Button } from '#app/components/ui/button.tsx'
 import { StatusButton } from '#app/components/ui/status-button.tsx'
+import { type IProject } from '#app/models/project/project.server'
 import { useIsPending } from '#app/utils/misc.tsx'
 import { type action } from './edit-project-form.server'
 
@@ -42,7 +42,7 @@ export function EditProjectForm({
 	project,
 }: {
 	project: SerializeFrom<
-		Pick<Project, 'id' | 'name' | 'description' | 'isVisible'>
+		Pick<IProject, 'id' | 'name' | 'description' | 'isVisible'>
 	>
 }) {
 	const actionData = useActionData<typeof action>()

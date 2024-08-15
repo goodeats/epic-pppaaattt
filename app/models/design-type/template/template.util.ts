@@ -1,7 +1,7 @@
 import {
 	type IDesignWithTemplate,
 	type IDesignWithType,
-} from '#app/models/design/design.server'
+} from '#app/models/design/definitions'
 import { type ITemplate } from './template.server'
 
 export const findFirstTemplateInDesignArray = ({

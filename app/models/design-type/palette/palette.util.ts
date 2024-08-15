@@ -1,7 +1,7 @@
 import {
 	type IDesignWithPalette,
 	type IDesignWithType,
-} from '#app/models/design/design.server'
+} from '#app/models/design/definitions'
 import { type IPalette } from './palette.server'
 
 export const findFirstPaletteInDesignArray = ({

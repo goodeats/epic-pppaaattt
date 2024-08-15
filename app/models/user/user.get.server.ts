@@ -1,12 +1,13 @@
-import { z } from 'zod'
+import { type z } from 'zod'
 import { prisma } from '#app/utils/db.server'
 import { type IUserBasic } from './user.server'
 
-export type queryWhereArgsType = z.infer<typeof queryWhereArgs>
-const queryWhereArgs = z.object({
-	id: z.string().optional(),
-	username: z.string().optional(),
-})
+export type queryWhereArgsType = z.infer<
+	z.ZodObject<{
+		id: z.ZodOptional<z.ZodString>
+		username: z.ZodOptional<z.ZodString>
+	}>
+>
 
 export const getUserBasic = async ({
 	where,

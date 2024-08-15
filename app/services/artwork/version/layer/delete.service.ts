@@ -1,20 +1,23 @@
-import { type IArtworkVersion } from '#app/models/artwork-version/artwork-version.server'
-import { type ILayerDeletedResponse } from '#app/models/layer/layer.delete.server'
+import { type IArtworkVersion } from '#app/models/artwork-version/definitions'
+import { type ILayer } from '#app/models/layer/definitions'
 import {
-	findFirstLayer,
+	deleteLayer,
+	type ILayerDeletedResponse,
+} from '#app/models/layer/layer.delete.server'
+import { verifyLayer } from '#app/models/layer/layer.get.server'
+import {
 	connectPrevAndNextLayers,
 	updateLayerToHead,
 	updateLayerToTail,
-	type ILayer,
-} from '#app/models/layer/layer.server'
+} from '#app/models/layer/layer.update.linked-list.server'
 import { type IUser } from '#app/models/user/user.server'
 import { prisma } from '#app/utils/db.server'
+import { getOptionalZodErrorMessage } from '#app/utils/misc'
 
 // TODO: move logic to direct layer service
 export const artworkVersionLayerDeleteService = async ({
 	userId,
 	id,
-	artworkVersionId,
 }: {
 	userId: IUser['id']
 	id: ILayer['id']
@@ -22,9 +25,11 @@ export const artworkVersionLayerDeleteService = async ({
 }): Promise<ILayerDeletedResponse> => {
 	try {
 		// Step 1: get the layer
-		const layer = await getLayer({
-			userId,
-			id,
+		const layer = await verifyLayer({
+			where: {
+				id,
+				ownerId: userId,
+			},
 		})
 		const { nextId, prevId } = layer
 
@@ -49,30 +54,11 @@ export const artworkVersionLayerDeleteService = async ({
 
 		return { success: true }
 	} catch (error) {
-		console.log('artworkVersionLayerDeleteService error:', error)
-		const errorType = error instanceof Error
-		const errorMessage = errorType ? error.message : 'An unknown error occurred'
 		return {
 			success: false,
-			message: errorMessage,
+			message: getOptionalZodErrorMessage(error),
 		}
 	}
-}
-
-const getLayer = async ({
-	id,
-	userId,
-}: {
-	id: ILayer['id']
-	userId: IUser['id']
-}) => {
-	const layer = await findFirstLayer({
-		where: { id, ownerId: userId },
-	})
-
-	if (!layer) throw new Error('Layer not found')
-
-	return layer
 }
 
 const getAdjacentLayers = async ({
@@ -85,26 +71,24 @@ const getAdjacentLayers = async ({
 	const { nextId, prevId } = layer
 
 	const nextLayer = nextId
-		? await getLayer({
-				userId,
-				id: nextId,
-		  })
+		? await verifyLayer({
+				where: {
+					id: nextId,
+					ownerId: userId,
+				},
+			})
 		: null
 
 	const prevLayer = prevId
-		? await getLayer({
-				userId,
-				id: prevId,
-		  })
+		? await verifyLayer({
+				where: {
+					id: prevId,
+					ownerId: userId,
+				},
+			})
 		: null
 
 	return { nextLayer, prevLayer }
-}
-
-const deleteLayer = ({ id }: { id: ILayer['id'] }) => {
-	return prisma.layer.delete({
-		where: { id },
-	})
 }
 
 // maintain linked list integrity

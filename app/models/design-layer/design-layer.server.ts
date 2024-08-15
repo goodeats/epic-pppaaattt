@@ -1,18 +1,17 @@
 import { type Design } from '@prisma/client'
-import { DesignTypeEnum, type designTypeEnum } from '#app/schema/design'
 import { prisma } from '#app/utils/db.server'
-import { filterVisibleDesigns } from '#app/utils/design'
-import { orderLinkedItems } from '#app/utils/linked-list.utils'
-import { filterNonArrayRotates } from '#app/utils/rotate'
-import { findManyDesignsWithType } from '../design/design.get.server'
+import { orderLinkedItems } from '../__shared/linked-list.utils'
 import {
-	type IDesignWithPalette,
+	type IDesignParsed,
 	type IDesign,
-	type IDesignWithRotate,
-} from '../design/design.server'
-import { type IPalette } from '../design-type/palette/palette.server'
-import { type IRotate } from '../design-type/rotate/rotate.server'
-import { type ILayer } from '../layer/layer.server'
+	type designTypeEnum,
+	DesignTypeEnum,
+} from '../design/definitions'
+import { findManyDesignsWithType } from '../design/design.get.server'
+import { type IDesignPalette } from '../design/palette/palette.server'
+import { type IDesignRotate } from '../design/rotate/rotate.server'
+import { filterDesignsVisible } from '../design/utils'
+import { type ILayer } from '../layer/definitions'
 
 export interface IDesignWithLayer extends IDesign {
 	layer: ILayer
@@ -55,32 +54,34 @@ export const getLayerVisiblePalettes = async ({
 	layerId,
 }: {
 	layerId: ILayer['id']
-}): Promise<IPalette[]> => {
+}): Promise<IDesignPalette[]> => {
 	const designPalettes = (await findManyDesignsWithType({
 		where: { type: DesignTypeEnum.PALETTE, layerId },
-	})) as IDesignWithPalette[]
+	})) as IDesignParsed[]
 
-	const visibleDesignPalettes = filterVisibleDesigns(
-		orderLinkedItems<IDesignWithPalette>(designPalettes),
-	) as IDesignWithPalette[]
+	const orderedPalettes = orderLinkedItems<IDesignParsed>(designPalettes)
 
-	return visibleDesignPalettes.map(design => design.palette)
+	const visibleDesignPalettes = filterDesignsVisible({
+		designs: orderedPalettes,
+	}) as IDesignPalette[]
+
+	return visibleDesignPalettes
 }
 
 export const getLayerVisibleRotates = async ({
 	layerId,
 }: {
 	layerId: ILayer['id']
-}): Promise<IRotate[]> => {
+}): Promise<IDesignRotate[]> => {
 	const designRotates = (await findManyDesignsWithType({
 		where: { type: DesignTypeEnum.ROTATE, layerId },
-	})) as IDesignWithRotate[]
+	})) as IDesignParsed[]
 
-	const visibleDesignRotates = filterVisibleDesigns(
-		orderLinkedItems<IDesignWithRotate>(designRotates),
-	) as IDesignWithRotate[]
+	const orderedRotates = orderLinkedItems<IDesignParsed>(designRotates)
 
-	return filterNonArrayRotates(
-		visibleDesignRotates.map(design => design.rotate),
-	)
+	const visibleDesignRotates = filterDesignsVisible({
+		designs: orderedRotates,
+	}) as IDesignRotate[]
+
+	return visibleDesignRotates
 }

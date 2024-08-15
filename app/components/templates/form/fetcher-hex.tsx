@@ -5,6 +5,7 @@ import { useRef } from 'react'
 import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
 import { type z } from 'zod'
 import { Input } from '#app/components/ui/input'
+import { NoJsInput } from '#app/components/ui/input-hidden'
 import { useOptimisticValue } from '#app/utils/forms'
 import { useDebounce, useIsPending } from '#app/utils/misc'
 import { TooltipHydrated } from '../tooltip'
@@ -67,7 +68,7 @@ export const FetcherHex = ({
 	// hack to submit select form on change
 	// through conform-to and fetcher
 	const submitRef = useRef<HTMLButtonElement>(null)
-	const handleChangeSubmit = useDebounce((f: HTMLFormElement) => {
+	const handleChangeSubmit = useDebounce(() => {
 		submitRef.current?.click()
 	}, 400)
 
@@ -81,12 +82,12 @@ export const FetcherHex = ({
 		<fetcher.Form
 			method="POST"
 			action={route}
-			onChange={e => handleChangeSubmit(e.currentTarget)}
+			onChange={handleChangeSubmit}
 			{...form.props}
 			className="flex-1"
 		>
 			<AuthenticityTokenInput />
-			<input type="hidden" name="no-js" value={String(!isHydrated)} />
+			<NoJsInput value={String(!isHydrated)} />
 			{/* hidden field values */}
 			{children}
 
@@ -94,10 +95,10 @@ export const FetcherHex = ({
 				<Input
 					maxLength={6}
 					className="flex h-8"
-					onInput={e => handleInput(e.currentTarget)}
+					onInput={(e) => handleInput(e.currentTarget)}
 					placeholder={placeholder}
 					disabled={isPending}
-					{...conform.input(fields[fieldName], {
+					{...conform.input(fields[fieldName]!, {
 						ariaAttributes: true,
 					})}
 				/>

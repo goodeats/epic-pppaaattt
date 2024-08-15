@@ -26,6 +26,7 @@ import {
 } from '#app/components/ui/dialog'
 import { type IconName } from '#app/components/ui/icon'
 import { Input } from '#app/components/ui/input'
+import { NoJsInput } from '#app/components/ui/input-hidden'
 import { PanelIconButton } from '#app/components/ui/panel-icon-button'
 import { StatusButton } from '#app/components/ui/status-button'
 import { type IAssetParent } from '#app/models/asset/asset.server'
@@ -121,14 +122,14 @@ export const FetcherImageSelect = ({
 						{...form.props}
 					>
 						<AuthenticityTokenInput />
-						<input type="hidden" name="no-js" value={String(!isHydrated)} />
+						<NoJsInput value={String(!isHydrated)} />
 						{children}
 
 						<DialogFormsContainer>
 							<fieldset>
 								<FlexColumn className="gap-4">
 									{conform
-										.collection(assetImageId, {
+										.collection(assetImageId!, {
 											type: 'radio',
 											options: images.map(image => image.id),
 										})

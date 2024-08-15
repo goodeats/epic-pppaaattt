@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react'
 import { SidebarPanelPopoverFormContainer } from '#app/components/layout/popover'
-import { type IDesignWithRotate } from '#app/models/design/design.server'
+import { type IDesignWithRotate } from '#app/models/design/definitions'
 import { DesignTypeRotateBasis } from '#app/routes/resources+/api.v1+/design.type.rotate.update.basis'
 import { DesignTypeRotateValue } from '#app/routes/resources+/api.v1+/design.type.rotate.update.value'
 import { type IEntity } from '#app/schema/entity'

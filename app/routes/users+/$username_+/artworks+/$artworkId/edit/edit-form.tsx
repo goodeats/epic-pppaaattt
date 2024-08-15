@@ -1,6 +1,5 @@
 import { conform, useForm } from '@conform-to/react'
 import { getFieldsetConstraint, parse } from '@conform-to/zod'
-import { type Artwork } from '@prisma/client'
 import { type SerializeFrom } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
 import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
@@ -21,6 +20,7 @@ import {
 } from '#app/components/shared'
 import { Button } from '#app/components/ui/button.tsx'
 import { StatusButton } from '#app/components/ui/status-button.tsx'
+import { type IArtwork } from '#app/models/artwork/artwork.server'
 import { useIsPending } from '#app/utils/misc.tsx'
 import { type action } from './edit-form.server'
 
@@ -42,7 +42,7 @@ export function EditForm({
 	artwork,
 }: {
 	artwork: SerializeFrom<
-		Pick<Artwork, 'id' | 'name' | 'description' | 'isVisible'>
+		Pick<IArtwork, 'id' | 'name' | 'description' | 'isVisible'>
 	>
 }) {
 	const actionData = useActionData<typeof action>()

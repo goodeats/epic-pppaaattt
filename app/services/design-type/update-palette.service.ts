@@ -1,4 +1,4 @@
-import { type IDesign } from '#app/models/design/design.server'
+import { type IDesign } from '#app/models/design/definitions'
 import { type IPalette } from '#app/models/design-type/palette/palette.server'
 import {
 	type IDesignTypePaletteUpdatedResponse,
@@ -7,7 +7,6 @@ import {
 import { type IUser } from '#app/models/user/user.server'
 
 export const updateDesignTypePaletteValueService = async ({
-	userId,
 	id,
 	designId,
 	value,

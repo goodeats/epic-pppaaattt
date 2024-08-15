@@ -1,21 +1,30 @@
-import { z } from 'zod'
-import { DesignTypeEnum } from '#app/schema/design'
-import { arrayOfIds, zodStringOrNull } from '#app/schema/zod-helpers'
+import { invariant } from '@epic-web/invariant'
+import { type z } from 'zod'
+import { type DesignTypeEnum } from '#app/models/design/definitions'
 import { prisma } from '#app/utils/db.server'
-import { type IDesign, type IDesignWithType } from '../design/design.server'
+import {
+	type IDesignParsed,
+	type IDesign,
+	type IDesignWithType,
+} from '../design/definitions'
+import { deserializeDesigns } from './utils'
 
-export type queryDesignWhereArgsType = z.infer<typeof whereArgs>
-const whereArgs = z.object({
-	id: z.union([z.string(), arrayOfIds]).optional(),
-	type: z.nativeEnum(DesignTypeEnum).optional(),
-	selected: z.boolean().optional(),
-	ownerId: z.string().optional(),
-	artworkId: z.string().optional(),
-	artworkVersionId: z.string().optional(),
-	layerId: z.string().optional(),
-	nextId: zodStringOrNull.optional(),
-	prevId: zodStringOrNull.optional(),
-})
+export type queryDesignWhereArgsType = z.infer<
+	z.ZodObject<{
+		id: z.ZodOptional<
+			z.ZodUnion<[z.ZodString, z.ZodObject<{ in: z.ZodArray<z.ZodString> }>]>
+		>
+		type: z.ZodOptional<z.ZodNativeEnum<typeof DesignTypeEnum>>
+		visible: z.ZodOptional<z.ZodBoolean>
+		selected: z.ZodOptional<z.ZodBoolean>
+		ownerId: z.ZodOptional<z.ZodString>
+		artworkId: z.ZodOptional<z.ZodString>
+		artworkVersionId: z.ZodOptional<z.ZodString>
+		layerId: z.ZodOptional<z.ZodString>
+		nextId: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNull]>>
+		prevId: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNull]>>
+	}>
+>
 
 // no ordering for now since these are linked lists
 const designTypes = {
@@ -32,7 +41,9 @@ const designTypes = {
 // TODO: Add schemas for each type of query and parse with zod
 // aka if by id that should be present, if by slug that should be present
 // owner id should be present unless admin (not set up yet)
-const validateQueryWhereArgsPresent = (where: queryDesignWhereArgsType) => {
+export const validateQueryWhereArgsPresent = (
+	where: queryDesignWhereArgsType,
+) => {
 	const nullValuesAllowed = ['nextId', 'prevId']
 	const missingValues: Record<string, any> = {}
 	for (const [key, value] of Object.entries(where)) {
@@ -51,77 +62,83 @@ const validateQueryWhereArgsPresent = (where: queryDesignWhereArgsType) => {
 	}
 }
 
-export const getDesigns = async ({
+export const getDesigns = ({
 	where,
 }: {
 	where: queryDesignWhereArgsType
 }): Promise<IDesign[]> => {
 	validateQueryWhereArgsPresent(where)
-	const design = await prisma.design.findMany({
+	return prisma.design.findMany({
 		where,
 	})
-	return design
 }
 
-export const getDesignsWithType = async ({
+export const getDesignsCount = ({
+	where,
+}: {
+	where: queryDesignWhereArgsType
+}): Promise<number> => {
+	validateQueryWhereArgsPresent(where)
+	return prisma.design.count({
+		where,
+	})
+}
+
+export const getDesignsWithType = ({
 	where,
 }: {
 	where: queryDesignWhereArgsType
 }): Promise<IDesignWithType[]> => {
 	validateQueryWhereArgsPresent(where)
-	const design = await prisma.design.findMany({
+	return prisma.design.findMany({
 		where,
 		include: designTypes,
 	})
-	return design
 }
 
-export const getDesign = async ({
+export const getDesign = ({ where }: { where: queryDesignWhereArgsType }) => {
+	validateQueryWhereArgsPresent(where)
+	return prisma.design.findFirst({
+		where,
+	})
+}
+
+export const verifyDesign = async ({
 	where,
 }: {
 	where: queryDesignWhereArgsType
-}): Promise<IDesign | null> => {
+}) => {
 	validateQueryWhereArgsPresent(where)
 	const design = await prisma.design.findFirst({
 		where,
 	})
+	invariant(design, 'Design not found')
 	return design
 }
 
-export const getDesignWithType = async ({
+export const getDesignWithType = ({
 	where,
 }: {
 	where: queryDesignWhereArgsType
 }): Promise<IDesignWithType | null> => {
 	validateQueryWhereArgsPresent(where)
-	const design = await prisma.design.findFirst({
+	return prisma.design.findFirst({
 		where,
 		include: designTypes,
 	})
-	return design
 }
 
 export const findManyDesignsWithType = async ({
 	where,
 }: {
 	where: queryDesignWhereArgsType
-}): Promise<IDesignWithType[]> => {
+}): Promise<IDesignParsed[]> => {
 	validateQueryWhereArgsPresent(where)
 	const designs = await prisma.design.findMany({
 		where,
-		include: {
-			palette: true,
-			size: true,
-			fill: true,
-			stroke: true,
-			line: true,
-			rotate: true,
-			layout: true,
-			template: true,
-		},
-		orderBy: {
-			type: 'asc',
-		},
 	})
-	return designs
+
+	return deserializeDesigns({
+		designs,
+	})
 }
